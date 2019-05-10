@@ -1,0 +1,398 @@
+/** Branch colour schemes **/
+.brand-yellow-scheme {
+	.bc-breadcrumbs {
+		.bc-breadcrumbs-links {
+			&::before {	background-color: $brand-yellow;	}
+		}
+	}
+	.content-separator { 
+		&:before {	background-color: $brand-yellow;	}
+	}
+	.bc-hero {
+		.bc-hero-footer {
+			.bc-hero-footer-scroll {
+				&-link {
+					&:hover, &:active, &:focus {
+						background-color: $brand-yellow;
+						border-color: $black;
+						color: $black;
+						span {
+							color: $black;
+						}
+						.svg-icon {
+							&.scroll-down-arrow {
+								fill: $black;
+							}
+						}		
+					}	
+				}
+					
+			}//.bc-hero-footer-scroll
+		}
+	}
+	.bc-card {
+		&.bc-card--slide-up {
+			.content-separator { 
+				&:before {	background-color: $brand-yellow;	}
+			}
+		}
+		&.bc-card--slide-up-overlay {
+			.bc-card-content {
+				color: 						$brand-yellow;
+				background-color: $black;
+			}
+			.bc-card-link { 
+				.bc-card-link-text {
+					color: $brand-yellow;
+				}
+				.svg-icon {
+					fill: $brand-yellow;
+				}
+			}
+		}
+		&--plain-text {
+			.bc-card-content {
+				background-color: $brand-yellow;
+				color: $black;
+				.svg-icon {
+					fill: $white;
+				}
+				&:hover, &:focus, &:active {
+					background-color: darken($brand-yellow, 16%);
+				}
+			}
+		}
+	}
+	.bc-general-content {
+		.ca-button {
+			a { color: $black; }
+		}
+		a {
+			color: $black;
+			transition: background-color $menuSlideTransition $easing ;
+			&:hover, &:active, &:focus {
+				color: $brand-yellow;
+				background-color: $black;
+			}
+		}
+	}
+	.two-col-feature {
+		.content-subtitle {
+			color: $black;
+		}
+		figcaption {
+			&:before {
+				background-color: $black;
+			}
+			.svg-icon { fill: $black; }
+		}
+	}
+	.ca-button {
+		a { 
+			color: $black; 
+			&:hover, &:active, &:focus {
+				color: $brand-yellow;
+				background-color: $black;
+				& + .icon-wrap {
+					background-color: $brand-yellow;		
+				}
+			}
+		}
+		.icon-wrap {
+			background-color: $brand-yellow;
+		}
+		.svg-icon {
+			fill: $black;
+		}
+	}	
+	.ca-arrow-link {
+		.svg-icon {
+			fill: $black;
+		}
+		a {
+			&:hover, &:active, &:focus {
+				color: $brand-yellow;
+				background-color: $black;
+				& + .svg-icon {
+					fill: $brand-yellow;
+					background-color: $black; 
+				}
+			}
+		}
+	}
+	.page-bottom-links { 
+		.page-bottom-links-back {
+			.icon-wrap {
+				background-color: $brand-yellow;
+			}
+			.svg-icon {
+				fill :$black;
+			}
+			a {
+				color: $black;
+				&:hover, &:focus, &:active {
+					background-color: rgba($brand-yellow, 0.8);
+					color: $black;
+				}
+			}
+		}
+		.page-bottom-links-top {
+			&:hover, &:active, &:focus {
+				a { color: $black ; }
+				.svg-icon {
+					fill: rgba($brand-yellow, 0.8);
+				}
+			}
+		}
+	}
+}//.brand-yellow-scheme
+.brand-red-scheme {
+	.bc-breadcrumbs {
+		.bc-breadcrumbs-links {
+			&::before { background-color: $brand-red;	 }
+		}
+	}
+	.content-separator { 
+		&:before {	background-color: $brand-red;	}
+	}
+	.bc-hero {
+		.bc-hero-footer {
+			.bc-hero-footer-scroll {
+				&-link {
+					&:hover, &:active, &:focus {
+						background-color: $brand-red;
+						border-color: $white;
+						color: $white;
+						span {
+							color: $white;
+						}
+						.svg-icon {
+							&.scroll-down-arrow {
+								fill: $white;
+							}
+						}		
+					}	
+				}
+			}
+		}
+	}
+	.bc-card {	
+		&.person-card {
+			.bc-card-content {
+				.bc-card-subtitle {	color: $brand-red; }	
+			}
+		}
+		&.bc-card--slide-up {
+			.content-separator { 
+				&:before {	background-color: $brand-red;	}
+			}
+		}
+		&.bc-card--slide-up-overlay {
+			.bc-card-content {
+				background-color: $brand-red;
+			}
+		}
+		&--plain-text {
+			.bc-card-content {
+				background-color: $brand-red;
+				color: $white;
+				&:hover, &:focus, &:active {
+					background-color: darken($brand-red, 8%); 
+				}
+			}
+		}
+	}
+	.bc-general-content {
+		a {
+			color: $black;
+			transition: background-color $menuSlideTransition $easing ;
+			&:hover, &:active, &:focus {
+				color: $white;
+				background-color: $brand-red;
+			}
+		}
+	}
+	.two-col-feature {
+		.content-subtitle {
+			color: $brand-red;
+		}
+		figcaption {
+			&:before {
+				background-color: $brand-red;
+			}
+			.svg-icon { fill: $brand-red; }
+		}
+	}
+	.ca-button {
+		a { 
+			color: $black; 
+			&:hover, &:active, &:focus {
+				color: $white;
+				background-color: $brand-red;
+			}
+		}
+		.icon-wrap {
+			background-color: $brand-red;
+		}
+	}	
+	.ca-arrow-link {
+		.svg-icon {
+			fill: $black;
+		}
+		a {
+			&:hover, &:active, &:focus {
+				color: $brand-red;
+				background-color: transparent;
+				& + .svg-icon {
+					fill: $brand-red;
+				}
+			}
+		}
+	}
+	.page-bottom-links { 
+		.page-bottom-links-back {
+			.icon-wrap {
+				background-color: $brand-red;
+			}
+			a {
+				&:hover, &:focus, &:active {
+					background-color: rgba($brand-red, 0.8); 
+				}
+			}
+		}
+		.page-bottom-links-top {
+			&:hover, &:active, &:focus {
+				.svg-icon {
+					fill: rgba($brand-red, 0.8);
+				}
+			}
+		}
+	}
+}//.brand-yellow-scheme
+.brand-blue-scheme {
+	.bc-breadcrumbs {
+		.bc-breadcrumbs-links {
+			&::before {	background-color: $brand-blue;	}
+		}
+	}
+	.content-separator { 
+		&:before {	background-color: $brand-blue;	}
+	}
+	.bc-hero {
+		.bc-hero-footer {
+			.bc-hero-footer-scroll {
+				&-link {
+					&:hover, &:active, &:focus {
+						background-color: $brand-blue;
+						border-color: $white;
+						color: $white;
+						span {
+							color: $white;
+						}
+						.svg-icon {
+							&.scroll-down-arrow {
+								fill: $white;
+							}
+						}		
+					}	
+				}
+			}//.bc-hero-footer-scroll
+		}
+	}
+	.bc-card {
+		&.bc-card--slide-up {
+			.content-separator { 
+				&:before {	background-color: $brand-blue;	}
+			}
+		}
+		&.bc-card--slide-up-overlay {
+			.bc-card-content {
+				background-color: $brand-blue;
+			}
+		}
+		&.person-card {
+			.bc-card-content {
+				.bc-card-subtitle {	color: $brand-blue; }	
+			}
+		}
+		&--plain-text {
+			.bc-card-content {
+				background-color: $brand-blue;
+				color: $white;
+				&:hover, &:focus, &:active {
+					background-color: darken($brand-blue, 8%);
+				}	
+			}
+		}
+	}// .bc-card
+	.bc-general-content {
+		.ca-button {
+			a { color: $black; }
+		}
+		a {
+			color: $black;
+			transition: background-color $menuSlideTransition $easing ;
+			&:hover, &:active, &:focus {
+				color: $white;
+				background-color: $brand-blue;
+			}
+		}
+	}
+	.two-col-feature {
+		.content-subtitle {
+			color: $brand-blue;
+		}
+		figcaption {
+			&:before {
+				background-color: $brand-blue;
+			}
+			.svg-icon { fill: $brand-blue; }
+		}
+	}// .two-col-feature
+	.ca-arrow-link {
+		.svg-icon {
+			fill: $black;
+		}
+		a {
+			&:hover, &:active, &:focus {
+				color: $brand-blue;
+				background-color: transparent;
+				& + .svg-icon {
+					fill: $brand-blue;
+				}
+			}
+		}
+	}
+	.ca-button {
+		a { 
+			color: $black; 
+			&:hover, &:active, &:focus {
+				color: $white;
+				background-color: $brand-blue;
+			}
+		}
+		.icon-wrap {
+			background-color: $brand-blue;
+		}
+	}	
+	.page-bottom-links { 
+		.page-bottom-links-back {
+			.icon-wrap {
+				background-color: $brand-blue;
+			}
+			a {
+				&:hover, &:focus, &:active {
+					background-color: rgba($brand-blue, 0.8); 
+				}
+			}
+		}
+		.page-bottom-links-top {
+			&:hover, &:active, &:focus {
+				.svg-icon {
+					fill: rgba($brand-blue, 0.8);
+				}
+			}
+		}
+	}// .page-bottom-links
+}//.brand-blue-scheme
+/** -- Branch colour schemes -- **/

@@ -1,0 +1,62 @@
+$base-unit: 		4;
+
+// Grid units 
+$gutter-unit: 	1.5;
+$gutter: 				1.5rem;
+$gridColsCount: 10;
+
+
+// Color swatches */
+$brand-blue: 		#00f;
+$brand-red: 		#f00;
+$brand-yellow: 	#ff0;
+$brand-primary: $brand-blue;
+$black: 				#101010;
+$white: 				#fff;
+$text: 					#303030;
+
+// Greyscale */
+$shade-dark: 				rgba($black, 0.72);
+$shade-mid: 				rgba($black, 0.48);
+$shade-light: 			rgba($black, 0.24);
+$shade-lightest: 		rgba($black, 0.12);
+$shade-superlight: 	rgba($black, 0.08);
+$offwhite: 					rgba($black, 0.04);
+
+$grey: 							lighten(rgba($black, 1), 50%); 
+$grey-light: 				lighten(rgba($black, 1), 80%); 
+
+/* Typo */
+$serifFont: 	Palatino, serif;
+
+// Breakpoints*/
+$tablet: 				767px;
+$tablet-max: 		1023px;
+$desktop: 			1024px;
+$med: 					1280px;
+$laptop:				1366px;
+$large: 				1440px;
+$x-large: 			1600px;
+$xx-large: 			1920px;
+
+$max-viewport-width:	1740px;
+$content-max-width: 	80rem;
+
+// Animations */
+$quicktrans: 					240ms;
+$medtrans: 						320ms;
+$menuSlideTransition: $quicktrans;
+$buttonTransition: 		$medtrans;
+$easing: 							ease-out;
+$bounce: 							cubic-bezier(0.93,.1,.195,1);// .0,.72,.28,1.24
+
+// Media */
+$videoAR: 			56.25%; //Video embed standard aspect ratio
+
+// Framework */
+$bc-blue: 			#150CB4;
+
+// Golden ratio stuff */
+$gr-small: 	38.2%;
+$gr-mid: 		50%;
+$gr-large: 	61.8%;

@@ -1,0 +1,59 @@
+/** Two-col feature - has an image and a text block **/
+.two-col-feature {
+	@include makeRow($align: center);
+	padding: $gutter $gutter/2 $gutter*3 $gutter/2 ;
+	position: relative;
+	overflow: hidden;
+	.short-col, .long-col {
+		padding-left: 	$gutter/2;
+		padding-right: 	$gutter/2;
+	}
+	figure {
+		position: relative;
+		padding-top: 125%;
+		overflow: hidden;
+		img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	figcaption {
+		padding: $gutter/2 $gutter/2;
+	}
+	.content-title {
+		margin-top: $gutter/2;
+	}
+	.content-subtitle { 
+		color: $bc-blue;
+		font-size: 1rem;
+		font-weight: 300;
+		text-transform: uppercase;
+		margin-top: $gutter/2;
+	}
+	.content-intro {
+		line-height: 1.58;
+	}
+	@media screen and (min-width: $tablet) {
+		flex-direction: row;
+		&.two-col-feature--left {
+			.long-col {
+				order: 0;
+			}
+			.short-col {
+				order: 1
+			}
+		}
+		.short-col {
+			flex-basis: $gr-small;
+			max-width: 	$gr-small;
+		}
+		.long-col {
+			flex-basis: $gr-large;
+			max-width: 	$gr-large;
+			padding: $gutter * 2 $gutter * 4;
+		}
+	}
+}// .two-col-feature 
+/** -- Two-col feature - has an image and a text block -- **/

@@ -1,0 +1,30 @@
+@mixin makeRow($nested: false, $direction: column, $justify: flex-start, $align: stretch) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	padding-left: 	$gutter/2;
+	padding-right:	$gutter/2;
+	@media screen and (min-width: $tablet) {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	@if ($nested == true) {
+		margin-left: 	-$gutter/2;
+		margin-right: -$gutter/2;
+	}
+}
+@mixin makeCols($cols: $gridColsCount, $full-bleed: null, $grow: 1, $shrink: 1, $basis: 0) { 
+	$padding: $gutter/2;
+	@if ($full-bleed) {
+		$padding: 0;
+	}
+	flex: $grow $shrink $basis;
+	padding-left:  $padding;
+	padding-right: $padding;
+	@media screen and (min-width: $desktop) {
+		flex-basis: ($cols/$gridColsCount)*100% ;
+		max-width: ($cols/$gridColsCount)*100% ;
+	}
+}
+

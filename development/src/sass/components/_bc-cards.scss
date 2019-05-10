@@ -1,0 +1,284 @@
+/* Big Cat Cards */ 
+.bc-cards-heading {
+	flex: 1 1 100%;
+	width: 100%;
+	padding: 0 $gutter/2 $gutter; 
+	h1, h2, h3, h4, h5 { margin-top: 0; }
+	@media screen and (max-width: $laptop) {
+		padding-left: 10%; 
+	}
+}
+.bc-card {
+	@include makeFlexbox($direction: column, $align: stretch); 
+	margin-bottom: $gutter;
+	a {
+		display: block;
+		text-decoration: none;
+	}
+	& &-img { 
+		> img {
+			max-width: 100%;
+		}
+		&.is-square {
+			position: relative;
+			overflow: hidden;
+			> img {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 100%;
+				transform: translate(-50%, -50%);
+				object-fit: cover;
+			}
+			padding-top: 100%;
+		}
+	}
+	& &-content {
+		.bc-card-title { 
+			font-size: 1.25rem;
+			font-weight: 400;
+			margin-top: 0; 
+			margin-bottom: $gutter/4;
+			text-decoration: none;
+		}
+		.bc-card-subtitle {
+			font-size: 1rem;
+			font-weight: 300;
+			margin-top: 0;
+		}
+		> a {
+			@include makeFlexbox($direction: column, $justify: space-between, $align: stretch);
+			height: 100%;
+			padding: $gutter $gutter/2;
+		}
+	}
+	.bc-card-info, .bc-card-link {
+		flex: 0 1 auto;
+	}
+	&--slide-up {
+		.bc-card-link {
+			.bc-card-link-text { 
+				color: $black;	
+			}
+			.svg-icon {	fill: $black; }
+		}
+	}
+	&.bc-card--slide-up, &.bc-card--slide-up-overlay {
+		position: relative;
+		overflow: hidden; 
+		.bc-card-img {
+			position: relative;
+			top: 0;
+			transition: top $menuSlideTransition $easing;	
+		}
+		.bc-card-content { 
+			position: absolute;
+			
+			top: 100%;
+			bottom: 0;
+			left: $gutter/2;
+			height: 100%;
+			width: calc(100% - #{$gutter});
+			background-color: $white;
+			transition: top $menuSlideTransition $easing;	
+		}
+		.bc-card-link {
+			@include makeFlexbox($direction: row, $align: center);
+			.bc-card-link-text {
+				font-weight: 		300;
+				font-size: 			0.72rem;
+				flex: 0 1 auto;
+				padding-right: $gutter/2;
+			}
+			.svg-icon {
+				flex: 0 1 auto;
+				max-height: 1.25rem;
+				max-width: 	1.25rem;
+				fill: $bc-blue;
+			}
+		}
+		&:hover, &:focus {
+			margin-top: 0;
+			.bc-card-img {
+				top: -100%;	
+			}
+			.bc-card-content {
+				top: 0;	 
+			}
+			.bc-card-link-text {
+				text-decoration: underline;
+			}
+		}
+	}// .bc-card--slide-up 
+	&.bc-card--slide-up-overlay {
+		
+		.bc-card-img-overlay {
+			background-color: rgba($black, 0.24);
+			
+			position: 				absolute;
+			top: 							0;
+			left: 						0;
+			height: 					100%;
+			width: 						100%;
+			z-index: 					10;
+			
+			@include makeFlexbox($direction: row, $justify: flex-start, $align: center);
+			padding: 					$gutter/2	$gutter/2 $gutter/2 $gutter/1.5;
+			color: 						$white;
+			
+			font-weight: 			300;
+			p {	 
+				font-size: 				1.5rem;
+				margin: 0 0 0 $gutter/1.5; 
+			}
+			.svg-icon {
+				fill: 				$white;
+				max-height: 	2.5rem;
+				max-width: 		2.5rem;
+			}
+		}
+		.bc-card-content {
+			background-color: $shade-dark;
+			color: 						$white;  
+			a {	
+				justify-content: flex-end;	
+			}
+			.bc-card-title {	margin-bottom: $gutter; }
+			.svg-icon {	fill: $white;	}
+		}
+		.bc-card-link {
+			@include makeFlexbox($direction: row, $align: center);
+			.bc-card-link-text {
+				color: $white;
+				text-transform: uppercase;
+			}
+			.svg-icon {
+				flex: 0 1 auto;
+				max-height: 2.25rem; 
+				max-width: 	2.25rem; 
+				fill: $white;
+			}
+		}
+		@media screen and (min-width: 500px) {
+			.bc-card-img-overlay {
+				p {
+					font-size: 1.25rem;	
+				}
+				.svg-icon {
+					max-height:  2rem;
+					max-width:   2rem;
+				}
+			}
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.125rem;
+				}
+			}
+		}
+		@media screen and (min-width: 600px) {
+			.bc-card-img-overlay {
+				.svg-icon {
+					max-height:  2.25rem;
+					max-width:   2.25rem;
+				}
+			}
+		}
+		@media screen and (min-width: $desktop) {
+			.bc-card-img-overlay {
+				p {
+					font-size: 1rem; 	
+				}
+			}
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1rem;
+					margin-bottom: $gutter/2;
+				}
+			}
+		}
+	}// &--slide-up-overlay
+	
+	/* We are real card */
+	&--plain-text {
+		.bc-card-content {
+			height: 100%;
+			background-color: $shade-light; 
+			transition: background-color $menuSlideTransition $easing;
+			> a {
+				justify-content: center;
+				align-items: center;
+				padding: 0; 
+			}
+			.bc-card-title {
+				text-align: center;
+				font-size: 2rem;
+				font-weight: 300;
+				font-style: italic;
+			}
+			.svg-icon {
+				max-width: 	3rem;
+				max-height: 3rem;
+				fill: $white;
+			}
+		}
+		&.is-square {
+			.bc-card-content {
+				@include isSquare;
+				> a {
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+				}
+			}
+		}
+		&:hover, &:focus, &:active {
+			.bc-card-content {
+				background-color: $shade-mid;
+				.bc-card-content {
+					.bc-card-title {
+						text-decoration: underline;
+					}
+				}	
+			}
+		}
+	}// .bc-card--plain-text
+}// .bc-card 
+.bc-content-row {
+	&.bc-cards-row {
+		padding-top: 		$gutter*2;
+		padding-bottom: (($gutter*2)-1.5);
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	&.bc-cards-row--full-bleed {
+		padding-left: 	0;
+		padding-right: 	0;
+		padding-bottom: 0;
+		.bc-cards-heading {
+			padding-left:  $gutter;
+			padding-right: 0;
+		}
+		.bc-card {
+			padding-left: 	0;
+			padding-right: 	0;
+			margin-bottom: 0;
+		}
+		.bc-card-content {
+			width: 100%;
+			left: 0;
+		}
+		@media screen and (min-width: $laptop) {
+			.bc-cards-heading {
+				padding-left: 5%; 
+			}
+		}
+		@media screen and (min-width: $content-max-width) {
+			padding-left: 	0;
+			padding-right: 	0;
+		}
+	}
+
+}
+

@@ -1,0 +1,12 @@
+/** BC tables **/
+table, .bc-table {
+	margin-top:  $gutter*1.25;
+	vertical-align: top;
+	th, td {
+		padding: $gutter/8;
+	}
+	th { font-weight: bold; }
+	td {
+		
+	}
+}

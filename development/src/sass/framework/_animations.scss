@@ -1,0 +1,28 @@
+.bc-fade-in-up {
+	top: $gutter;
+	opacity: 0;
+	transition: top 400ms $easing, opacity 800ms $easing;
+	position: relative;	 
+	&.bc-fade-in-up--loaded { 
+		top: 0px;
+		opacity: 1;
+	}
+}
+@keyframes fade-in-up {
+	from {
+		
+		
+	}
+	to {
+		
+	
+	}
+}
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}

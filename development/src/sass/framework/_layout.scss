@@ -1,0 +1,52 @@
+.bc-content-container {
+	max-width: $content-max-width; 
+	margin-left: 	auto;
+	margin-right: auto;
+	&:focus {
+		outline: none;
+	}
+}
+.bc-content-row {
+	@include makeRow();
+	.bc-content-row {
+		margin-left: 	-$gutter/1;
+		margin-right: -$gutter/1; 
+	}
+}
+/** Template: two-column layout **/
+.bc-main {
+  @include makeRow();
+	padding-top: 		$gutter;
+	padding-bottom: $gutter*1.5;
+}
+@media screen and (min-width: 1024px) {
+  .bc-main {
+    flex-direction: row;
+  }
+}
+.bc-main {
+	.bc-sidebar {
+		flex: 1 1 0;
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+	.bc-main-body {
+		flex: 1 1 0;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		h1:first-child {
+		margin-top: 0;
+	}
+	}
+	@media screen and (min-width: $desktop) {
+		 .bc-sidebar {
+				flex-basis: 25%;
+				max-width: 25%;
+			}
+			.bc-main-body {
+				flex-basis: 75%;
+				max-width: 75%;
+			}
+	}
+}
+/** - Template: two-column - **/

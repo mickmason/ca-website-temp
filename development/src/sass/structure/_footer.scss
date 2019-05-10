@@ -1,0 +1,38 @@
+/** Site wide footer **/
+footer {
+  background-color: #303030;
+  color: #fff;
+	.bc-content-row {
+		padding-top: 		2rem;
+		padding-bottom: 5rem;
+	} 
+	.ca-contact-col {
+		@include makeCols(10/4);
+		margin-bottom: $gutter;
+	}
+	.ca-contact-office {
+		font-size: 1.25rem;
+		font-weight: 500;
+	}
+	h3 { 
+		margin-top: 1rem;
+		font-size: 1rem;
+		font-weight: 500; 
+	}
+	p {
+		margin-top: $gutter/8;
+	}
+	@media screen and (min-width: $tablet) {
+		.ca-contact-col {
+			flex-basis: 33.333%;
+			max-width:  33.333%;
+		}	
+	}
+	@media screen and (min-width: $med) {
+		.ca-contact-col {
+			flex-basis: calc(100% / 4);
+			max-width: 	calc(100% / 4);
+		}
+	}
+}
+/** -- Site wide footer -- **/

@@ -1,0 +1,54 @@
+.bc-hero {
+	height: 	100vh;  
+	width: 		100%;
+	overflow: hidden;
+	.bc-hero-block {
+		@include makeCols($cols: $gridColsCount, $full-bleed: true);		
+		@include makeFlexbox($direction: column, $align: stretch);
+		width: 100%;
+	}
+	.bc-hero-body {
+		flex: 1 1 80%;
+		background-color: rgba($white, 0.2); 
+		position: relative;
+		&:focus {
+			outline: none;
+		}
+	}
+	.bc-hero-body-text {
+		position: absolute;
+		bottom: 33.333%;
+		left: 	33.333%;
+		transform: translate(-50%, 50%);
+		width: $gr-small;
+		background-color: rgba($black, 1);
+		padding: $gutter;
+		h1 {
+			font-size: 2rem;
+			&:first-child {
+				margin-top: 0;	
+			}
+		}		
+	}
+	.bc-hero-header, .bc-hero-footer {
+		flex: 						1 1 10%;
+		background-color: rgba($white, 0.4);
+	}
+	.bc-hero-header {
+		@include makeFlexbox($direction: row, $justify: space-between, $align: center);	
+	}
+	
+	&.bc-hero--slider {
+		height: 				auto;
+		display: 				block;
+		padding-left: 	0;
+		padding-right: 	0;
+		&:focus {
+			outline: none;
+		}
+	}
+	
+	@media screen and (min-width: $desktop) {
+		
+	}
+}
