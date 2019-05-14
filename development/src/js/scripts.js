@@ -131,6 +131,24 @@
 			_addClass(arguments[arg]);
 		}
 	}//addClass()
+	/** 
+		Check if an element has a class
+		el:				DOM HTML Element
+		className:One or more classes to add
+		returns: 	true/false or error if the el is not a DOM node or a valid query selector
+		*/
+	function hasClass(el, className) {
+		let $el = null;
+		if (arguments.length < 2) {
+			throw new Error(`BC function addClass: Requiers a String or DOM Node element then a list of class names`);
+		}
+		if (_getDOMNode(el) !== null) {
+			$el = _getDOMNode(el);	
+		} else {
+			throw new Error('addClass selector must be a DOM node');
+		}
+		return $el.classList.contains(className);
+	}//addClass()
 	function removeClass(el, classList) {
 		let $el = null;
 		if (arguments.length < 2) {
@@ -154,7 +172,14 @@
 				_removeClass(arguments[arg]);
 		}
 	}//addClass()
-	
+	function emptyElement(el) {
+		if (_getDOMNode(el)) {
+			const $el = _getDOMNode(el);
+			while ($el.firstChild) {
+				el.removeChild($el.firstChild);
+			}
+		}
+	}
 	//AJAX functions
 	function bcAJAX(url, options) {
 		if (options !== undefined) {
@@ -334,16 +359,15 @@
 	/** 
 		Global scroll events 
 		*/
-	
+	const $topLink = document.querySelector('.page-bottom-links-top');
 	window.addEventListener('scroll', (e) => {
 		/* Page top links - float if scroll is > viewport height + 40px */
 		function _isFooterVisible() {	
 			return (detectScrollPosition() + window.innerHeight) >= document.querySelector('footer').offsetTop;
 		}
 		if (document.querySelector('.page-bottom-links-top')) {
-			const $topLink = document.querySelector('.page-bottom-links-top');
+			
 			if (_isFooterVisible()) {
-				
 				if ($topLink.classList.contains('is-fixed')) {	
 					//addClass('.page-bottom-links-top', 'is-hidden');	
 					addClass($topLink, 'is-hidden');
@@ -374,11 +398,21 @@
 		}
 	});//On page scroll
 	
+	/**
+		Scroll to top 
+		*/
+	if ($topLink) {
+		$topLink.addEventListener('click', (evt) => {
+			window.scroll(0, 0);
+		});	
+	}
 	
 	/** 
 		CA Projects: Load projects
+		Project filters
 		*/
-	function loadCAProjects(projects, projectsFilter) {
+	
+	function writeCAProjects(projects, projectsFilter) {
 		/* Make a single card */
 		function _makeCard(project) {
 			//The card
@@ -444,18 +478,16 @@
 			
 		}//_makeCard()
 		
-		const $projectsGrid = _getDOMNode('.ca-projects-grid');	
-		getJSON('http://localhost:9001/data/projects.json', {cache: 'no-cache'}).then((data) => {
-			return data.json();
-		}).then((projects) => {
+				const $projectsGrid = document.querySelector('.ca-projects-grid');
+				
 				//Clear all cards in the page
-					const projCards = $projectsGrid.querySelectorAll('.bc-card');
+				/*	const projCards = $projectsGrid.querySelectorAll('.bc-card');
 					for (const card of projCards) {
 						card.remove();
-					}
+					}*/
+		emptyElement($projectsGrid);
 					$projectsGrid.style.minHeight = '100vh';
 					if (projectsFilter === 'all-projects') {
-						console.log('all projects');
 						let newCards = [];
 						let newCard = null;
 						for (const project of projects) {
@@ -465,7 +497,6 @@
 						}
 						addClassTimed(newCards, 'bc-fade-in-up--loaded', 180);
 					} else if (projectsFilter === 'project-category') {
-						console.log(`Filter by category`);
 						let categorizedProjects = [];
 						for (const project of projects) {
 							/*
@@ -523,12 +554,68 @@
 							addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
 							
 						}
-					} else if (projectsFilter === 'date') {
+					} else if (projectsFilter === 'project-date') {
 						console.log(`Filter by date`);
-					}
-		}).catch((err) => {
-			console.log(err);
-		});//getJSON
+						let categorizedProjects = [];
+						for (const project of projects) {
+							/*
+								Temporary categorized projects objects array:
+								categorizedProjects = [
+										{
+											category: 'Housing', 
+											projects: [
+												project1, project2, project3
+											]
+										},
+										{
+											category: 'Sport', 
+											projects: [
+												project1, project2, project3
+											]
+										},
+										{
+											...etc...
+										}
+									]
+								*/
+							const thisProjectYear = new Date(project.date);
+							
+							
+								const thisCategory = categorizedProjects.find((elm) => {
+									
+									return elm.category.getUTCFullYear() === thisProjectYear.getUTCFullYear();
+								});
+								if (thisCategory !== undefined) {
+									console.log(thisCategory);
+									thisCategory.projects.push(project);
+								} else {
+									const newCat = {};
+										console.log(thisProjectYear);
+									newCat.category = thisProjectYear;
+									newCat.projects = [project];
+									categorizedProjects.push(newCat);
+								}
+						}
+						categorizedProjects.sort((a, b) => {
+							return b.category.getUTCFullYear() - a.category.getUTCFullYear();
+						});
+						for (const cat in categorizedProjects) {
+							//<h1 class="ca-projects-filter-title">All projects</h1>
+							const $catHeading = document.createElement('h1'); 
+							$catHeading.append(categorizedProjects[cat].category.getUTCFullYear());
+							addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
+							$projectsGrid.append($catHeading);
+							addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
+							let newCards = [];
+							for (const proj of categorizedProjects[cat].projects) {
+								const newCard = _makeCard(proj);
+								$projectsGrid.append(newCard);	
+								newCards.push(newCard);
+							}
+							addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
+							
+						}
+					}//filter by date
 		
 		
 	}//loadCAProject()
@@ -541,46 +628,78 @@
 			addClassTimed('.bc-fade-in-up', 'bc-fade-in-up--loaded', 160);	
 		}
 	});// window.onload
-	if (document.querySelector('.bc-inner-nav')) {
+	/*if (document.querySelector('.bc-inner-nav')) {
 		bcInnerNav(document.querySelector('.bc-inner-nav')); 
-	}
+	}*/
 	const projectsFilter = 'all-projects';
 	//writeProjects(null, projects);
 	//the Projects grid
 	function filterCAProjects(fltr) {
-		getJSON('http://localhost:9001/data/projects.json', {cache: 'no-cache'}).then((data) => {
-			return data.json();
-		}).then((projects) => {
-			if (true) {
-				//No cookie set
-				loadCAProjects(projects, fltr); 
-			} else {
-				const projectFilter = 'project-category';	 //get cookie value
-				loadCAProjects(projects, fltr);
-			}
-		}).catch((err) => {
-			console.log(err);
-		});//getJSON
+		return new Promise((resolve, reject) => {
+			getJSON('http://localhost:9001/data/projects.json', {cache: 'no-cache'}).then((data) => {
+				return data.json();
+			}).then((projects) => {
+				if (true) {
+					//No cookie set
+					writeCAProjects(projects, fltr); 
+				} else {
+					const projectFilter = 'project-category';	 //get cookie value
+					writeCAProjects(projects, fltr);
+				}
+				resolve(true);
+			}).catch((err) => {
+				reject(err);
+			});//getJSON	
+		});
 	}
+	function _getProjectFilter(evt) { 
+		return evt.target.getAttribute('data-filter');
+	} 
 	
-	function _getProjectFilterHandler(evt) {
-			return function _getProjectFilter(evt) { 
-				console.log(evt.target.getAttribute('data-filter')); 
-				filterCAProjects(evt.target.getAttribute('data-filter'));
-			}; 
-		
-	}
 	if (_getDOMNode('.ca-projects-grid') && _getDOMNode('.ca-project-filters')) {
-		
-		
+		if (document.documentElement.clientWidth < 768) {
+			
+			const filtersToggler = document.querySelector('.bc-inner-nav-icon');
+			filtersToggler.addEventListener('click', (event) => {
+				console.log(`small screen`);
+				const thisDropdown = filtersToggler.nextElementSibling;
+				const thisDropdownScrollHeight = thisDropdown.scrollHeight;
+				if (hasClass(filtersToggler, 'active')) {
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => {
+							thisDropdown.removeAttribute('style');	
+							removeClass(thisDropdown, 'active');
+							removeClass(filtersToggler, 'active');
+							removeClass(filtersToggler.closest('.bc-breadcrumbs-links'), 'active');
+						});
+					});	
+				} else {
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => {
+							thisDropdown.style.height = thisDropdownScrollHeight + 'px';	
+							addClass(thisDropdown, 'active');
+							addClass(filtersToggler, 'active');
+							addClass(filtersToggler.closest('.bc-breadcrumbs-links'), 'active');
+						});
+					});
+				}
+			});
+		}
 		filterCAProjects('all-projects'); 
-		
-		
 		const projectFilters = _getAllDOMNodes('.ca-project-filter');
 		
 		projectFilters.forEach((filter) => {
-			console.log(filter); 
-			filter.addEventListener('click', _getProjectFilterHandler(event));											 
+			filter.addEventListener('click', (event) => {
+				filterCAProjects(_getProjectFilter(event)).then(() => {
+					console.log('then');
+					projectFilters.forEach((el) => {
+						removeClass(el, 'active');
+					});
+					addClass(event.target, 'active');
+				}).catch((err) => {
+					console.log(err);
+				});
+			});											 
 		});
 		
 	}//end if .ca-projects-grid

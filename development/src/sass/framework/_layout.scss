@@ -2,15 +2,20 @@
 	max-width: $content-max-width; 
 	margin-left: 	auto;
 	margin-right: auto;
+	
 	&:focus {
 		outline: none;
 	}
 }
+
 .bc-content-row {
 	@include makeRow();
 	.bc-content-row {
 		margin-left: 	-$gutter/1;
 		margin-right: -$gutter/1; 
+	}
+	.bc-content-column {
+		padding-left: $gutter/2;
 	}
 }
 /** Template: two-column layout **/

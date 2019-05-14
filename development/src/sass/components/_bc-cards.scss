@@ -111,7 +111,6 @@
 		}
 	}// .bc-card--slide-up 
 	&.bc-card--slide-up-overlay {
-		
 		.bc-card-img-overlay {
 			background-color: rgba($black, 0.24);
 			
@@ -244,6 +243,60 @@
 			}
 		}
 	}// .bc-card--plain-text
+	
+	&.ca-values-card {
+		.bc-card-content {
+			background-color: transparent;
+		}
+		.svg-icon {
+			max-width: 	4rem;
+			max-height: 4rem;
+		}
+		
+		a {
+			padding: 0;
+			justify-content: stretch;
+		}
+		.bc-card-info {
+			
+			background-image: linear-gradient(0deg, rgba(32,32,32,1) 0%, rgba(32,32,32,0) 100%);
+			padding: $gutter;
+			&-content {
+				
+				@include makeFlexbox(column, flex-start, flex-start);
+				padding-left: $gutter;
+			}
+			.svg-icon {
+				fill: $white;
+			}
+			color: $white;
+			.bc-card-title {
+				margin-top: $gutter/2;
+				font-size: 2rem;
+			}
+			&-role {
+				margin-top: $gutter/4;
+			}
+			flex: 1 1 100%;
+			@include makeFlexbox(row, flex-start, flex-end);
+		}
+		@media screen and (min-width: 500px) {
+			.svg-icon {
+				/*max-width: 	2.5rem;*/
+				/*max-height: 2.5rem;*/
+			}
+			.bc-card-info {
+				.bc-card-title {
+					
+					font-size: 1.25rem;
+				}
+				.bc-card-info-role {
+					font-size: 0.8rem;
+				}
+			}
+		}
+	}
+	
 }// .bc-card 
 .bc-content-row {
 	&.bc-cards-row {
