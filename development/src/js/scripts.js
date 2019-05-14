@@ -8,7 +8,7 @@
 		**/
 	(function (arr) {
 		arr.forEach(function (item) {
-			if (item.hasOwnProperty('remove')) {
+			if (item.hasOwnProperty('remove')) { 
 				return; 
 			}
 			Object.defineProperty(item, 'remove', {
