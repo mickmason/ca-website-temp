@@ -205,6 +205,51 @@
 		});
 	}
 	
+	/**
+		Animation functions
+		*/
+	//Liner interpolation
+	let i;
+	function lerpScroll($el, pos, target) {
+		
+		console.log(`Lerp ${i}`); 
+		console.log(`---------`); 
+		if (target > Math.round(pos) && i < 100) {
+			console.log(`${pos} ${target}`);
+			console.log(`${(pos - target)}`);
+			pos += (target - pos) * 0.15; 
+			console.log(`${pos} ${target}`);
+			const scrollOpts = {
+				top: pos,
+				left: 0,
+				behavior: 'auto'
+			};
+			$el.scroll(scrollOpts);
+			console.log(`${$el.scrollY}`);
+			i++;
+			requestAnimationFrame(() => {
+				lerpScroll($el, pos, target);
+			});
+		} else if (Math.round(pos) > target && i < 100) {
+			console.log(`${pos} ${target}`);
+			console.log(`${(pos - target)}`);
+			pos -= (pos - target) * 0.15; 
+			console.log(`${pos} ${target}`);
+			const scrollOpts = {
+				top: pos,
+				left: 0,
+				behavior: 'auto'
+			};
+			$el.scroll(scrollOpts);
+			console.log(`${$el.scrollY}`);
+			i++;
+			requestAnimationFrame(() => {
+				lerpScroll($el, pos, target);
+			});
+		} else {
+			return;
+		} 
+	}
 	/* Window scrolling */
 	let lastScrollY 		= window.scrollY;
 	let thisScrollY 		= 0;
@@ -366,7 +411,6 @@
 			return (detectScrollPosition() + window.innerHeight) >= document.querySelector('footer').offsetTop;
 		}
 		if (document.querySelector('.page-bottom-links-top')) {
-			
 			if (_isFooterVisible()) {
 				if ($topLink.classList.contains('is-fixed')) {	
 					//addClass('.page-bottom-links-top', 'is-hidden');	
@@ -375,7 +419,6 @@
 					setTimeout(() => {
 							removeClass($topLink, 'is-hidden');
 					}, 200);
-
 				}
 				return true;
 			}
@@ -403,7 +446,11 @@
 		*/
 	if ($topLink) {
 		$topLink.addEventListener('click', (evt) => {
-			window.scroll(0, 0);
+			console.log('click top '+window.scrollY);
+			i = 0;
+			requestAnimationFrame(() => {
+				lerpScroll(window, window.scrollY, 0);
+			});
 		});	
 	}
 	
@@ -411,7 +458,6 @@
 		CA Projects: Load projects
 		Project filters
 		*/
-	
 	function writeCAProjects(projects, projectsFilter) {
 		/* Make a single card */
 		function _makeCard(project) {
@@ -421,7 +467,6 @@
 			for (let category of project.categories.split(', '))	 {
 				projectCard.setAttribute('data-project-categories', category); 
 			}
-			
 			//The image
 			const cardImg = document.createElement('img');
 			cardImg.setAttribute('src', project.image);
@@ -478,146 +523,96 @@
 			
 		}//_makeCard()
 		
-				const $projectsGrid = document.querySelector('.ca-projects-grid');
-				
-				//Clear all cards in the page
-				/*	const projCards = $projectsGrid.querySelectorAll('.bc-card');
-					for (const card of projCards) {
-						card.remove();
-					}*/
+		const $projectsGrid = document.querySelector('.ca-projects-grid');
+		
+		//Clear all cards in the page
 		emptyElement($projectsGrid);
-					$projectsGrid.style.minHeight = '100vh';
-					if (projectsFilter === 'all-projects') {
-						let newCards = [];
-						let newCard = null;
-						for (const project of projects) {
-							newCard = _makeCard(project);
-							$projectsGrid.append(newCard);
-							newCards.push(newCard);
-						}
-						addClassTimed(newCards, 'bc-fade-in-up--loaded', 180);
-					} else if (projectsFilter === 'project-category') {
-						let categorizedProjects = [];
-						for (const project of projects) {
-							/*
-								Temporary categorized projects objects array:
-								categorizedProjects = [
-										{
-											category: 'Housing', 
-											projects: [
-												project1, project2, project3
-											]
-										},
-										{
-											category: 'Sport', 
-											projects: [
-												project1, project2, project3
-											]
-										},
-										{
-											...etc...
-										}
-									]
-								*/
-							const thisProjectCategories = project.categoriestext.split(', ');
-							
-							for (const category in thisProjectCategories) {
-								const thisCategory = categorizedProjects.find((elm) => {
-									return elm.category === thisProjectCategories[category];
-								});
-								if (thisCategory !== undefined) {
-									thisCategory.projects.push(project);
-								} else {
-									const newCat = {};
-									newCat.category = thisProjectCategories[category];
-									newCat.projects = [project];
-									categorizedProjects.push(newCat);
-								}
-							}
-						}
-						/* 
-							Write the projects by category
-							*/
-						for (const cat in categorizedProjects) {
-							//<h1 class="ca-projects-filter-title">All projects</h1>
-							const $catHeading = document.createElement('h1'); 
-							$catHeading.append(categorizedProjects[cat].category);
-							addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
-							$projectsGrid.append($catHeading);
-							addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
-							let newCards = [];
-							for (const proj of categorizedProjects[cat].projects) {
-								const newCard = _makeCard(proj);
-								$projectsGrid.append(newCard);	
-								newCards.push(newCard);
-							}
-							addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
-							
-						}
-					} else if (projectsFilter === 'project-date') {
-						console.log(`Filter by date`);
-						let categorizedProjects = [];
-						for (const project of projects) {
-							/*
-								Temporary categorized projects objects array:
-								categorizedProjects = [
-										{
-											category: 'Housing', 
-											projects: [
-												project1, project2, project3
-											]
-										},
-										{
-											category: 'Sport', 
-											projects: [
-												project1, project2, project3
-											]
-										},
-										{
-											...etc...
-										}
-									]
-								*/
-							const thisProjectYear = new Date(project.date);
-							
-							
-								const thisCategory = categorizedProjects.find((elm) => {
-									
-									return elm.category.getUTCFullYear() === thisProjectYear.getUTCFullYear();
-								});
-								if (thisCategory !== undefined) {
-									console.log(thisCategory);
-									thisCategory.projects.push(project);
-								} else {
-									const newCat = {};
-										console.log(thisProjectYear);
-									newCat.category = thisProjectYear;
-									newCat.projects = [project];
-									categorizedProjects.push(newCat);
-								}
-						}
-						categorizedProjects.sort((a, b) => {
-							return b.category.getUTCFullYear() - a.category.getUTCFullYear();
-						});
-						for (const cat in categorizedProjects) {
-							//<h1 class="ca-projects-filter-title">All projects</h1>
-							const $catHeading = document.createElement('h1'); 
-							$catHeading.append(categorizedProjects[cat].category.getUTCFullYear());
-							addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
-							$projectsGrid.append($catHeading);
-							addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
-							let newCards = [];
-							for (const proj of categorizedProjects[cat].projects) {
-								const newCard = _makeCard(proj);
-								$projectsGrid.append(newCard);	
-								newCards.push(newCard);
-							}
-							addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
-							
-						}
-					}//filter by date
-		
-		
+		$projectsGrid.style.minHeight = '100vh';
+		if (projectsFilter === 'all-projects') {
+			let newCards = [];
+			let newCard = null;
+			for (const project of projects) {
+				newCard = _makeCard(project);
+				$projectsGrid.append(newCard);
+				newCards.push(newCard);
+			}
+			addClassTimed(newCards, 'bc-fade-in-up--loaded', 180);
+		} else if (projectsFilter === 'project-category') {
+			let categorizedProjects = [];
+			for (const project of projects) {
+				const thisProjectCategories = project.categoriestext.split(', ');
+				for (const category in thisProjectCategories) {
+					const thisCategory = categorizedProjects.find((elm) => {
+						return elm.category === thisProjectCategories[category];
+					});
+					if (thisCategory !== undefined) {
+						thisCategory.projects.push(project);
+					} else {
+						const newCat = {};
+						newCat.category = thisProjectCategories[category];
+						newCat.projects = [project];
+						categorizedProjects.push(newCat);
+					}
+				}
+			}
+			/* 
+				Write the projects by category
+				*/
+			for (const cat in categorizedProjects) {
+				//<h1 class="ca-projects-filter-title">All projects</h1>
+				const $catHeading = document.createElement('h1'); 
+				$catHeading.append(categorizedProjects[cat].category);
+				addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
+				$projectsGrid.append($catHeading);
+				addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
+				let newCards = [];
+				for (const proj of categorizedProjects[cat].projects) {
+					const newCard = _makeCard(proj);
+					$projectsGrid.append(newCard);	
+					newCards.push(newCard);
+				}
+				addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
+				
+			}
+		} else if (projectsFilter === 'project-date') {
+			console.log(`Filter by date`);
+			let categorizedProjects = [];
+			for (const project of projects) {
+				const thisProjectYear = new Date(project.date);
+				const thisCategory = categorizedProjects.find((elm) => {
+					return elm.category.getUTCFullYear() === thisProjectYear.getUTCFullYear();
+				});
+				if (thisCategory !== undefined) {
+					console.log(thisCategory);
+					thisCategory.projects.push(project);
+				} else {
+					const newCat = {};
+						console.log(thisProjectYear);
+					newCat.category = thisProjectYear;
+					newCat.projects = [project];
+					categorizedProjects.push(newCat);
+				}
+			}
+			categorizedProjects.sort((a, b) => {
+				return b.category.getUTCFullYear() - a.category.getUTCFullYear();
+			});
+			for (const cat in categorizedProjects) {
+				//<h1 class="ca-projects-filter-title">All projects</h1>
+				const $catHeading = document.createElement('h1'); 
+				$catHeading.append(categorizedProjects[cat].category.getUTCFullYear());
+				addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
+				$projectsGrid.append($catHeading);
+				addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
+				let newCards = [];
+				for (const proj of categorizedProjects[cat].projects) {
+					const newCard = _makeCard(proj);
+					$projectsGrid.append(newCard);	
+					newCards.push(newCard);
+				}
+				addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
+						
+			}
+		}//filter by date
 	}//loadCAProject()
 	/** 
 		Global onload events 
@@ -703,7 +698,7 @@
 		});
 		
 	}//end if .ca-projects-grid
-		
+	
 })();
 
 
