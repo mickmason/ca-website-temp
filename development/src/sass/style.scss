@@ -1062,17 +1062,7 @@ main {
 		}
 	}
 	&.bc-landing-hero {
-		&--video {
-			@extend .bc-landing-hero ;
-			.bc-hero-block {
-				overflow: hidden;	
-			}
-			.bc-hero-header {
-				background-color: rgba($black, 0.52);
-				color: $white;
-			}
-			
-		}
+		
 		height: 100vh; 
 		padding: $gutter/2;
 		.bc-hero-block {
@@ -1091,13 +1081,33 @@ main {
 				object-fit: cover;
 			}
 		}
+		.bc-hero-video-wrap {
+			position: relative;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 50% 50%;
+			flex: 1 1 60%;
+			@media screen and (min-width: $tablet) {
+				position: absolute;
+				top: 	0;
+				left: 0;
+				width: 	100%;
+				height: 100%;	
+			}
+		}
 		.bc-hero-video {
-			object-fit: cover;
+			display: none;
 			position: absolute;
-			top: 	0;
-			left: 0;
+			object-fit: cover;
+			top: 	50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 			width: 	100%;
-			height: 100%;
+			height: 100%;	
+			@media screen and (min-width: $tablet) {
+				display: inherit;				
+			}
+			
 		}
 		.bc-hero-header {
 			position: absolute;
@@ -1347,6 +1357,7 @@ main {
 				li {
 					flex-basis: 100/3*100%;
 					background-color: $white;
+					border-bottom: none;
 				}
 				.bc-color-square, a {
 					padding-top: 		$gutter/2;
@@ -1448,7 +1459,21 @@ main {
 				}
 			}
 		}
-		
+		&--video {
+			@extend .bc-landing-hero ;
+			.bc-hero-block {
+				overflow: hidden;	
+			}
+			@media screen and (min-width: $tablet) {
+				.bc-hero-header {
+					background-color: rgba($white, 1);
+					color: $black;
+					
+				}	
+			}
+			
+			
+		}
 	}// &.bc-landing-hero
 	&.bc-text-hero {
 		.bc-hero-block {
