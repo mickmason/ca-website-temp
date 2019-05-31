@@ -219,16 +219,12 @@
 			console.log(`${(pos - target)}`);
 			pos += (target - pos) * 0.15; 
 			console.log(`${pos} ${target}`);
-			const scrollOpts = {
-				top: pos,
-				left: 0,
-				behavior: 'auto'
-			};
-			$el.scroll(scrollOpts);
+			
+			$el.scroll(0, pos);
 			console.log(`${$el.scrollY}`);
 			i++;
 			requestAnimationFrame(() => {
-				lerpScroll($el, pos, target);
+				lerpScroll($el, pos, target); 
 			});
 		} else if (Math.round(pos) > target && i < 100) {
 			console.log(`${pos} ${target}`);

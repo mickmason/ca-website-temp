@@ -1062,12 +1062,23 @@ main {
 		}
 	}
 	&.bc-landing-hero {
+		&--video {
+			@extend .bc-landing-hero ;
+			.bc-hero-block {
+				overflow: hidden;	
+			}
+			.bc-hero-header {
+				background-color: rgba($black, 0.52);
+				color: $white;
+			}
+			
+		}
 		height: 100vh; 
 		padding: $gutter/2;
 		.bc-hero-block {
 			position: relative;
 		}
-		.bc-hero-image {
+		.bc-hero-image { 
 			flex: 1 1 61.8%;
 			overflow: hidden;
 			position: relative;
@@ -1079,6 +1090,14 @@ main {
 				transform: translate(-50%, -50%);
 				object-fit: cover;
 			}
+		}
+		.bc-hero-video {
+			object-fit: cover;
+			position: absolute;
+			top: 	0;
+			left: 0;
+			width: 	100%;
+			height: 100%;
 		}
 		.bc-hero-header {
 			position: absolute;
@@ -1244,7 +1263,6 @@ main {
 			}//ul 
 		@media screen and (min-width: 370px) and (min-height: 720px) and (max-width: 767px) {
 			.bc-landing-hero-text {
-				
 				.bc-landing-hero-quote {
 					.svg-icon {
 						max-height: 1.75rem;
