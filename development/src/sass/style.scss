@@ -214,11 +214,7 @@ header {
 	.bc-header-logo {
 		h1 {
 			font-size: 1.125rem;
-			a {
-				color: $black;	
-			}
 		}
-		
 	}
 	.bc-header-menu__toggle {
 		flex: 0 1 auto;
@@ -276,14 +272,16 @@ header {
 	padding-right: 	$gutter/2;
 	> h1 {
 		font-family: 'Helvetica Neue', sans-serif;
-		font-size: 1rem;
+		font-size: 1.5rem;
 		margin: 0;
 		a {
-			color: #303030;
 			text-decoration: none;
 		}
 		span {
 			font-weight: 400;
+		}
+		@media screen and (min-width: $desktop) {
+			font-size: 1.8rem;
 		}
 	}
 }
@@ -1464,16 +1462,29 @@ main {
 			.bc-hero-block {
 				overflow: hidden;	
 			}
+			
 			@media screen and (min-width: $tablet) {
 				.bc-hero-header {
-					background-color: rgba($white, 1);
-					color: $black;
-					
-				}	
+					background-color: transparent;
+					background-image: linear-gradient(to bottom, rgba($black, 0.8), transparent);
+					color: $white;
+					height: 18%;
+					align-items: flex-start;
+					padding-top: $gutter/2;
+					.bc-header-menu--show-hide {
+						.bc-header-logo {
+							> h1 {
+								color: $white;
+							}
+						} 
+					} 
+					.bc-header-menu__links {
+						padding-top: 		$gutter/2;
+						padding-bottom: $gutter/2;
+					}
+				}
 			}
-			
-			
-		}
+		}// &--video
 	}// &.bc-landing-hero
 	&.bc-text-hero {
 		.bc-hero-block {
@@ -1530,20 +1541,19 @@ main {
 		@include makeFlexbox($direction: row, $justify: center, $align: stretch);
 		.bc-hero-footer-scroll {
 			position: 			relative;
-			@include 				makeFlexbox($direction: column, $justify: flex-start, $align: center);
-			flex: 					1 1 50%;
-			min-width: 			7rem;
+			
 			min-height: 100%;
 			//clip-path: ellipse(0px 0 at 50%);
 			&-link {
-				width: 	8.5rem;
-				height: 8.5rem;
+				width: 	#{(220/14)}rem;
+				height: 200%;
 				left: 50%;
 				font-size: 0.65rem;
-				text-align: center;
 				border: 1px solid $shade-light ;
 				border-radius: 50%;
 				transition: background-color, border-color $medtrans $easing;
+				@include makeFlexbox($direction: column, $justify: flex-start, $align: flex-start);
+				
 				&:hover, &:active, &:focus {
 					background-color: $brand-yellow;
 					border-color: $black;
@@ -1556,7 +1566,10 @@ main {
 				}
 			}
 			.bc-hero-scroll-link-text {
-				@include makeFlexbox($direction: column, $justify: center, $align: center);
+				flex: 1 1 50%;
+				width: 100%;
+				max-height: 50%;
+				@include makeFlexbox($direction: column, $justify: space-evenly, $align: center);
 				
 			}
 		}
