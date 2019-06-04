@@ -1092,6 +1092,9 @@ main {
 				width: 	100%;
 				height: 100%;	
 			}
+			@media screen and (min-width: $desktop) {
+				background-image: none !important;
+			}
 		}
 		.bc-hero-video {
 			display: none;
@@ -1486,18 +1489,8 @@ main {
 			}
 		}// &--video
 	}// &.bc-landing-hero
-	&.bc-text-hero {
-		.bc-hero-block {
-			background-color: $brand-blue;
-			color: 						$white;
-			flex-basis: 			87.5%;
-			width: 100%;
-			margin-left: 	auto;
-			margin-right: auto;
-
-		}	
-	}
-	.bc-hero-body {
+	
+	.bc-hero-body { 
 		.svg-icon {
 			fill: $white;
 			max-width: 		3rem;
@@ -1513,7 +1506,6 @@ main {
 		top: 		50%;
 		bottom: auto;
 		left: 	0;
-		background-color: transparent;
 		
 		transform: translate(0, -50%);
 		width: 100%;
@@ -1545,42 +1537,52 @@ main {
 			min-height: 100%;
 			//clip-path: ellipse(0px 0 at 50%);
 			&-link {
-				width: 	#{(220/14)}rem;
+				width: 	#{(195/14)}rem;
 				height: 200%;
 				left: 50%;
-				font-size: 0.65rem;
+				font-size: 0.88rem;
+				color: $shade-mid;
 				border: 1px solid $shade-light ;
 				border-radius: 50%;
 				transition: background-color, border-color $medtrans $easing;
 				@include makeFlexbox($direction: column, $justify: flex-start, $align: flex-start);
-				
 				&:hover, &:active, &:focus {
-					background-color: $brand-yellow;
+					background-color: rgba($brand-yellow, 0.8);
 					border-color: $black;
 					color: $black;
 					.svg-icon {
 						&.scroll-down-arrow {
 							fill: $black;
+							animation: caratbounce 1200ms 4 ease-in ;
 						}
-					}		
+					}
 				}
 			}
 			.bc-hero-scroll-link-text {
 				flex: 1 1 50%;
 				width: 100%;
 				max-height: 50%;
-				@include makeFlexbox($direction: column, $justify: space-evenly, $align: center);
-				
+				@include makeFlexbox($direction: column, $justify: center, $align: center);
+				position: relative;
 			}
+		}
+		.scroll-text {
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -80%);
 		}
 		.svg-icon {
 			&.scroll-down-arrow {
-				fill: 			$black;
-				max-height: 0.88rem;
-				max-width: 	0.88rem;	
-			
+				fill: 			$shade-mid;
+				margin-top: $gutter/16;
+				max-height: 1.125rem;
+				max-width: 	1.25rem;	
+				top: 50%;
+				transform: translate(0, 80%);
+				
 			}
 		}
+		
 	}
 	@media screen and (min-width: $tablet) {
 		&.bc-content-row {
@@ -1605,7 +1607,7 @@ main {
 		}
 		.bc-hero-footer {
 			.bc-hero-footer-scroll {
-				
+					
 			}
 			.svg-icon {
 				&.scroll-down-arrow {
@@ -1643,7 +1645,6 @@ main {
 			margin-top: $gutter;
 		}
 		.bc-hero-footer {
-			flex-basis: 12.5%;
 			
 			.svg-icon {
 				&.scroll-down-arrow {
@@ -2132,13 +2133,19 @@ blockquote {
 			
 			background-color: $offwhite;
 			transition: background-color $quicktrans $easing;
-			&:hover, &:active, &:focus {
-				background-color: $shade-superlight;
-				outline: 1px dotted $shade-light;
+			&:not(.bc-slider-controls--disabled) {
+				&:hover, &:active, &:focus {
+					background-color: $shade-superlight;
+					outline: 1px dotted $shade-light;
+				}	
 			}
+			
 			&:hover {
 				cursor: pointer;
 			}
+		}
+		&--disabled {
+			opacity: 0.64;
 		}
 		&__counter {
 			flex: 1 1 auto;
@@ -2192,11 +2199,17 @@ blockquote {
 			&__next, &__prev, &__counter {
 				position: absolute;
 			}
+			
 			&__next, &__prev {
 				background-color: rgba($white, 0.84);
 				top: 50%;
 				transform: translateY(-50%);
-			}
+				&:not(.bc-slider-controls--disabled) {
+					&:hover, &:active, &:focus {
+						background-color: rgba($white, 0.88);
+					}
+				}
+			}	
 			&__prev {
 				left: $gutter/4;
 			}

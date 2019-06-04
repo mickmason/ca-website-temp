@@ -214,6 +214,7 @@
 		
 		console.log(`Lerp ${i}`); 
 		console.log(`---------`); 
+		
 		if (target > Math.round(pos) && i < 100) {
 			console.log(`${pos} ${target}`);
 			console.log(`${(pos - target)}`);
@@ -379,19 +380,32 @@
 			prevNextButtons: false
 		});
 		const slidesLength = flkty.slides.length;
-		const slidesCount = document.querySelector('.bc-slider-controls .bc-slider-controls__counter .bc-slider-counter-count');
-		slidesCount.innerHTML = slidesLength;
+		const slidesCounter = document.querySelector('.bc-slider-controls .bc-slider-controls__counter .bc-slider-counter-count');
+		slidesCounter.innerHTML = slidesLength;
 		let currentSlide = 1;
-		const slidesCurrent = document.querySelector('.bc-slider-controls .bc-slider-controls__counter .bc-slider-counter-current');
-		slidesCurrent.innerHTML = currentSlide;
+		const slidesCurrentIdx = document.querySelector('.bc-slider-controls .bc-slider-controls__counter .bc-slider-counter-current');
+		slidesCurrentIdx.innerHTML = currentSlide;
 		const sliderNext = document.querySelector('.bc-slider-controls__next');
 		const sliderPrev = document.querySelector('.bc-slider-controls__prev');
+		sliderPrev.classList.add('bc-slider-controls--disabled'); 
 		flkty.on('change', (idx) => {
-			slidesCurrent.innerHTML = idx + 1; 
+			slidesCurrentIdx.innerHTML = idx + 1; 
+			console.log(`Flickty idx: ${idx}; Slides length: ${slidesLength - 1}`);
+			if (idx === 0) {
+				sliderPrev.classList.toggle('bc-slider-controls--disabled');
+			} else if (idx === slidesLength - 1) {
+				console.log(`Flickty idx: ${idx}; Slides length: ${slidesLength - 1}`);
+				sliderNext.classList.toggle('bc-slider-controls--disabled');
+			} else if(sliderPrev.classList.contains('bc-slider-controls--disabled')) {
+				sliderPrev.classList.toggle('bc-slider-controls--disabled');
+			} else if(sliderNext.classList.contains('bc-slider-controls--disabled')) {
+				
+				sliderNext.classList.toggle('bc-slider-controls--disabled');
+			}
 		});
 		sliderNext.addEventListener('click', (e) => {
 			flkty.next();
-
+			
 		});
 		sliderPrev.addEventListener('click', (e) => {
 			flkty.previous();
@@ -449,7 +463,19 @@
 			});
 		});	
 	}
-	
+	/** 
+		More link in heros 
+		*/
+	const $heroFooterScrollLink = document.querySelector('.bc-hero-footer-scroll-link');
+	const $contentStart = document.querySelector('#content-start');
+	if ($heroFooterScrollLink && $contentStart) {
+		$heroFooterScrollLink.addEventListener('click', (evt) => {
+			i = 0;
+			requestAnimationFrame(() => {
+				lerpScroll(window, window.scrollY, $contentStart.getBoundingClientRect().top);
+			});
+		});	
+	}
 	/** 
 		CA Projects: Load projects
 		Project filters

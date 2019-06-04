@@ -6,16 +6,18 @@
 	&.bc-fade-in-up--loaded { 
 		top: 0px;
 		opacity: 1;
-	}
+	} 
 }
-@keyframes fade-in-up {
-	from {
-		
-		
+@keyframes caratbounce {
+	0% {
+		transform: translateY(80%); 
 	}
-	to {
-		
+	50% {
+		transform: translateY(100%); 
+	}
 	
+	100% {
+		transform: translateY(80%); 
 	}
 }
 @keyframes fade-out {

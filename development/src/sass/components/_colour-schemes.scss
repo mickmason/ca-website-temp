@@ -13,7 +13,7 @@
 			.bc-hero-footer-scroll {
 				&-link {
 					&:hover, &:active, &:focus {
-						background-color: $brand-yellow;
+						background-color: rgba($brand-yellow, 0.72);
 						border-color: $black;
 						color: $black;
 						span {
@@ -28,7 +28,21 @@
 				}
 					
 			}//.bc-hero-footer-scroll
-		}
+		}//. .bc-hero-footer
+		&.bc-text-hero {
+			.bc-hero-body {
+				&-text { 
+					&__squares {
+						.square {
+							background-color: $brand-yellow;
+							&:nth-child(2) {
+								background-color: $black;
+							}
+						}
+					}
+				}
+			}
+		}// .bc-text-hero
 	}
 	.bc-card {
 		&.bc-card--slide-up {
@@ -160,7 +174,7 @@
 			.bc-hero-footer-scroll {
 				&-link {
 					&:hover, &:active, &:focus {
-						background-color: $brand-red;
+						background-color: rgba($brand-red, 0.72);
 						border-color: $white;
 						color: $white;
 						span {
@@ -174,7 +188,21 @@
 					}	
 				}
 			}
-		}
+		}// .bc-hero-footer
+		&.bc-text-hero {
+			.bc-hero-body {
+				&-text { 
+					&__squares {
+						.square {
+							background-color: $brand-red;
+							&:nth-child(2) {
+								background-color: $brand-yellow;
+							}
+						}
+					}
+				}
+			}
+		}// .bc-text-hero
 	}
 	.bc-card {	
 		&.person-card {
@@ -268,7 +296,7 @@
 			}
 		}
 	}
-}//.brand-yellow-scheme
+}//.brand-red-scheme
 .brand-blue-scheme {
 	.bc-breadcrumbs {
 		.bc-breadcrumbs-links {
@@ -283,7 +311,7 @@
 			.bc-hero-footer-scroll {
 				&-link {
 					&:hover, &:active, &:focus {
-						background-color: $brand-blue;
+						background-color: rgba($brand-blue, 0.72); 
 						border-color: $white;
 						color: $white;
 						span {
@@ -297,7 +325,21 @@
 					}	
 				}
 			}//.bc-hero-footer-scroll
-		}
+		}//.bc-hero-footer 
+		&.bc-text-hero {
+			.bc-hero-body {
+				&-text { 
+					&__squares {
+						.square {
+							background-color: $brand-blue;
+							&:nth-child(2) {
+								background-color: $brand-yellow;
+							}
+						}
+					}
+				}
+			}
+		}// .bc-text-hero
 	}
 	.bc-card {
 		&.bc-card--slide-up {
