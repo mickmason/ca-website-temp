@@ -1,35 +1,49 @@
 .bc-hero {
-	height: 	100vh;  
-	width: 		100%;
+	 
+	@extend .bc-content-row;
+	padding: 0 $gutter;
+	border-bottom: 	1px solid $shade-light;
+	height: 85.6vh;
+	position: relative;
 	overflow: hidden;
+	
 	.bc-hero-block {
 		@include makeCols($cols: $gridColsCount, $full-bleed: true);		
-		@include makeFlexbox($direction: column, $align: stretch);
+		flex-basis: 87.5%;
+		@include makeFlexbox($direction: column, $align: flex-start);
 		width: 100%;
-	}
+	}// .bc-hero-block
 	.bc-hero-body {
-		flex: 1 1 80%;
 		background-color: rgba($white, 0.2); 
 		position: relative;
+		flex: 1 1 80%;
 		margin-bottom: $gutter/4; 
+		@include makeFlexbox(column, center, flex-start);
 		&:focus {
 			outline: none;
 		}
-	}
-	.bc-hero-body-text {
-		position: absolute;
-		bottom: 33.333%;
-		left: 	33.333%;
-		transform: translate(-50%, 50%);
-		width: $gr-small;
-		padding: $gutter;
-		h1 {
-			font-size: 2rem;
-			&:first-child {
-				margin-top: 0;	
+		&-text {
+			position: relative;
+			padding: $gutter 0;
+			background-color: transparent;
+			color: $black;
+			h1 {
+				font-size: 2rem;
+				margin-top: 0;
+				margin-bottom: $gutter;
+				&:first-child {
+					margin-top: 0;	
+				}
 			}
-		}		
-	}
+		}
+		@media screen and (min-width: $tablet) {
+			&-text {
+				h1 {
+					font-size: 2rem;
+				}
+			}
+		}
+	}// .bc-hero-block
 	.bc-hero-header, .bc-hero-footer {
 		flex: 						1 1 10%;
 		background-color: rgba($white, 0.4);
@@ -37,17 +51,170 @@
 	.bc-hero-header {
 		@include makeFlexbox($direction: row, $justify: space-between, $align: center);	
 	}
-	
-	&.bc-hero--slider {
-		height: 				auto;
-		display: 				block;
-		padding-left: 	0;
-		padding-right: 	0;
+	&--slider { 
+		@extend .bc-hero;
 		&:focus {
 			outline: none;
 		}
-	}
-	&.bc-text-hero {
+		@include makeFlexbox(column, flex-start, stretch);
+		padding-top: 		0;
+		padding-bottom: 0;
+		height: 85.6vh;
+		.bc-hero-footer {
+			flex-direction: column;
+			justify-content: space-between; 
+			align-items: center;
+		}
+		&-slides {
+			flex: 					1 1 92%;
+			max-height: 		92%;
+			min-width: 			100%;
+			padding-top: 		$gutter/2;
+			padding-bottom: $gutter/2;
+
+		}
+		&-slide {
+			width: 					100%;
+			height: 				100%;
+			@include makeFlexbox(row, center, center);
+			margin-left: 	$gutter/2;
+			margin-right: $gutter/2;
+			img {
+				min-width: 	0;
+				max-height: 100%;
+			}
+		}
+		&-controls {
+			width: 100%;
+			min-height: 86%;
+			background-color: $white;
+			@include makeFlexbox(row, center, stretch);
+			&__next, &__prev, &__counter {
+				max-width: 	5rem;
+			}
+			&__next, &__prev {
+				flex: 1 1 auto;
+				@include makeFlexbox(column, center, center);
+
+				background-color: $offwhite;
+				transition: background-color $quicktrans $easing;
+				&:not(.bc-slider-controls--disabled) {
+					&:hover, &:active, &:focus {
+						background-color: $shade-superlight;
+						outline: 1px dotted $shade-light;
+					}	
+				}
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			&--disabled {
+				opacity: 0.48;
+			}
+			&__counter {
+				flex: 1 1 auto;
+				@include makeFlexbox(row, center, center);
+				font-size: 1rem;
+			}
+			.svg-icon {
+				max-width: 	1.25rem;
+				max-height: 1.25rem;
+			}
+		}
+
+		@media screen and (max-width: 530px)  {
+			&-controls {
+				&__next, &__prev, &__counter {
+					height: 		3rem;
+					width: 			3rem;
+					.svg-icon {
+						max-width:   1.25rem;
+						max-height:  1.25rem;
+					}
+				}	
+				&__counter {
+					font-size: 0.8rem;
+				}
+			}
+		}
+		@media screen and (min-width: 531px) and (max-width: 1023px)   {
+			&-controls {
+				&__next, &__prev, &__counter {
+					height: 		4rem;
+					width: 			4rem;
+					.svg-icon {
+						max-width:   1.75rem;
+						max-height:  1.75rem;
+					}
+				}
+			}
+		}
+		@media screen and (max-width: 1023px) {
+			.bc-hero-footer {
+				position: static;
+			}
+			&-controls {
+				height: 0;
+				overflow: visible;
+				position: inherit;
+				&__next, &__prev, &__counter {
+					position: absolute;
+				}
+				&__next, &__prev {
+					background-color: rgba($white, 0.84);
+					top: 50%;
+					transform: translateY(-50%);
+					&:not(.bc-slider-controls--disabled) {
+						&:hover, &:active, &:focus {
+							background-color: rgba($white, 0.88);
+						}
+					}
+				}	
+				&__prev {
+					left: $gutter/4;
+				}
+				&__next {
+					right: $gutter/4;
+				}
+				&__counter {
+					background-color: rgba($black, 0.72);
+					color: 						$white;
+
+					right: 			$gutter;
+					bottom: 		$gutter/3;
+				}
+			}
+		}
+		@media screen and (min-width: $desktop)  {
+			&-controls {
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 20%;
+				&__next, &__prev, &__counter {
+					padding: 0;
+					flex: 			1 1 calc(100%/3);
+					max-width: 	calc(100%/3);
+				}
+			}
+		}
+		@media screen and (min-width: $desktop) and (orientation: portrait) {
+			&.bc-hero {
+				.bc-slider-slides {
+					flex-basis: 94.8%;
+					max-height: 94.8%;
+				}
+				.bc-hero-footer {
+					flex-basis: 7.2%;
+					max-height: 7.2%;
+					align-items: center;
+				}
+			}
+		}
+	}// .bc-hero--slider
+	&--text-hero {
+		@extend .bc-hero;
 		.bc-hero-block {
 			flex-basis: 			87.5%;
 			width: 100%;
@@ -56,38 +223,197 @@
 		}	
 		.bc-hero-body {
 			&-text {
-				position: relative; 
-				background-color: transparent;
-				color: $black;
-				> h1 {
-					margin-top: 0;
-				}
 				&__squares {
-					position: absolute;
-					top: -1rem;
-					left: 1.5rem;
-					width: calc(3 * (1.25rem + #{$gutter/4}));
+					margin-bottom: $gutter;
+					width: calc(3 * (1.0rem + #{$gutter/4}));
 					@include makeFlexbox(row, space-between, center);
 					.square {
-						width: 	1.2rem;
-						height: 1.2rem;
+						width: 	1.0rem;
+						height: 1.0rem;
 						background-color: $black;
 						&:nth-child(2) {
 							background-color: $brand-yellow;
 						}
-						
 					}
 				}
+				&__content {
+					
+				}
+				@media screen and (min-width: $med) {
+					&__squares {
+						width: #{(3 * 1.25rem) + (($gutter))};
+						top: 2.125rem;
+						left: #{-(3 * 1.25rem) - (($gutter)*2)};
+						.square {
+							width: 	1.25rem;
+							height: 1.25rem;
+						}
+					}
+				}
+			}// &-text
+			&-links {
+				margin: 	0;
+				padding: 	0;
+				list-style: none;
+			}
+			&-link {
+				margin-bottom: $gutter/2;
 			}
 		}
 		
-	}
-	@media screen and (min-width: $tablet) {
+	}// .bc-text-hero
+	&--video-embed {
+		@extend .bc-hero;
 		.bc-hero-body {
-			flex: 1 1 92%;
+			&-text {
+				color: $white;
+				.svg-icon {
+					max-height: 2.5rem;
+					max-width: 	2.5rem;
+				}
+			}// .bc-hero-body-text
+			&-subtext {
+				> a {
+					@include makeFlexbox($direction: row, $justify: flex-start, $align: center);
+					.svg-icon {
+						fill: $white;
+						margin-left: 	$gutter/2;
+						max-width: 		3rem;
+						max-height: 	3rem;
+					}
+				}
+			}// .bc-hero-body-subtext
+		}// .bc-hero-body
+	}
+	&-footer { 
+		flex: 					0 1 10%;
+		width: 					100%;
+		position: 			relative;
+		@include makeFlexbox($direction: row, $justify: center, $align: stretch);
+		.bc-hero-footer-scroll {
+			position: 			relative;
+			min-height: 100%;
+			//clip-path: ellipse(0px 0 at 50%);
+			&-link {
+				width: 	#{(195/14)}rem;
+				height: 200%;
+				left: 50%;
+				font-size: 0.88rem;
+				color: $shade-mid;
+				border: 1px solid $shade-light ;
+				border-radius: 50%;
+				transition: background-color, border-color $medtrans $easing;
+				@include makeFlexbox($direction: column, $justify: flex-start, $align: flex-start);
+				&:hover, &:active, &:focus {
+					background-color: rgba($brand-yellow, 0.8);
+					border-color: $black;
+					color: $black;
+					.svg-icon {
+						&.scroll-down-arrow {
+							fill: $black;
+							animation: caratbounce 1200ms 4 ease-in ;
+						}
+					}
+				}
+			}
+			.bc-hero-scroll-link-text {
+				flex: 1 1 50%;
+				width: 100%;
+				max-height: 50%;
+				@include makeFlexbox($direction: column, $justify: center, $align: center);
+				position: relative;
+			}
+		}
+		.scroll-text {
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -80%);
+		}
+		.svg-icon {
+			&.scroll-down-arrow {
+				fill: 			$shade-mid;
+				margin-top: $gutter/16;
+				max-height: 1.125rem;
+				max-width: 	1.25rem;	
+				top: 50%;
+				transform: translate(0, 80%);
+				
+			}
+		}
+		@media screen and (min-width: $tablet) {
+			height: 		calc(8.4vh - #{$gutter}/4);
+			flex-basis: 10%;
+		}
+		@media screen and (min-width: $tablet) and (orientation: portrait) {
+			.svg-icon {
+				&.scroll-down-arrow {
+					max-height: 1rem;
+					max-width: 	1rem;		
+				}
+			}
+		}
+		@media screen and (min-width: $desktop) and (orientation: portrait) {
+			span {
+					font-size: 1.25rem;
+			}	
+			.svg-icon {
+				&.scroll-down-arrow {
+					max-height: 1.5rem;
+					max-width: 	1.5rem;		
+				}
+			}
+		}
+	}// .bc-hero-footer
+	@media screen and (min-width: $tablet) {
+		&.bc-content-row {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-items: center;
+		}
+	}
+	@media screen and (min-width: $desktop) {
+		.bc-hero-block {
+			&.bc-hero-bg {
+				color: $white;
+			}
+		}
+		.bc-hero-body-subtext {
+			margin-top: $gutter;
 		}
 		.bc-hero-footer {
-			flex: 0 1 8%;
+			
+			.svg-icon {
+				&.scroll-down-arrow {
+					max-height: 1rem;
+					max-width: 	1rem;
+				}
+			}
+		}
+	}
+	@media screen and (min-width: $med) {
+		&.bc-content-row {
+			justify-content: center;
+		}
+		&.bc-text-hero {
+			.bc-hero-block {
+				&.bc-hero-bg {
+					flex-basis: 80%;
+					max-width: 	80%;	
+				}	
+			}
+		}
+			}
+	@media screen and (min-width: $large) {
+		.bc-hero-footer {
+			span {
+					font-size: 0.8rem; 
+			}	
+			.svg-icon { 
+				&.scroll-down-arrow {
+					max-height: 1rem;
+					max-width: 	1rem;
+				}
+			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-@mixin makeRow($nested: false, $direction: column, $justify: flex-start, $align: stretch) {
+	@mixin makeRow($nested: false, $direction: column, $justify: flex-start, $align: stretch) {
 	display: flex;
 	flex-direction: $direction;
 	justify-content: $justify;

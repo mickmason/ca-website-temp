@@ -10,21 +10,32 @@
 	</div>
 	<main id="content-top">
 		<div class="bc-content-container ca-hero-container"> 
-			<section class="bc-text-hero bc-hero bc-content-row ">
+			<section class="bc-hero--text-hero bc-content-row ">
 				<div class="bc-hero-block"> 
-					<div class="bc-hero-body" >
+					<div class="bc-hero-body bc-content-column--indented" >
 						<div class="bc-hero-body-text">
 							<div class="bc-hero-body-text__squares">
 								<span class="square"></span>
 								<span class="square"></span>
 								<span class="square"></span>
-							</div> 
-							<h1>What if every single act of intervention, design and construction makes society a better place?</h1>
-							<div class="bc-hero-body-subtext">
-								<a href="javscript:void">
-									<p>Design process</p>
-								</a>
-							</div>	
+							</div>
+							<div class="bc-hero-body-text__content">
+								<h1>What if every single act of intervention, design and construction makes society a better place?</h1>
+								<div class="bc-hero-body-subtext">
+									<ul class="bc-hero-body-links">
+										<li class="bc-hero-body-link">
+											<a href="#content-start">We are unique</a>	
+										</li>	
+										<li class="bc-hero-body-link">
+											<a href="#values-driven">We are driven by our values</a>	
+										</li>	
+										<li class="bc-hero-body-link">
+											<a href="#contact">Work with us</a>	
+										</li>	
+									</ul>
+								</div>		
+							</div>
+							
 						</div>
 					</div>
 				</div><!-- // .bc-hero-block -->
@@ -44,8 +55,14 @@
 				</div><!-- // .bc-hero-footer -->	
 			</section>
 		</div>
-		<div class="bc-content-container" id="content-start">
-			<section class="bc-content-row bc-cards-row ca-unique-processes" aria-label="Cooney Architects Projects">
+		<section class="bc-content-container ca-unique-processes" id="content-start">
+			<div class="bc-content-row bc-cards-into-row " >
+				<div class="bc-content-column  bc-content-column--indented">
+						<h1>We are Unique</h1> 
+						<p>As an architectural practice we treat every project as unique; the nuances of each project demand a unique design process.</p>
+					</div>
+				</div>
+			<div class="bc-content-row bc-cards-row " id="design-process" aria-label="Cooney Architects Projects">
 					<article class="bc-card bc-fade-in-up bc-card--slide-up-overlay"> 
 						<figure class="bc-card-img is-square">
 							<img src="/assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg" alt="Meath GAA Centre of Excellence" />	
@@ -284,16 +301,15 @@
 							</a>
 						</div>
 					</article><!-- // Design process -->
-				</section><!-- // .cards-row -->
-		</div><!-- .bc-content-container uniqueness -->
+				</div><!-- // .cards-row -->
+		</section><!-- .bc-content-container uniqueness -->
 		
 		
-		<section class="bc-content-container ca-values-component" aria-label="Cooney Architects Projects">
+		<section class="bc-content-container ca-values-component" id="values-driven" aria-label="A Values Driven Practice">
 			<div class="bc-content-row bc-cards-into-row " >
 				<div class="bc-content-column bc-content-column--indented">
 					<h1>A values driven practice</h1> 
-					<p>In our architecture our values are our guiding light. They help us distil a single, pure solution from the many possibilities.</p> 
-				
+					<p>In our architecture our values are our guiding light. They help us distil a single, pure solution from the many possibilities.</p>
 				</div>
 			</div>
 			<div class="bc-content-row bc-cards-row " aria-label="Cooney Architects Projects">
@@ -304,7 +320,6 @@
 						<div class="bc-card-content">
 							<a href="bryan-profile.html">  
 								<div class="bc-card-info">
-									
 									<div class="bc-card-info-icon">
 										<svg class="svg-icon">
 											<use xlink:href="/assets/media/svg/bc-icons.svg#eye"></use>
@@ -314,9 +329,7 @@
 										<h2 class="bc-card-title">Integrity</h2>
 										<p class="bc-card-info-role">Bryan Brady, Partner</p>
 									</div>
-									
 								</div>
-								
 							</a>
 						</div>
 					</article><!-- // Bryan Brady -->
@@ -414,14 +427,14 @@
 					</article><!-- // Bryan Brady -->
 			</div>
 		</section>
-		<div class="bc-content-container ca-contact-component">
+		<section class="bc-content-container ca-contact-component" id="contact">
 			<div class="ca-contact-component__wrap">
 				<div class="bc-content-row ca-contact-heading-row">
 					<div class="ca-contact-heading-col">
 						<h1 class="ca-contact-heading">Contact</h1>		
 					</div>	
 				</div>
-				<section class="bc-content-row ca-contact-component-row">
+				<article class="bc-content-row ca-contact-component-row">
 						<div class="ca-contact-info" aria-label="Contact Cooney Architects">
 							<div class="bc-content-row">
 								<div class="ca-contact-col">
@@ -447,9 +460,9 @@
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.19045182034!2d-6.2786091844354965!3d53.33984687997762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670c2471b4e45f%3A0xa9daada97314833d!2sCooney+Architects+Limited!5e0!3m2!1sen!2sie!4v1550941014215" width="600" height="450" style="border:0" allowfullscreen></iframe>
 						</div>
 					</div><!-- .ca-contact-map -->
-				</section>
+				</article>
 			</div><!-- //.ca-contact-component__wrap -->
 			
-		</div><!-- .ca-contact-component -->
+		</section><!-- .ca-contact-component -->
 	</main>
 	@@include('structure/footer.html')

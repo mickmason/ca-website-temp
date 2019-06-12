@@ -209,13 +209,13 @@
 		Animation functions
 		*/
 	//Liner interpolation
-	let i;
+	let i = 0;
 	function lerpScroll($el, pos, target) {
 		
 		console.log(`Lerp ${i}`); 
 		console.log(`---------`); 
 		
-		if (target > Math.round(pos) && i < 100) {
+		if (Math.round(target) > Math.round(pos)) {
 			console.log(`${pos} ${target}`);
 			console.log(`${(pos - target)}`);
 			pos += (target - pos) * 0.15; 
@@ -227,7 +227,7 @@
 			requestAnimationFrame(() => {
 				lerpScroll($el, pos, target); 
 			});
-		} else if (Math.round(pos) > target && i < 100) {
+		} else if (Math.round(pos) > Math.round(target)) {
 			console.log(`${pos} ${target}`);
 			console.log(`${(pos - target)}`);
 			pos -= (pos - target) * 0.15; 
@@ -366,41 +366,32 @@
 	});
 
 	//Flickity.js
-	if (document.querySelector('.ca-project-slider')) {
-		const elem = document.querySelector('.ca-project-slider');
-		const flkty = new Flickity( elem, {
-			// options
-
-		});
-	}
-	if (document.querySelector('.bc-slider-slides')) {
-		const elem = document.querySelector('.bc-slider-slides');
+	if (document.querySelector('.bc-hero--slider-slides')) {
+		const elem = document.querySelector('.bc-hero--slider-slides');
 		const flkty = new Flickity( elem, {
 			pageDots: false,
 			prevNextButtons: false
 		});
 		const slidesLength = flkty.slides.length;
-		const slidesCounter = document.querySelector('.bc-slider-controls .bc-slider-controls__counter .bc-slider-counter-count');
+		const slidesCounter = document.querySelector('.bc-hero--slider-controls .bc-hero--slider-controls__counter .bc-hero--slider-counter-count');
 		slidesCounter.innerHTML = slidesLength;
 		let currentSlide = 1;
-		const slidesCurrentIdx = document.querySelector('.bc-slider-controls .bc-slider-controls__counter .bc-slider-counter-current');
+		const slidesCurrentIdx = document.querySelector('.bc-hero--slider-controls .bc-hero--slider-controls__counter .bc-hero--slider-counter-current');
 		slidesCurrentIdx.innerHTML = currentSlide;
-		const sliderNext = document.querySelector('.bc-slider-controls__next');
-		const sliderPrev = document.querySelector('.bc-slider-controls__prev');
-		sliderPrev.classList.add('bc-slider-controls--disabled'); 
+		const sliderNext = document.querySelector('.bc-hero--slider-controls__next');
+		const sliderPrev = document.querySelector('.bc-hero--slider-controls__prev');
+		sliderPrev.classList.add('bc-hero--slider-controls--disabled'); 
 		flkty.on('change', (idx) => {
 			slidesCurrentIdx.innerHTML = idx + 1; 
-			console.log(`Flickty idx: ${idx}; Slides length: ${slidesLength - 1}`);
+			
 			if (idx === 0) {
-				sliderPrev.classList.toggle('bc-slider-controls--disabled');
+				sliderPrev.classList.toggle('bc-hero--slider-controls--disabled');
 			} else if (idx === slidesLength - 1) {
-				console.log(`Flickty idx: ${idx}; Slides length: ${slidesLength - 1}`);
-				sliderNext.classList.toggle('bc-slider-controls--disabled');
-			} else if(sliderPrev.classList.contains('bc-slider-controls--disabled')) {
-				sliderPrev.classList.toggle('bc-slider-controls--disabled');
-			} else if(sliderNext.classList.contains('bc-slider-controls--disabled')) {
-				
-				sliderNext.classList.toggle('bc-slider-controls--disabled');
+				sliderNext.classList.toggle('bc-hero--slider-controls--disabled');
+			} else if(sliderPrev.classList.contains('bc-hero--slider-controls--disabled')) {
+				sliderPrev.classList.toggle('bc-hero--slider-controls--disabled');
+			} else if(sliderNext.classList.contains('bc-hero--slider-controls--disabled')) {
+				sliderNext.classList.toggle('bc-hero--slider-controls--disabled');
 			}
 		});
 		sliderNext.addEventListener('click', (e) => {
@@ -470,11 +461,38 @@
 	const $contentStart = document.querySelector('#content-start');
 	if ($heroFooterScrollLink && $contentStart) {
 		$heroFooterScrollLink.addEventListener('click', (evt) => {
-			i = 0;
 			requestAnimationFrame(() => {
-				lerpScroll(window, window.scrollY, $contentStart.getBoundingClientRect().top);
+				lerpScroll(window, window.scrollY, $contentStart.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
 			});
 		});	
+	}
+	/** 
+		Hero body links 
+		*/
+	const $heroBodyLinks = document.querySelectorAll('.bc-hero-body-link > a');
+	console.log(`${$heroBodyLinks.length}`);
+	function _addLinkClick($el) {
+		
+		$el.addEventListener('click', (evt) => {
+			evt.preventDefault();
+			evt.stopPropagation();
+			const $linkTarget = document.querySelector($el.getAttribute('href'));
+			if ($linkTarget) {
+				console.log($linkTarget);
+				requestAnimationFrame(() => {
+					lerpScroll(window, window.scrollY, $linkTarget.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
+				});
+			} else {
+				return;
+			}
+		});			
+	}
+	if ($heroBodyLinks.length > 0) {
+		for (const $link of $heroBodyLinks) {
+			console.log($link);
+			_addLinkClick($link);
+		}
+		
 	}
 	/** 
 		CA Projects: Load projects

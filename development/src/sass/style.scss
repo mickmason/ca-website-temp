@@ -1009,106 +1009,31 @@ main {
 }
 /** -- Media content extensions -- **/
 
-/** Hero block **/
-.bc-content-container {
-	&.bc-landing-hero-container {
-		max-width: none;		
-	}	
-}
-
+/** Landing page hero **/
 .bc-hero {
-	padding: 0 $gutter;
-	border-bottom: 	1px solid $shade-light;
-	height: 85.6vh;
-	position: relative;
-	/* Hero scroll */
-	&-scroll {
-		> a {
-			display: block;
-		}
-		position: absolute;
-		top: auto;
-		bottom: 0;
-		right: 	calc(40px - #{$gutter});
-		
-		transform-origin: right bottom;
-		transform: rotate(90deg);	
-	
-		width: 	56px;
-		height: 40px;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
-		padding-left: 0.5rem;
-		overflow: hidden;
-		
-		background-color: rgba($brand-blue, 0.72);
-		font-size: 0.64rem;
-		
-		> span {
-			@include makeLabel($uppercase: true, $color: $white);  
-			font-size: 0.72rem;	 
-			position: relative;
-			&:after {
-				content: "";
-				height: 1px;
-				width: 160%;
-				background-color: $white;
-				left: 	  0.96rem;
-				bottom:  -0.36rem;
-				position: absolute;
-			}
-		}
-	}
-	&.bc-landing-hero {
-		
+	&--landing-hero {
+		@extend .bc-hero;
 		height: 100vh; 
 		padding: $gutter/2;
+		position: relative;
 		.bc-hero-block {
 			position: relative;
 		}
 		.bc-hero-image { 
-			flex: 1 1 61.8%;
+			flex: 1 1 100%;
+			min-width: 100%;
 			overflow: hidden;
 			position: relative;
-			padding-top: 50%;
+			z-index: 0;
 			img {
 				position: absolute;
 				top: 	50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
+				height: 100%;
+				width: 100%;
 				object-fit: cover;
 			}
-		}
-		.bc-hero-video-wrap {
-			position: relative;
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-position: 50% 50%;
-			flex: 1 1 60%;
-			@media screen and (min-width: $tablet) {
-				position: absolute;
-				top: 	0;
-				left: 0;
-				width: 	100%;
-				height: 100%;	
-			}
-			@media screen and (min-width: $desktop) {
-				background-image: none !important;
-			}
-		}
-		.bc-hero-video {
-			display: none;
-			position: absolute;
-			object-fit: cover;
-			top: 	50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 	100%;
-			height: 100%;	
-			@media screen and (min-width: $tablet) {
-				display: inherit;				
-			}
-			
 		}
 		.bc-hero-header {
 			position: absolute;
@@ -1137,27 +1062,30 @@ main {
 			}
 		}
 		.bc-hero-body {
-			height: auto;
-			flex-basis: 100-61.8%;
+			flex-basis: 	auto;
+			position: 		absolute;
+			max-width: 		92%;
+			left: 		 		4%;
+			bottom: 	 		2%;
+			z-index: 			10;
+			margin-left: 	auto;
+			margin-right: auto;
+			background-color: transparent;
 			@include makeFlexbox($direction: column, $justify: flex-start);
-			
 		}
 		.bc-landing-hero-text {
 			flex: 1 1 61.5%;
 			@include makeFlexbox($direction: row, $justify: center, $align: center);
-			padding-top: $gutter/2;
-			padding-right: $gutter/2;
-			padding-bottom: $gutter/2;
+			padding-top: 		$gutter/3;
+			padding-right: 	$gutter/3;
+			padding-bottom: $gutter/3;
+			margin-bottom: 	4%;
 			background-color: $white;
 			color: $black;
-			border-bottom: 		4px solid $black; 
 			
 			.bc-landing-hero-quote {
 				flex: 1 1 100%;
 				@include makeFlexbox($direction: row, $align: stretch, $wrap: nowrap);
-				
-				
-				
 				.svg-icon {
 					fill: $black;
 					max-width: 	1.25rem;
@@ -1191,22 +1119,30 @@ main {
 				margin-bottom: 	0;
 				padding-left: 0; 
 				width: 100%;
-				@include makeFlexbox($direction: column, $justify: stretch, $align: stretch); 
-				background-color: $offwhite;
+				@include makeFlexbox($direction: row, $justify: flex-start, $align: stretch); 
+				
 				li {
 					margin-bottom: 0;
-					border-bottom: 1px dotted $black;
-					&:last-child {
-						border-bottom-color: transparent;
-					}
+					background-color: $white;
+					list-style: none;
+					flex: 1 1 (100%/3);
+					max-width: (100%/3);
+					@include makeFlexbox($direction: row, $justify: flex-start, $align: stretch);
 					&.hero-people-link {
+						a {
+							border-bottom-color: $brand-red;
+						}
 						.bc-color-square {
 							&:after {
 								background-color: $brand-red;	
 							}
 						}
+						
 					}
 					&.hero-practice-link {
+						a {
+							border-bottom-color: $brand-blue;
+						}
 						.bc-color-square {
 							&:after {
 								background-color: $brand-blue;	
@@ -1214,15 +1150,15 @@ main {
 						}
 					}
 					&.hero-projects-link {
+						a {
+							border-bottom-color: $brand-yellow;
+						}
 						.bc-color-square {
 							&:after {
 								background-color: $brand-yellow;
 							}
 						}
-					}
-					list-style: none;
-					flex: 1 1 auto;
-					@include makeFlexbox($direction: row, $justify: flex-start, $align: stretch); 
+					} 
 				}//li
 				a {
 					@include makeFlexbox($direction: row, $align: center, $inline: true); 
@@ -1231,11 +1167,18 @@ main {
 					text-transform: 	uppercase;
 					position: 				relative;	
 					overflow: 				hidden;
-					
+					padding-left: 		$gutter/2;
+					border-bottom: 3px solid ;
 				}
-				
+				.bc-color-square, a {
+					padding-top: 		$gutter/3;
+					padding-bottom: $gutter/3;
+				}
+				.bc-color-square {
+					display: none; 
+				}
 				.bc-arrow-hover, .bc-dots-hover {						
-					width: 12.5%;
+					width: 22%;
 					height: 100%;
 					right: 0;
 					position: absolute;
@@ -1250,13 +1193,17 @@ main {
 						border-top: 	1px dotted $black;
 					}
 				}
+				.bc-landing-hero-link-text {
+					width: 78%;
+				}
 				.bc-arrow-hover {
+					width: 20%;
 					background-color: darken($offwhite, 8%);
 					@include makeFlexbox($direction: row, $justify: center, $align: center, $inline: true); 
 				}
 				.svg-icon {
 					fill: 			$black;
-					max-width: 	1.5rem;
+					max-width: 	1.25rem;
 					max-height: 100%;
 				}
 				
@@ -1272,19 +1219,43 @@ main {
 					}	
 				}
 			}//ul 
-		@media screen and (min-width: 370px) and (min-height: 720px) and (max-width: 767px) {
+		@media screen and (max-width: 719px) and (min-height: 720px) {
+			.bc-hero-body {
+				
+			}
 			.bc-landing-hero-text {
+				padding-top: 		$gutter;
+				padding-right: 	$gutter/2;
+				padding-bottom: $gutter;
 				.bc-landing-hero-quote {
 					.svg-icon {
-						max-height: 1.75rem;
-						max-width: 	1.75rem;
+						max-height: 1.5rem;
+						max-width: 	1.5rem;
 					}
 				}
-				h1 {	font-size: 1.5rem; }
+				h1 {	font-size: 1.75rem; }
 			}
 			.bc-landing-hero-links {	
 				a {
 					font-size: 1rem;
+				}
+			}
+		}
+		@media screen and (max-width: 719px) and (orientation: landscape) {
+			.bc-hero-body {
+				max-width: 61.8%;
+				padding-right: $gutter/2;
+				left: ((100%-61.8%)/4);
+				
+			}
+			.bc-landing-hero-text {
+				margin-bottom: 2%;
+				.bc-landing-hero-quote-mark {
+					flex-basis: 10%;
+				}
+				h1 {
+					font-size: 1.4rem;
+					line-height: 1.3;
 				}
 			}
 		}
@@ -1319,9 +1290,6 @@ main {
 				z-index: 1;
 			}
 			.bc-hero-body {
-				flex-basis: auto;
-				position: 	absolute;
-				z-index: 		10;
 				width: 			61.8%;
 				top: 				auto;
 				right: 			auto;
@@ -1333,7 +1301,6 @@ main {
 			.bc-landing-hero-text {
 				flex-basis: auto;
 				border-bottom: 	none;
-				margin-bottom: 		2.38%;
 				padding-top: 			$gutter/2;
 				padding-right: 		$gutter;
 				padding-bottom: 	$gutter/2;
@@ -1360,10 +1327,6 @@ main {
 					background-color: $white;
 					border-bottom: none;
 				}
-				.bc-color-square, a {
-					padding-top: 		$gutter/2;
-					padding-bottom: $gutter/2;
-				}
 				a {
 					font-size: 0.8rem;
 				}
@@ -1373,6 +1336,10 @@ main {
 						width: 	0.8rem;
 						height: 0.8rem;
 					}
+				}
+				.bc-color-square, a {
+					padding-top: 		$gutter/2;
+					padding-bottom: $gutter/2;
 				}
 				.bc-arrow-hover, .bc-dots-hover {
 					width: 24%;
@@ -1461,12 +1428,49 @@ main {
 			}
 		}
 		&--video {
-			@extend .bc-landing-hero ;
+			@extend .bc-hero--landing-hero ;
 			.bc-hero-block {
 				overflow: hidden;	
 			}
-			
+			.bc-hero-video {
+				display: none;
+				position: relative;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: 50% 50%;
+				flex: 1 1 60%;
+				width: 100%;
+				min-height: 60%;
+				@media screen and (min-width: $tablet) {
+					position: absolute;
+					top: 	0;
+					left: 0;
+					width: 	100%;
+					height: 100%;	
+				}
+				@media screen and (min-width: $desktop) {
+					background-image: none !important;
+				}
+				@media screen and (min-width: $tablet) {
+					display: inherit;				
+				}
+			}
+			.bc-hero-video__video {
+				position: absolute;
+				object-fit: cover;
+				top: 	50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 	100%;
+				height: 100%;	
+			}
 			@media screen and (min-width: $tablet) {
+				.bc-hero-image { 
+					display: none;
+				}
+				.bc-hero-video {
+					display: inherit;
+				}
 				.bc-hero-header {
 					background-color: transparent;
 					background-image: linear-gradient(to bottom, rgba($black, 0.8), transparent);
@@ -1489,202 +1493,6 @@ main {
 			}
 		}// &--video
 	}// &.bc-landing-hero
-	
-	.bc-hero-body { 
-		.svg-icon {
-			fill: $white;
-			max-width: 		3rem;
-			max-height: 	3rem;
-		}
-	}
-	
-	.bc-hero-body-text {
-		color: $white;
-		> h1 {
-			font-size: 1.75rem;
-		}
-		top: 		50%;
-		bottom: auto;
-		left: 	0;
-		
-		transform: translate(0, -50%);
-		width: 100%;
-		
-		.svg-icon {
-			max-height: 2.5rem;
-			max-width: 	2.5rem;
-		}
-	}
-	.bc-hero-body-subtext {
-		font-size: 			1.0rem;
-		font-weight: 		300;
-		line-height: 		1;
-		margin-top: 		$gutter/2;
-		p {	font-size: 1.125rem; margin-top: 0; margin-bottom: 0; margin-right: $gutter/2; }
-		
-		> a {
-			@include makeFlexbox($direction: row, $justify: flex-start, $align: center);	
-		}
-	}
-	.bc-hero-footer { 
-		flex: 					0 1 10%;
-		width: 					100%;
-		position: 			relative;
-		@include makeFlexbox($direction: row, $justify: center, $align: stretch);
-		.bc-hero-footer-scroll {
-			position: 			relative;
-			
-			min-height: 100%;
-			//clip-path: ellipse(0px 0 at 50%);
-			&-link {
-				width: 	#{(195/14)}rem;
-				height: 200%;
-				left: 50%;
-				font-size: 0.88rem;
-				color: $shade-mid;
-				border: 1px solid $shade-light ;
-				border-radius: 50%;
-				transition: background-color, border-color $medtrans $easing;
-				@include makeFlexbox($direction: column, $justify: flex-start, $align: flex-start);
-				&:hover, &:active, &:focus {
-					background-color: rgba($brand-yellow, 0.8);
-					border-color: $black;
-					color: $black;
-					.svg-icon {
-						&.scroll-down-arrow {
-							fill: $black;
-							animation: caratbounce 1200ms 4 ease-in ;
-						}
-					}
-				}
-			}
-			.bc-hero-scroll-link-text {
-				flex: 1 1 50%;
-				width: 100%;
-				max-height: 50%;
-				@include makeFlexbox($direction: column, $justify: center, $align: center);
-				position: relative;
-			}
-		}
-		.scroll-text {
-			position: absolute;
-			top: 50%;
-			transform: translate(0, -80%);
-		}
-		.svg-icon {
-			&.scroll-down-arrow {
-				fill: 			$shade-mid;
-				margin-top: $gutter/16;
-				max-height: 1.125rem;
-				max-width: 	1.25rem;	
-				top: 50%;
-				transform: translate(0, 80%);
-				
-			}
-		}
-		
-	}
-	@media screen and (min-width: $tablet) {
-		&.bc-content-row {
-			flex-direction: column;
-			flex-wrap: nowrap;
-			align-items: center;
-		}
-		.bc-hero-footer {	
-			height: 				calc(8.4vh - #{$gutter}/4);
-			flex-basis: 10%; 
-		}
-		.bc-hero-body-text {
-			
-			h1 {
-				font-size: 2rem;
-			}
-		}
-	}
-	@media screen and (min-width: $tablet) and (orientation: portrait){
-		.bc-hero-body {
-			height: 81.4vh;
-		}
-		.bc-hero-footer {
-			.bc-hero-footer-scroll {
-					
-			}
-			.svg-icon {
-				&.scroll-down-arrow {
-					max-height: 1rem;
-					max-width: 	1rem;		
-				}
-			}
-		}
-	}
-	@media screen and (min-width: $desktop) and (orientation: portrait){
-		.bc-hero-footer {
-			span {
-					font-size: 1.25rem;
-			}	
-			.svg-icon {
-				&.scroll-down-arrow {
-					max-height: 1.5rem;
-					max-width: 	1.5rem;		
-				}
-			}
-		}
-	}
-	@media screen and (min-width: $desktop) {
-		.bc-hero-body-text {
-			width: 80%;
-			left: 33.333%;
-			transform: translate(-33.333%, -50%);
-		}
-		.bc-hero-block {
-			&.bc-hero-bg {
-				color: $white;
-			}
-		}
-		.bc-hero-body-subtext {
-			margin-top: $gutter;
-		}
-		.bc-hero-footer {
-			
-			.svg-icon {
-				&.scroll-down-arrow {
-					max-height: 1rem;
-					max-width: 	1rem;
-				}
-			}
-		}
-	}
-	@media screen and (min-width: $med) {
-		&.bc-content-row {
-			justify-content: center;
-		}
-		&.bc-text-hero {
-			.bc-hero-block {
-				&.bc-hero-bg {
-					flex-basis: 80%;
-					max-width: 	80%;	
-				}
-				max-width: 	80%;	
-			}
-			.bc-hero-body-text {
-				width: $gr-large;
-			}
-	
-		}
-			}
-	@media screen and (min-width: $large) {
-		.bc-hero-footer {
-			span {
-					font-size: 0.8rem; 
-			}	
-			.svg-icon { 
-				&.scroll-down-arrow {
-					max-height: 1rem;
-					max-width: 	1rem;
-				}
-			}
-		}
-	}
 }// .bc-hero
 /** Practice page uniqueness projects **/
 .ca-unique-processes {
@@ -2085,176 +1893,6 @@ blockquote {
 @import 'components/colour-schemes'; 
 @import 'structure/footer'; 
 
-
-/** Flickity slider test slider-test.html **/
-.bc-slider {
-	@include makeFlexbox(column, flex-start, stretch);
-	padding-top: 		0;
-	padding-bottom: 0;
-	&.bc-hero {
-		height: 85.6vh;
-		.bc-hero-footer {
-			flex-direction: column;
-			justify-content: space-between;
-			align-items: center;
-		}
-	}
-	&-slides {
-		flex: 					1 1 92%;
-		max-height: 		92%;
-		padding-top: 		$gutter/2;
-		padding-bottom: $gutter/2;
-			
-	}
-	&-slide {
-		width: 					100%;
-		height: 				100%;
-		@include makeFlexbox(row, center, center);
-		margin-left: 	$gutter/2;
-		margin-right: $gutter/2;
-		img {
-			display: 		block;
-			width: 			auto;
-			min-width: 	0;
-			max-height: 100%;
-		}
-	}
-	&-controls {
-		width: 100%;
-		min-height: 86%;
-		background-color: $white;
-		@include makeFlexbox(row, center, stretch);
-		&__next, &__prev, &__counter {
-			max-width: 	5rem;
-		}
-		&__next, &__prev {
-			flex: 1 1 auto;
-			@include makeFlexbox(column, center, center);
-			
-			background-color: $offwhite;
-			transition: background-color $quicktrans $easing;
-			&:not(.bc-slider-controls--disabled) {
-				&:hover, &:active, &:focus {
-					background-color: $shade-superlight;
-					outline: 1px dotted $shade-light;
-				}	
-			}
-			
-			&:hover {
-				cursor: pointer;
-			}
-		}
-		&--disabled {
-			opacity: 0.64;
-		}
-		&__counter {
-			flex: 1 1 auto;
-			@include makeFlexbox(row, center, center);
-			font-size: 1rem;
-		}
-		.svg-icon {
-			max-width: 	1.25rem;
-			max-height: 1.25rem;
-			
-		}
-	}
-	
-	@media screen and (max-width: 530px)  {
-		&-controls {
-			&__next, &__prev, &__counter {
-				height: 		3rem;
-				width: 			3rem;
-				.svg-icon {
-					max-width:   1.25rem;
-					max-height:  1.25rem;
-				}
-			}	
-			&__counter {
-				font-size: 0.8rem;
-			}
-		}
-	}
-	@media screen and (min-width: 531px) and (max-width: 1023px)   {
-		&-controls {
-			&__next, &__prev, &__counter {
-				height: 		4rem;
-				width: 			4rem;
-				.svg-icon {
-					max-width:   1.75rem;
-					max-height:  1.75rem;
-				}
-			}
-		}
-	}
-	@media screen and (max-width: 1023px) {
-		&.bc-hero {
-			.bc-hero-footer {
-				position: static;
-			}
-		}
-		&-controls {
-			height: 0;
-			overflow: visible;
-			position: inherit;
-			&__next, &__prev, &__counter {
-				position: absolute;
-			}
-			
-			&__next, &__prev {
-				background-color: rgba($white, 0.84);
-				top: 50%;
-				transform: translateY(-50%);
-				&:not(.bc-slider-controls--disabled) {
-					&:hover, &:active, &:focus {
-						background-color: rgba($white, 0.88);
-					}
-				}
-			}	
-			&__prev {
-				left: $gutter/4;
-			}
-			&__next {
-				right: $gutter/4;
-			}
-			&__counter {
-				background-color: rgba($black, 0.72);
-				color: 						$white;
-				
-				right: 			$gutter;
-				bottom: 		$gutter/3;
-			}
-		}
-	}
-	
-	@media screen and (min-width: $desktop)  {
-		
-		&-controls {
-			position: absolute;
-			right: 0;
-			top: 50%;
-			transform: translateY(-50%);
-			width: 20%;
-			&__next, &__prev, &__counter {
-				padding: 0;
-				flex: 			1 1 calc(100%/3);
-				max-width: 	calc(100%/3);
-			}
-		}
-	}
-	@media screen and (min-width: $desktop) and (orientation: portrait) {
-		&.bc-hero {
-			.bc-slider-slides {
-				flex-basis: 94.8%;
-				max-height: 94.8%;
-			}
-			.bc-hero-footer {
-				flex-basis: 7.2%;
-				max-height: 7.2%;
-				align-items: center;
-			}
-		}
-	}
-}
 
 //Enable flickity accessibility
 /*.flickity-enabled:focus .flickity-viewport {

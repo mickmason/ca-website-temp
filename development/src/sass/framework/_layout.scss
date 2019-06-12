@@ -16,6 +16,14 @@
 	}
 	.bc-content-column {
 		padding-left: $gutter/2;
+		padding-right: $gutter/2;
+		&--indented {
+			@extend .bc-content-column;
+			@media screen and (min-width: $med) {
+				width: (100% - (4/$gridColsCount*100%));
+				margin-left: (2/$gridColsCount*100%)
+			}
+		}
 	}
 }
 /** Template: two-column layout **/
