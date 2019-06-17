@@ -19,7 +19,11 @@
 		padding-right: $gutter/2;
 		&--indented {
 			@extend .bc-content-column;
-			@media screen and (min-width: $med) {
+			@media screen and (min-width: 1200px) {
+				width: (100% - (2/$gridColsCount*100%));
+				margin-left: (1/$gridColsCount*100%)
+			}
+			@media screen and (min-width: $laptop) {
 				width: (100% - (4/$gridColsCount*100%));
 				margin-left: (2/$gridColsCount*100%)
 			}

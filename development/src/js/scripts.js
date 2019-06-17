@@ -536,8 +536,8 @@
 			cardInfo.append(subTitle);
 			
 			//Content separator
-			const contentSeparator = document.createElement('div');
-			addClass(contentSeparator, 'content-separator');
+			/*const contentSeparator = document.createElement('div');
+			addClass(contentSeparator, 'content-separator');*/
 			
 			//Card link
 			const cardLink = document.createElement('div');
@@ -547,16 +547,35 @@
 			cardLinkText.append(project.linktext);
 			
 			//SVG Icon
-			const svgIcon = document.createElement('svg');
-			addClass(svgIcon, 'svg-icon');
-			const use = document.createElement('use');
-			use.setAttribute('xlink:href', '/assets/media/svg/bc-icons.svg#arrow');
-			svgIcon.append(use);
+			const svgIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+			svgIcon.setAttribute('viewBox', '0 0 100 100');
+			svgIcon.setAttribute('width', '100%');
+			svgIcon.setAttribute('height', '100%');
+			svgIcon.setAttribute('version', '1.1');
+			svgIcon.setAttribute('style', 'enable-background:new 0 0 100 100;');
+			svgIcon.setAttribute('xml:space', 'preserve');
+			/*
+				style="enable-background:new 0 0 100 100;" xml:space="preserve"
+			*/
 			
+			
+			addClass(svgIcon, 'svg-icon');
+			const symbol = document.createElement('symbol');
+			symbol.setAttribute('viewBox', '0 0 100 100');
+			symbol.setAttribute('id', 'arrow');
+			
+			const titleEl = document.createElement('title');
+			const titleText = document.createTextNode('Arrow icon');
+			titleEl.append(titleText);
+			const polygon = document.createElement('polygon');
+			polygon.setAttribute('points', '89,47.4 67.2,25.7 71,22 99,50 71,78 67.2,74.3 89,52.6 1,52.6 1,47.4 ');
+			svgIcon.append(titleEl, polygon);
+			//svgIcon.append(symbol);
 			cardLink.append(cardLinkText, svgIcon);
 			
 			//Append
-			cardLinkWrap.append(cardInfo, contentSeparator, cardLink);
+			//cardLinkWrap.append(cardInfo, contentSeparator, cardLink);
+			cardLinkWrap.append(cardInfo, cardLink);
 			cardContent.append(cardLinkWrap);
 			projectCard.append(cardFigure, cardContent);
 			return projectCard;

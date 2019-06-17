@@ -9,13 +9,23 @@
 	}
 }
 .bc-card {
+	position: relative;
 	@include makeFlexbox($direction: column, $align: stretch); 
 	margin-bottom: $gutter;
+	overflow: hidden; 
+	@include makeCols($cols: 10); 
+	flex-basis: 100% ;
+	max-width: 100% ;
+	color: $white;
+	.svg-icon {
+		fill: 				$white;
+	}
 	a {
 		display: block;
 		text-decoration: none;
 	}
-	& &-img { 
+	&-img { 
+		position: relative;
 		> img {
 			max-width: 100%;
 		}
@@ -24,138 +34,140 @@
 			overflow: hidden;
 			> img {
 				position: absolute;
-				top: 50%;
-				left: 50%;
+				top: 	0;
+				left: 0;
 				width: 100%;
-				transform: translate(-50%, -50%);
 				object-fit: cover;
 			}
 			padding-top: 100%;
 		}
 	}
-	& &-content {
-		.bc-card-title { 
-			font-size: 1.25rem;
-			font-weight: 400;
-			margin-top: 0; 
-			margin-bottom: $gutter/4;
-			text-decoration: none;
-		}
-		.bc-card-subtitle {
-			font-size: 1rem;
-			font-weight: 300;
-			margin-top: 0;
-		}
+	&-content {
+		transition: top $menuSlideTransition $easing;	
+		background-color: rgba($black, 0.72);
 		> a {
-			@include makeFlexbox($direction: column, $justify: space-between, $align: stretch);
+			@include makeFlexbox($direction: column, $justify: space-between);
 			height: 100%;
 			padding: $gutter $gutter/2;
 		}
 	}
-	.bc-card-info, .bc-card-link {
-		flex: 0 1 auto;
+	&-info {
+		min-width: 100%;
 	}
-	&--slide-up {
-		.bc-card-link {
-			.bc-card-link-text { 
-				color: $black;	
-			}
-			.svg-icon {	fill: $black; }
-		}
+	&-title { 
+		margin-top: 0; 
+		margin-bottom: $gutter/4;
+		text-decoration: none;
 	}
-	&.bc-card--slide-up, &.bc-card--slide-up-overlay {
+	&-subtitle {
+		font-size: 1.25rem;
+		font-weight: 300;
+		margin-top: 0;
+	}
+	
+	&-link {
+		@include makeFlexbox($direction: row, $align: center);
 		position: relative;
-		overflow: hidden; 
-		.bc-card-img {
-			position: relative;
-			top: 0%;
-			transition: top $menuSlideTransition $easing;	
+		left: -($gutter/2);
+		padding: $gutter/4 $gutter/2 ;
+		font-size: 		1.25rem;
+		font-weight: 	300;
+		background-color: $white;
+		color: $black;
+		position: relative;
+		overflow: hidden;
+		transition: color $menuSlideTransition $easing;
+		&::before {
+			content: " ";
+			position: absolute;
+			z-index: 0;
+			width: 100% ;
+			height: 100%;
+			background-color: $brand-yellow;
+			left: 0;
+			top: 100%;
+			transition: top $menuSlideTransition*0.75 $easing ($menuSlideTransition*1.25);
+ 		}
+		.svg-icon {
+			fill: $black;
+			flex: 1 1 auto;
+			max-height: 1.25rem;
+			max-width: 	1.25rem;
+			z-index: 10;
+			transition: fill $menuSlideTransition $easing;
 		}
+	}
+	&-link-text {
+		z-index: 10;
+	}
+	&--slide-up, &--slide-up-overlay {
 		.bc-card-content { 
 			position: absolute;
-			
 			top: 100%;
 			bottom: 0;
 			left: $gutter/2;
 			height: 100%;
 			width: calc(100% - #{$gutter});
-			background-color: $white;
-			transition: top $menuSlideTransition $easing;	
-		}
-		.bc-card-link {
-			@include makeFlexbox($direction: row, $align: center);
-			.bc-card-link-text {
-				font-weight: 		300;
-				font-size: 			0.72rem;
-				flex: 0 1 auto;
-				padding-right: $gutter/2;
-			}
-			.svg-icon {
-				flex: 0 1 auto;
-				max-height: 1.25rem;
-				max-width: 	1.25rem;
-				fill: $bc-blue;
-			}
+			cursor: pointer;
 		}
 		&:hover, &:focus {
-			margin-top: 0;
-			.bc-card-img {
-				top: -100%;	
-			}
 			.bc-card-content {
 				top: 0;	 
-			}
+				
+			}	
 			.bc-card-link-text {
 				text-decoration: underline;
 			}
+			.bc-card-link {
+				&::before {
+					top: 0;
+				}
+			}
 		}
 	}// .bc-card--slide-up 
-	&.bc-card--slide-up-overlay {
+	&--slide-up-overlay {
 		.bc-card-img-overlay {
+			font-weight: 			300;
 			background-color: rgba($black, 0.24);
-			
-			position: 				absolute;
-			top: 							0;
-			left: 						0;
-			height: 					100%;
-			width: 						100%;
-			z-index: 					10;
-			
 			@include makeFlexbox($direction: row, $justify: flex-start, $align: center);
 			padding: 					$gutter/2	$gutter/2 $gutter/2 $gutter/1.5;
-			color: 						$white;
+			position: 				absolute;
+			top: 							0;
+			left: 						$gutter/2;
+			height: 					100%;
+			width: 						calc(100% - #{$gutter});
+			z-index: 					10;
+			transition: top $menuSlideTransition $easing;	
 			
-			font-weight: 			300;
 			p {	 
-				font-size: 				1.5rem;
+				font-size: 				1.75rem;
 				margin: 0 0 0 $gutter/1.5; 
 			}
 			.svg-icon {
-				fill: 				$white;
-				max-height: 	2.5rem;
-				max-width: 		2.5rem;
+				max-height: 3rem;
+				max-width: 	3rem;
 			}
 		}
 		.bc-card-content {
-			background-color: $shade-dark;
-			color: 						$white;  
 			a {	
 				justify-content: flex-end;	
 			}
 			.bc-card-title {	margin-bottom: $gutter; }
-			.svg-icon {	fill: $white;	}
 		}
 		.bc-card-link {
-			@include makeFlexbox($direction: row, $align: center);
-			.bc-card-link-text {
-				color: $white;
-				text-transform: uppercase;
-			}
+			background-color: $brand-yellow;
 			.svg-icon {
-				flex: 0 1 auto;
-				max-height: 2.25rem; 
-				max-width: 	2.25rem; 
-				fill: $white;
+				fill: $black;
+			}
+			&:before {
+				background-color: $white;
+				color: $black;
+				
+			}
+		}
+		&:hover, &:active, &:focus {
+			.bc-card-img-overlay {
+				top: -100%;
 			}
 		}
 		@media screen and (min-width: 500px) {
@@ -191,7 +203,6 @@
 			.bc-card-content {
 				.bc-card-title {
 					font-size: 1rem;
-					margin-bottom: $gutter/2;
 				}
 			}
 		}
@@ -246,39 +257,40 @@
 	
 	&.ca-values-card {
 		.bc-card-content {
-			background-color: transparent;
+			> a {
+				justify-content: center;
+			}
 		}
 		.svg-icon {
-			max-width: 	4rem;
-			max-height: 4rem;
-		}
-		
-		a {
-			padding: 0;
-			justify-content: stretch;
+			max-width: 	3rem;
+			max-height: 3rem;
 		}
 		.bc-card-info {
-			
-			background-image: linear-gradient(0deg, rgba(32,32,32,1) 0%, rgba(32,32,32,0) 100%);
-			padding: $gutter;
+			@include makeFlexbox(row, flex-start, center);
+			margin-bottom: $gutter/3; 
 			&-content {
-				
-				@include makeFlexbox(column, flex-start, flex-start);
-				padding-left: $gutter;
+				//flex: 1 1 70%;
+				padding-left: $gutter/2;
+				h2 {
+					margin: 0;
+				}
 			}
 			.svg-icon {
 				fill: $white;
 			}
 			color: $white;
 			.bc-card-title {
-				margin-top: $gutter/2;
 				font-size: 2rem;
 			}
-			&-role {
-				margin-top: $gutter/4;
-			}
-			flex: 1 1 100%;
-			@include makeFlexbox(row, flex-start, flex-end);
+		}
+		.ca-values-card__value {
+			font-family: $serifFont;
+			font-size: 1.24rem;
+			line-height: 1.3;
+			margin-bottom: $gutter/1.5; 
+		}
+		.ca-values-card__person {
+			margin: 0;
 		}
 		@media screen and (min-width: 500px) {
 			.svg-icon {
@@ -295,7 +307,101 @@
 				}
 			}
 		}
-	}
+	}//&.ca-values-card
+	
+	/* Profile cards */
+	&.person-card {
+		.bc-card-img, .person-card__focus-image {
+			transition: top $menuSlideTransition*1.61 $easing;	
+		}
+		.bc-card-img {
+			position: absolute;
+			width: calc(100% - #{$gutter});
+			
+			top: 0;
+			left: $gutter/2;
+		}
+		.person-card__focus-image {
+			top: 100%; 
+		}
+		.bc-card-content {
+			top: calc(100% - (2.25rem) - (#{1 * 1.3}rem) - (#{0.8 * $gutter-unit}rem) - (#{$gutter-unit/8}rem));
+			> a {
+				padding-top: 		$gutter / 2;
+				padding-bottom: $gutter / 2;
+			}
+		}
+		.bc-card-img { 
+			&.is-square {
+				overflow: hidden;
+				> img {
+					
+					object-fit: cover;
+				}
+				padding-top: 100%;
+			}	
+		}
+		&:hover, &:active, &:focus {
+			.bc-card-content {
+				top: 0;
+			}
+			.bc-card-img {
+				top: -100%;
+			}
+			.person-card__focus-image {
+				top: 0;
+			}
+		}
+		@media screen and (min-width: 600px) {
+			flex-basis: 50%;
+			max-width: 	50%;
+			order: 3;
+			&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4)  {
+				order: 1;
+			}
+		}
+		@media screen and (min-width: $tablet) {
+			flex-basis: 33.333%;
+			max-width: 	33.333%;
+			&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4)  {
+				order: 3;
+			}
+			&:nth-of-type(1), &:nth-of-type(2)  {
+				order: 1;
+			}
+		}
+		@media screen and (min-width: $desktop) {
+			flex-basis: 25%;
+			max-width: 	25%;
+			&:nth-of-type(3), &:nth-of-type(4) {
+				order: 1;
+			}
+		}
+		@media screen and (min-width: $large) {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.25rem;
+				}
+				.bc-card-subtitle, .bc-card-link {
+					font-size: 1rem;
+				}
+				.bc-card-link {
+					.svg-icon {
+						max-height: 1.25rem;
+						max-width: 	1.25rem; 
+					}
+				}
+			}
+			&--plain-text {
+				.bc-card-content {
+					.bc-card-title {
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+		
+	}//.person-card
 	
 }// .bc-card 
 .bc-content-row {

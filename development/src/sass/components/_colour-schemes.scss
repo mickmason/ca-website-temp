@@ -52,15 +52,16 @@
 		}
 		&.bc-card--slide-up-overlay {
 			.bc-card-content {
-				color: 						$brand-yellow;
-				background-color: $black;
+				color: 						$black;
+				background-color: $brand-yellow;
 			}
 			.bc-card-link { 
-				.bc-card-link-text {
-					color: $brand-yellow;
-				}
+				color: $black;
 				.svg-icon {
-					fill: $brand-yellow;
+					fill: $black;
+				}
+				&::before {
+					background-color: $white;
 				}
 			}
 		}
@@ -205,11 +206,12 @@
 		}// .bc-text-hero
 	}
 	.bc-card {	
-		&.person-card {
-			.bc-card-content {
-				.bc-card-subtitle {	color: $brand-red; }	
+		&-link {
+			&:before {
+				background-color: $brand-red ;
 			}
 		}
+		
 		&.bc-card--slide-up {
 			.content-separator { 
 				&:before {	background-color: $brand-red;	}
@@ -219,7 +221,25 @@
 			.bc-card-content {
 				background-color: $brand-red;
 			}
-		}
+			.bc-card-link {
+				background-color: $brand-red;
+				color: $white;
+				&::before {
+					background-color: $white; 
+				}
+				.svg-icon {
+					fill: $white;
+				}
+			}
+			&:hover, &:active, &:focus {
+				.bc-card-link { 
+					color: $black;
+					.svg-icon {
+						fill: $black;
+					}
+				}
+			}
+		}//&.bc-card--slide-up-overlay
 		&--plain-text {
 			.bc-card-content {
 				background-color: $brand-red;
@@ -229,7 +249,15 @@
 				}
 			}
 		}
-	}
+		&:hover, &:active, &:focus {
+			.bc-card-link { 
+				color: $white;
+				.svg-icon {
+					fill: $white;
+				}
+			}
+		}
+	}//bc-card
 	.bc-general-content {
 		a {
 			color: $black;
@@ -342,6 +370,16 @@
 		}// .bc-text-hero
 	}
 	.bc-card {
+		&-link {
+			background-color: $brand-blue;
+			color: $white;
+			&::before {
+				background-color: $white; 
+			}
+			.svg-icon {
+				fill: $black;
+			}
+		}
 		&.bc-card--slide-up {
 			.content-separator { 
 				&:before {	background-color: $brand-blue;	}
@@ -364,6 +402,14 @@
 				&:hover, &:focus, &:active {
 					background-color: darken($brand-blue, 8%);
 				}	
+			}
+		}
+		&:hover, &:active, &:focus {
+			.bc-card-link {
+				color: $black;
+				.svg-icon {
+					fill: $black;
+				}
 			}
 		}
 	}// .bc-card

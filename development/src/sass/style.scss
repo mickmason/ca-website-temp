@@ -673,9 +673,7 @@ main {
 }
 
 .bc-card {
-	@include makeCols($cols: 10);
-	flex-basis: 100% ;
-	max-width: 100% ;
+	
 	&.bc-card--slide-up {
 		.content-separator {
 			margin-top: 		$gutter/2;
@@ -698,7 +696,7 @@ main {
 		max-width: 	50%;
 		.bc-card-content {
 			.bc-card-title {
-				font-size: 1rem;
+				font-size: 1.125rem;
 			}
 			.bc-card-subtitle, .bc-card-link {
 				font-size: 0.8rem;
@@ -766,88 +764,6 @@ main {
 		flex-basis: 20%;
 		max-width: 	20%;
 	}
-	/* Profile cards */
-	&.person-card {
-		.bc-card-content {
-			top: calc(100% - (#{$gutter-unit}rem) - (#{1 * 1.3}rem) - (#{0.8 * $gutter-unit}rem) - (#{$gutter-unit/8}rem));
-			> a {
-				padding-top: 		$gutter / 2;
-				padding-bottom: $gutter / 2;
-			}
-		}
-		&:hover {
-			margin-top: 0;
-			.bc-card-content {
-				top: 0;	
-				background-color: $white;
-			}
-		}
-		.bc-card-img { 
-			&.is-square {
-				position: relative;
-				overflow: hidden;
-				> img {
-					position: absolute;
-					top: calc(50% - (#{$gutter-unit}rem) - (#{1 * 1.3}rem) - (#{0.8 * $gutter-unit}rem) - (#{$gutter-unit/8}rem));
-					left: 50%;
-					width: 100%;
-					transform: translate(-50%, -50%);
-					object-fit: cover;
-				}
-				padding-top: 100%;
-			}	
-		}
-		@media screen and (min-width: 600px) {
-			flex-basis: 50%;
-			max-width: 	50%;
-			order: 3;
-			&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4)  {
-				order: 1;
-			}
-		}
-		@media screen and (min-width: $tablet) {
-			flex-basis: 33.333%;
-			max-width: 	33.333%;
-			&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4)  {
-				order: 3;
-			}
-			&:nth-of-type(1), &:nth-of-type(2)  {
-				order: 1;
-			}
-		}
-		@media screen and (min-width: $desktop) {
-			flex-basis: 25%;
-			max-width: 	25%;
-			&:nth-of-type(3), &:nth-of-type(4) {
-				order: 1;
-			}
-		}
-		@media screen and (min-width: $large) {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.25rem;
-				}
-				.bc-card-subtitle, .bc-card-link {
-					font-size: 1rem;
-				}
-				.bc-card-link {
-					.svg-icon {
-						max-height: 1.25rem;
-						max-width: 	1.25rem; 
-					}
-				}
-			}
-			&--plain-text {
-				.bc-card-content {
-					.bc-card-title {
-						font-size: 2rem;
-					}
-				}
-			}
-		}
-		
-	}//.person-card
-	/* Plain text card */
 }//.bc-card
 
 .ca-profiles {
@@ -1729,7 +1645,7 @@ blockquote {
 		}
 		
 		.ca-contact-map-embed {
-			padding-top: (2/3)*100%;
+			padding-top: 100%;
 		}
 	}
 	@media screen and (min-width: $desktop) { 
@@ -1739,8 +1655,8 @@ blockquote {
 		}
 		.ca-contact-info {
 			margin-bottom: 0;
-			flex-basis: 40%;
-			max-width: 40%;
+			flex-basis: 50%;
+			max-width:  50%;
 			.bc-content-row {
 				flex-direction: column;
 			}
@@ -1753,11 +1669,11 @@ blockquote {
 			flex-direction: row;
 		}
 		.ca-contact-map {
-			flex-basis: 60%;
-			max-width:  60%;
+			flex-basis: 50%;
+			max-width:  50%;
 		}
 		.ca-contact-map-embed {
-			padding-top: (9/16)*100%;
+			padding-top: 100%;
 		}
 	}
 	@media screen and (min-width: $laptop) {
@@ -1887,6 +1803,51 @@ blockquote {
 	}
 	@media screen and (min-width: $desktop) {
 		height: #{(120px/16px)}rem;
+	}
+}
+
+.project-details {
+	&__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		@include makeFlexbox(row, center);
+		flex-wrap: wrap;
+	}
+	&__item {
+		flex: 1 1 50%;
+		@include makeFlexbox(column, flex-start, center);
+		padding-left: 	$gutter/2;
+		padding-right: 	$gutter/2;
+		margin-bottom: 	$gutter/2;
+	}
+	&__number {
+		font-size: 3rem;
+		margin-bottom: $gutter/4;
+	}
+	&__fact  {
+		
+		font-size: 1.125rem;
+		font-weight: 300;
+	}
+	@media screen and (min-width: $tablet) {
+		&__list {
+			flex-direction: row;
+		}
+		&__item {
+			flex-basis: 50%;
+		}
+	}
+	@media screen and (min-width: $desktop) {
+		&__list {
+			flex-direction: row;
+			justify-content: flex-start;
+			flex-wrap: nowrap;
+		}
+		&__item {
+			flex-basis: 25%;
+		}
 	}
 }
 /** -- Back links at the bottom of inner pages -- **/
