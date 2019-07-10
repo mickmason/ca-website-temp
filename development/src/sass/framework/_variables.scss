@@ -33,14 +33,14 @@ $serifFont: 	Palatino, serif;
 $tablet: 				767px;
 $tablet-max: 		1023px;
 $desktop: 			1024px;
-$med: 					1268px;
+$med: 					1240px;
 $laptop:				1366px;
 $large: 				1440px;
 $x-large: 			1600px;
 $xx-large: 			1920px;
 
 $max-viewport-width:	1740px;
-$content-max-width: 	80rem;
+$content-max-width: 	$max-viewport-width;
 
 // Animations */
 $quicktrans: 					240ms;

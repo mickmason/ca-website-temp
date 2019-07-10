@@ -461,27 +461,20 @@
 	const $contentStart = document.querySelector('#content-start');
 	if ($heroFooterScrollLink && $contentStart) {
 		$heroFooterScrollLink.addEventListener('click', (evt) => {
-			requestAnimationFrame(() => {
 				lerpScroll(window, window.scrollY, $contentStart.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
-			});
 		});	
 	}
 	/** 
 		Hero body links 
 		*/
 	const $heroBodyLinks = document.querySelectorAll('.bc-hero-body-link > a');
-	console.log(`${$heroBodyLinks.length}`);
 	function _addLinkClick($el) {
-		
 		$el.addEventListener('click', (evt) => {
 			evt.preventDefault();
 			evt.stopPropagation();
 			const $linkTarget = document.querySelector($el.getAttribute('href'));
 			if ($linkTarget) {
-				console.log($linkTarget);
-				requestAnimationFrame(() => {
-					lerpScroll(window, window.scrollY, $linkTarget.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
-				});
+				lerpScroll(window, window.scrollY, $linkTarget.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
 			} else {
 				return;
 			}
@@ -489,10 +482,8 @@
 	}
 	if ($heroBodyLinks.length > 0) {
 		for (const $link of $heroBodyLinks) {
-			console.log($link);
 			_addLinkClick($link);
 		}
-		
 	}
 	/** 
 		CA Projects: Load projects
@@ -503,11 +494,11 @@
 		function _makeCard(project) {
 			//The card
 			const projectCard = document.createElement('article');
-			addClass(projectCard, 'bc-card', 'bc-card--slide-up', 'bc-fade-in-up'); 
+			addClass(projectCard, 'bc-card--slide-up', 'bc-fade-in-up'); 
 			for (let category of project.categories.split(', '))	 {
 				projectCard.setAttribute('data-project-categories', category); 
 			}
-			//The image
+			//The image main image
 			const cardImg = document.createElement('img');
 			cardImg.setAttribute('src', project.image);
 			cardImg.setAttribute('alt', project.title);
@@ -515,6 +506,15 @@
 			const cardFigure = document.createElement('figure');
 			addClass(cardFigure, 'bc-card-img', 'is-square');
 			cardFigure.append(cardImg); 
+			
+			//The foucs image image
+			const focusImg = document.createElement('img');
+			focusImg.setAttribute('src', project.image);
+			focusImg.setAttribute('alt', 'View ' + project.title);
+			
+			const focusFigure = document.createElement('figure');
+			addClass(focusFigure, 'bc-card-img--focus-image', 'is-square');
+			focusFigure.append(focusImg); 
 			
 			//Card content
 			const cardContent = document.createElement('div');
@@ -557,8 +557,6 @@
 			/*
 				style="enable-background:new 0 0 100 100;" xml:space="preserve"
 			*/
-			
-			
 			addClass(svgIcon, 'svg-icon');
 			const symbol = document.createElement('symbol');
 			symbol.setAttribute('viewBox', '0 0 100 100');
@@ -577,7 +575,7 @@
 			//cardLinkWrap.append(cardInfo, contentSeparator, cardLink);
 			cardLinkWrap.append(cardInfo, cardLink);
 			cardContent.append(cardLinkWrap);
-			projectCard.append(cardFigure, cardContent);
+			projectCard.append(cardFigure, focusFigure, cardContent);
 			return projectCard;
 			
 		}//_makeCard()
@@ -738,7 +736,7 @@
 					});
 				}
 			});
-		}
+		} 
 		filterCAProjects('all-projects'); 
 		const projectFilters = _getAllDOMNodes('.ca-project-filter');
 		

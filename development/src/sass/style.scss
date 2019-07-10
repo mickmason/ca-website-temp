@@ -38,10 +38,10 @@ h1, h2, h3, h4, h5 {
 	margin-top: $gutter;
   margin-bottom: 0;
 }
-h1 { font-size: 1.75rem; font-weight: 300; }
+h1 { font-size: 2.25rem; font-weight: 300; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
-h4 { font-size: 1rem; }
+h4 { font-size: 1.125rem }
 h5 { font-size: 1rem; }
 p {
 	margin-top: $gutter;
@@ -52,21 +52,11 @@ ul {
 		margin-bottom: $gutter/4;
 	}
 }
+.leader-text {
+	font-size: 1.125rem;
+}
 strong {
 	font-weight: 500;
-}
-@media screen and (min-width: 1180px) {
-  	h1 { font-size: 2.0rem }
-  	h2 { font-size: 1.5rem }
-  	h3 { font-size: 1.25rem }
-  	h4 { font-size: 1.125rem }
-  	h5 { font-size: 1rem }
-}
-@media screen and (min-width: $large) {
-  	h2 { font-size: 1.75rem } 
-  	h3 { font-size: 1.25rem }
-  	h4 { font-size: 1rem }
-  	h5 { font-size: 1rem }
 }
 a {
   color: inherit;
@@ -143,7 +133,6 @@ a {
 .ca-arrow-link {
 	font-weight: bold;
 	@include makeFlexbox($direction: row, $justify: flex-start, $align: center);
-	a {  }
 	.svg-icon {
 		max-width: 	1.5rem;
 		max-height: 1.5rem;
@@ -673,47 +662,36 @@ main {
 }
 
 .bc-card {
-	
-	&.bc-card--slide-up {
-		.content-separator {
-			margin-top: 		$gutter/2;
-			margin-bottom: 	$gutter/2;
-			
-			width: 					2px;
-			height: 				0.875rem;
-			&:before {
-				width: 		0.857rem;
-				height: 	0.857rem;
-				top: 			50%;
-				background-color: rgba($black, 0.36);
-				transform: translate(-50%, -50%) rotate(45deg);
-			}
-		}
-	}
-	
 	@media screen and (min-width: 500px) {
-		flex-basis: 50%;
+		flex-basis: 50%; 
 		max-width: 	50%;
 		.bc-card-content {
 			.bc-card-title {
-				font-size: 1.125rem;
+				font-size: 1.20rem;
 			}
-			.bc-card-subtitle, .bc-card-link {
-				font-size: 0.8rem;
+			.bc-card-subtitle {
+				font-size: 1rem;
 			}
 			.bc-card-link {
+				font-size: 1.125rem;
+			}
+			&-heading {
+				&-text {
+					font-size: 1.20rem;	
+				}
 				.svg-icon {
-					max-height: 1rem;
-					max-width: 	1rem;
-				}	 
+					max-height:  2rem;
+					max-width:   2rem;
+				}
 			}
 		}
-		&--slide-up { 
-			.content-separator {
-				&::before {
-					width: 		0.8rem;
-					height: 	0.8rem;
-					border-width: 0.48rem;	
+		&--slide-up-overlay {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.225rem;
+						margin-left: $gutter/2;
+					}
 				}
 			}
 		}
@@ -724,26 +702,39 @@ main {
 				}
 			}
 		}
-	}
+		&.ca-values-card {
+			.bc-card-content {
+				.svg-icon {
+					max-width: 	2.5rem;
+					max-height: 2.5rem;
+				}
+				&-heading {
+					&-text {
+						font-size: 1.5rem;
+					}
+				}
+			}
+			.ca-values-card__value { 
+				font-size: 1.125rem;
+			}
+		}//&.ca-values-card
+	}// @ max-width 500px
 	@media screen and (min-width: 600px) {
 		flex-basis: 33.333%;
 		max-width: 	33.333%;
 	}
 	@media screen and (min-width: $tablet) {
-		.bc-content {
+		.bc-card-content {
 			.bc-card-title {
-				font-size: 1rem;
+				font-size: 1.125rem;
 			}
-			.bc-card-subtitle, .bc-card-link {
-				font-size: 0.8rem;
+			.bc-card-subtitle {
+				font-size: 0.9rem;
 			}
 			.bc-card-link {
-				.svg-icon {
-					max-height: 1rem;
-					max-width: 	1rem;
-				}
+				font-size: 0.95rem;
 			}
-		}
+		}	
 		&--plain-text {
 			.bc-card-content {
 				.bc-card-title {
@@ -756,32 +747,246 @@ main {
 		flex-basis: 25%;
 		max-width: 	25%;
 	}
-	@media screen and (min-width: $med) {
-		flex-basis: 20%;
-		max-width: 	20%;
+	@media screen and (min-width: $med) {	
+		.bc-card-content {
+			.bc-card-title {
+				font-size: 1.375rem;
+			}
+			.bc-card-subtitle {
+				font-size: 1.0rem; 
+			}
+			.bc-card-link {
+				font-size: 1.125rem;
+			}
+			&-heading {
+				&-text {
+					font-size: 1.375rem;	
+				}
+				.svg-icon {
+					max-height:  2.125rem;
+					max-width:   2.125rem;
+				}
+			}
+		}
+		
+		&--slide-up-overlay {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.5rem;
+					}
+				}
+			}
+		}
+		&--plain-text {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.75rem;
+				}
+			}
+		}
+		&.ca-values-card {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.5rem;
+					}
+				}
+			}
+			.ca-values-card__value { 
+				font-size: 1.125rem;
+			}
+		}//&.ca-values-card
+		
 	}
 	@media screen and (min-width: $laptop) {
 		flex-basis: 20%;
 		max-width: 	20%;
+		.bc-card-content {
+			.bc-card-title {
+				font-size: 1.125rem;
+			}
+			.bc-card-subtitle, .bc-card-link {
+				font-size: 0.9rem;
+			}
+			.bc-card-link {
+				font-size: 1rem;
+			}
+			&-heading {
+				&-text {
+					font-size: 1.20rem;	
+				}
+				.svg-icon {
+					max-height:  2rem;
+					max-width:   2rem;
+				}
+			}
+		}
+		&--slide-up-overlay {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.25rem;
+					}
+				}
+			}
+		}
+		&--plain-text {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.75rem;
+				}
+			}
+		}
+		&.ca-values-card {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.25rem;
+					}
+				}
+			}
+			.ca-values-card__value { 
+				font-size: 1rem;
+			}
+			.ca-values-card__person {
+				font-size: 0.9rem;
+			}
+		}//&.ca-values-card
+	}
+	@media screen and (min-width: $x-large) {
+		.bc-card-content {
+			.bc-card-title {
+				font-size: 1.375rem;
+			}
+			.bc-card-subtitle, .bc-card-link {
+				font-size: 1rem;
+			}
+			bc-card-link {
+				font-size: 1.125rem;
+			}
+		}
+		&--slide-up-overlay {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.375rem;
+					}
+				}
+			}
+		}
+		&--plain-text {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.75rem;
+				}
+			}
+		}
+		&.ca-values-card {
+			.bc-card-content {
+				&-heading {
+					&-text {
+						font-size: 1.5rem;
+					}
+				}
+			}
+			.ca-values-card__value { 
+				font-size: 1.125rem;
+			}
+		}//&.ca-values-card
+	}
+	@media screen and (min-width: $xx-large) {
+		&:not(.bc-card--plain-text) {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.125rem;
+				}
+				.bc-card-subtitle, .bc-card-link {
+					font-size: 0.9rem;
+				}
+				&-heading {
+					&-text {
+						font-size: 1.125rem;	
+					}
+				}
+			}
+			
+		}
+		&--plain-text {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.5rem;
+				}
+				.svg-icon {
+					max-width: 2.75rem;
+					max-height: 2.75rem;
+				}
+			}
+		}
+		&.ca-values-card {
+			.bc-card-content {
+				&-heading {
+					margin-bottom: 0.75rem;
+					&-text {
+						font-size: 1.25rem;
+					}
+				}
+				.svg-icon {
+					width: 2.25rem;
+					height: 2.25rem;
+				}
+			}
+			.ca-values-card__value { 
+				font-size: 1rem;
+				margin-bottom: 0.75rem;
+			}
+			.ca-values-card__person {
+				font-size: 0.9rem;
+			}
+		}//&.ca-values-card
 	}
 }//.bc-card
 
 .ca-profiles {
-	.bc-card--plain-text {
-		@media screen and (min-width: 600px) {
-			flex-basis: 50%;
-			max-width: 	50%;
+	.bc-card {
+		order: 1;
+		&--plain-text {
 			order: 2;
 		}
-		@media screen and (min-width: $tablet) {
-			flex-basis: 33.333%;
-			max-width: 	33.333%;
-		}
-		@media screen and (min-width: $desktop) {
-			flex-basis: 25%;
-			max-width: 	25%;
+	}
+	@media screen and (min-width: 600px) {
+		.bc-card {
 			order: 3;
+			&:nth-child(-n+1) {
+				order: 1;
+			}
+			&--plain-text {
+				order: 2;
+			}
 		}
+	}
+	@media screen and (min-width: $tablet) {
+		.bc-card {
+			&:nth-child(-n+2) {
+				order: 1;
+			}
+		}
+	}
+	
+	@media screen and (min-width: $desktop) {
+		.bc-card {
+			&:nth-child(-n+3) {
+				order: 1;
+			}
+		}
+	}
+	@media screen and (min-width: $laptop) {
+		.bc-card {
+			&:nth-child(-n+4) {
+				order: 1;
+			}
+		}
+		
 	}
 }
 /* Full profile pages */
@@ -1742,6 +1947,7 @@ blockquote {
 			}
 			.svg-icon {
 				fill: $shade-mid;
+				stroke: darken($shade-mid, 10%); 
 			}
 		}
 		&:hover {
@@ -1753,6 +1959,8 @@ blockquote {
 			height: 	100%;
 			z-index: 	0;
 			fill: 		$grey-light; 
+			stroke: 		darken($grey-light, 10%); 
+			stroke-width: 			2; 
 			@include 	makeButtonTransition(fill);
 		}
 		a {

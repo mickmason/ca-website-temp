@@ -45,6 +45,17 @@
 		}// .bc-text-hero
 	}
 	.bc-card {
+		&--slide-up, &--slide-up-overlay {
+			.bc-card-content {
+				border-top: 4px solid rgba($brand-yellow, 0.8);
+			}
+		}
+		.bc-card-content, .bc-card-img, .bc-card-img--focus-image, .bc-card-img-overlay {
+			transition: top $menuSlideTransition*1.61 $easing;	
+		}
+		.bc-card-content {
+			border-top: 4px solid rgba($brand-yellow, 1);
+		}
 		&.bc-card--slide-up {
 			.content-separator { 
 				&:before {	background-color: $brand-yellow;	}
@@ -54,15 +65,6 @@
 			.bc-card-content {
 				color: 						$black;
 				background-color: $brand-yellow;
-			}
-			.bc-card-link { 
-				color: $black;
-				.svg-icon {
-					fill: $black;
-				}
-				&::before {
-					background-color: $white;
-				}
 			}
 		}
 		&--plain-text {
@@ -155,7 +157,8 @@
 			&:hover, &:active, &:focus {
 				a { color: $black ; }
 				.svg-icon {
-					fill: rgba($brand-yellow, 0.8);
+					fill: 	rgba($brand-yellow, 0.8);
+					stroke: transparent; 
 				}
 			}
 		}
@@ -211,7 +214,11 @@
 				background-color: $brand-red ;
 			}
 		}
-		
+		&--slide-up, &--slide-up-overlay {
+			.bc-card-content {
+				border-top: 4px solid rgba($brand-red, 1);
+			}
+		}
 		&.bc-card--slide-up {
 			.content-separator { 
 				&:before {	background-color: $brand-red;	}
@@ -221,24 +228,6 @@
 			.bc-card-content {
 				background-color: $brand-red;
 			}
-			.bc-card-link {
-				background-color: $brand-red;
-				color: $white;
-				&::before {
-					background-color: $white; 
-				}
-				.svg-icon {
-					fill: $white;
-				}
-			}
-			&:hover, &:active, &:focus {
-				.bc-card-link { 
-					color: $black;
-					.svg-icon {
-						fill: $black;
-					}
-				}
-			}
 		}//&.bc-card--slide-up-overlay
 		&--plain-text {
 			.bc-card-content {
@@ -246,14 +235,6 @@
 				color: $white;
 				&:hover, &:focus, &:active {
 					background-color: darken($brand-red, 8%); 
-				}
-			}
-		}
-		&:hover, &:active, &:focus {
-			.bc-card-link { 
-				color: $white;
-				.svg-icon {
-					fill: $white;
 				}
 			}
 		}
@@ -320,6 +301,7 @@
 			&:hover, &:active, &:focus {
 				.svg-icon {
 					fill: rgba($brand-red, 0.8);
+					stroke: $white;
 				}
 			}
 		}
@@ -371,23 +353,19 @@
 	}
 	.bc-card {
 		&-link {
-			background-color: $brand-blue;
 			color: $white;
-			&::before {
-				background-color: $white; 
-			}
 			.svg-icon {
-				fill: $black;
+				fill: $white;
+			}
+		}
+		&--slide-up, &--slide-up-overlay {
+			.bc-card-content {
+				border-top: 4px solid rgba($brand-blue, 1);
 			}
 		}
 		&.bc-card--slide-up {
 			.content-separator { 
 				&:before {	background-color: $brand-blue;	}
-			}
-		}
-		&.bc-card--slide-up-overlay {
-			.bc-card-content {
-				background-color: $brand-blue;
 			}
 		}
 		&.person-card {
@@ -404,14 +382,7 @@
 				}	
 			}
 		}
-		&:hover, &:active, &:focus {
-			.bc-card-link {
-				color: $black;
-				.svg-icon {
-					fill: $black;
-				}
-			}
-		}
+		
 	}// .bc-card
 	.bc-general-content {
 		.ca-button {
@@ -478,6 +449,7 @@
 			&:hover, &:active, &:focus {
 				.svg-icon {
 					fill: rgba($brand-blue, 0.8);
+					stroke: $white;
 				}
 			}
 		}
