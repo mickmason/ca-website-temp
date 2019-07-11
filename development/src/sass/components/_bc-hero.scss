@@ -1,5 +1,4 @@
 .bc-hero {
-	 
 	@extend .bc-content-row;
 	padding: 0 $gutter;
 	border-bottom: 	1px solid $shade-light;
@@ -50,6 +49,11 @@
 	}
 	.bc-hero-header {
 		@include makeFlexbox($direction: row, $justify: space-between, $align: center);	
+	}
+	&--in-page {
+		height: auto;
+		padding-top: 		$gutter*3;
+		padding-bottom: $gutter*3;
 	}
 	&--slider { 
 		@extend .bc-hero;

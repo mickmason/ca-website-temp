@@ -635,12 +635,6 @@ main {
 			}
 		}	
 	}
-	
-	.bc-content-container:first-child {
-		.bc-cards-row, .bc-hero {
-			padding-top: $gutter/2;
-		}
-	}
 }
 .ca-project-filters {
 	.ca-project-filter {
@@ -750,7 +744,7 @@ main {
 	@media screen and (min-width: $med) {	
 		.bc-card-content {
 			.bc-card-title {
-				font-size: 1.375rem;
+				font-size: 1.25rem;
 			}
 			.bc-card-subtitle {
 				font-size: 1.0rem; 
@@ -769,15 +763,6 @@ main {
 			}
 		}
 		
-		&--slide-up-overlay {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.5rem;
-					}
-				}
-			}
-		}
 		&--plain-text {
 			.bc-card-content {
 				.bc-card-title {
@@ -1615,10 +1600,6 @@ main {
 		}// &--video
 	}// &.bc-landing-hero
 }// .bc-hero
-/** Practice page uniqueness projects **/
-.ca-unique-processes {
-	@include makeInset();
-}
 /** General content **/
 .two-col-content-feature, .bc-general-content-row {
 	.content-separator-wrap {
@@ -1802,26 +1783,8 @@ blockquote {
 
 /* Contact block */
 
-.ca-contact-office {
-	font-size: 			1.25rem;
-	margin-top: 		0;
-	margin-bottom: 	0;
-}
-.ca-contact-detail {
-	margin-top: 0;
-}
-
-
 .ca-contact-component {
-	&-row {
-	 padding-top: 		$gutter*0;
-	 padding-bottom: 	$gutter*1.5;
-	}
-	.ca-contact-heading-row {
-		padding-top: 		$gutter*1.5;
-		padding-bottom: $gutter*1.5;
-	}
-	.ca-contact-info, .ca-contact-map, .ca-contact-heading-col {
+	.ca-contact-info, .ca-contact-map {
 		@include makeCols(10);
 	}
 	.ca-contact-info {

@@ -5,6 +5,8 @@
 	align-items: $align;
 	padding-left: 	$gutter/2;
 	padding-right:	$gutter/2;
+	padding-top: 		$gutter*1.5;
+	padding-bottom: $gutter*1.5;
 	@media screen and (min-width: $tablet) {
 		flex-direction: row;
 		flex-wrap: wrap;

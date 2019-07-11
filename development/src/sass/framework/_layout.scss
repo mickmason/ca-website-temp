@@ -9,13 +9,19 @@
 
 .bc-content-row {
 	@include makeRow();
+	padding-top: $gutter*1.5;
+	padding-bottom: $gutter*1.5;
 	.bc-content-row {
 		margin-left: 	-$gutter/1;
 		margin-right: -$gutter/1; 
 	}
 	.bc-content-column {
+		
 		padding-left: $gutter/2;
 		padding-right: $gutter/2;
+		> h1:first-child {
+			margin-top: 0;
+		}
 		&--indented {
 			@extend .bc-content-column;
 			@media screen and (min-width: 1200px) {
@@ -27,6 +33,9 @@
 				margin-left: (2/$gridColsCount*100%)
 			}
 		}
+	}
+	&.bc-cards-intro-row {
+		padding-bottom: $gutter*1.5;
 	}
 }
 /** Template: two-column layout **/
