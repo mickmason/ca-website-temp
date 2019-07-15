@@ -1,6 +1,18 @@
 @@include('structure/level-1/header--red--l1.html', {"client": "Cooney Architects: Bryan Brady", "title": "Bryan Brady"})
 			<div class="bc-content-container">
-				@@include('components/bc-breadcrumbs--people.html')
+				<nav class="bc-breadcrumbs">
+					<ul class="bc-breadcrumbs-links"> 
+						<li>
+							<a class="bc-breadcrumbs-link" href="../people/people.html">People</a>
+						</li>
+						<svg class="svg-icon">
+							<use xlink:href="../assets/media/svg/bc-icons.svg#next"></use>
+						</svg>
+						<li>
+							Bryan Brady
+						</li>
+					</ul><!-- // .bc-breadcrumbs-links -->
+				</nav><!-- // .bc-breadcrumbs -->
 			</div><!-- // .bc-content container - breadcrumbs -->
 			<main id="content-top">
 				@@include('components/level-1/bc-two-col-feature--ca--l1.html') 
