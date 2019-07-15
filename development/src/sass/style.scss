@@ -193,7 +193,9 @@ a {
 header {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
 	.bc-content-row {
-		@include makeRow($direction: row, $justify: space-between, $align: stretch);	
+		@include makeRow($direction: row, $justify: space-between, $align: stretch);
+		padding-top: 		0;
+		padding-bottom: 0;
 		height: 8vh;
 	}
 	@media screen and (min-width: $tablet) and (orientation: portrait) {

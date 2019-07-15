@@ -9,8 +9,6 @@
 
 .bc-content-row {
 	@include makeRow();
-	padding-top: $gutter*1.5;
-	padding-bottom: $gutter*1.5;
 	.bc-content-row {
 		margin-left: 	-$gutter/1;
 		margin-right: -$gutter/1; 
