@@ -154,6 +154,19 @@ a {
 		transform: translate(50%, -50%);
 	}
 }
+.leader-text-squares {
+	width: calc((2 * (1rem + #{$gutter/2})) + 1.68rem);
+	@include makeFlexbox(row, space-between, center);
+	.square {
+		width: 	1.0rem;
+		height: 1.0rem;
+		background-color: $brand-yellow;
+		&:nth-child(2) {
+			background-color: $black;
+			width: 	1.68rem;
+		}
+	}
+}
 .bc-color-square {
 	width: 14%;
 	display: inline-block;

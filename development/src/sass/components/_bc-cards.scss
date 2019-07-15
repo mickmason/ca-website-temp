@@ -8,6 +8,20 @@
 		padding-left: 10%; 
 	}
 }
+.bc-cards {
+	> .bc-content-row {
+		@media screen and (max-width: 767px) {
+			height: 92vh;
+			justify-content: center;
+		}
+	}
+	&-leader {
+	
+		&__content {
+			
+		}
+	}
+}
 .bc-card {
 	position: relative;
 	@include makeFlexbox($direction: column, $align: stretch); 

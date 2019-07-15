@@ -687,8 +687,10 @@
 	//writeProjects(null, projects);
 	//the Projects grid
 	function filterCAProjects(fltr) {
+		/* https://new.cooneyarchitects.com/new-site/projects/projects.html*/
+		/* http://localhost:9001/data/projects.json */
 		return new Promise((resolve, reject) => {
-			getJSON('http://localhost:9001/data/projects.json', {cache: 'no-cache'}).then((data) => {
+			getJSON('https://new.cooneyarchitects.com/new-site/data/projects.json', {cache: 'no-cache'}).then((data) => {
 				return data.json();
 			}).then((projects) => {
 				if (true) {

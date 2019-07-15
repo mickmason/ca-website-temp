@@ -29,20 +29,14 @@
 					
 			}//.bc-hero-footer-scroll
 		}//. .bc-hero-footer
-		&--text-hero {
-			.bc-hero-body {
-				&-text { 
-					&__squares {
-						.square {
-							background-color: $brand-yellow;
-							&:nth-child(2) {
-								background-color: $black;
-							}
-						}
-					}
-				}
+	}
+	.leader-text-squares {
+		.square {
+			background-color: $brand-yellow;
+			&:nth-child(2) {
+				background-color: $black;
 			}
-		}// .bc-text-hero
+		}
 	}
 	.bc-card {
 		&--slide-up, &--slide-up-overlay {
@@ -193,20 +187,14 @@
 				}
 			}
 		}// .bc-hero-footer
-		&--text-hero {
-			.bc-hero-body {
-				&-text { 
-					&__squares {
-						.square {
-							background-color: $brand-red;
-							&:nth-child(2) {
-								background-color: $brand-yellow;
-							}
-						}
-					}
-				}
+	}
+	.leader-text-squares {
+		.square {
+			background-color: $brand-red;
+			&:nth-child(2) {
+				background-color: $brand-yellow;
 			}
-		}// .bc-text-hero
+		}
 	}
 	.bc-card {	
 		&-link {
@@ -336,20 +324,14 @@
 				}
 			}//.bc-hero-footer-scroll
 		}//.bc-hero-footer 
-		&--text-hero {
-			.bc-hero-body {
-				&-text { 
-					&__squares {
-						.square {
-							background-color: $brand-blue;
-							&:nth-child(2) {
-								background-color: $brand-yellow;
-							}
-						}
-					}
-				}
+	}
+	.leader-text-squares {
+		.square {
+			background-color: $brand-blue;
+			&:nth-child(2) {
+				background-color: $brand-yellow;
 			}
-		}// .bc-text-hero
+		}
 	}
 	.bc-card {
 		&-link {
@@ -382,7 +364,6 @@
 				}	
 			}
 		}
-		
 	}// .bc-card
 	.bc-general-content {
 		.ca-button {
