@@ -10,15 +10,7 @@
 }
 .bc-cards {
 	> .bc-content-row {
-		@media screen and (max-width: 767px) {
-			height: 92vh;
-			justify-content: center;
-		}
-	}
-	&-leader {
-	
-		&__content {
-			
+		@media screen and (max-width: 767px) { 
 		}
 	}
 }

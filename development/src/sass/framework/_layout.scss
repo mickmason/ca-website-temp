@@ -8,36 +8,50 @@
 }
 
 .bc-content-row {
-	@include makeRow();
+	@include makeRow($paddingTop: $gutter*3, $paddingBottom: $gutter*3);
+	border-top: 	1px solid $shade-light;
+	&:nth-child(1n+2) {
+		padding-top: 0;
+		border-top: none;
+	}
 	.bc-content-row {
 		margin-left: 	-$gutter/1;
 		margin-right: -$gutter/1; 
+		border-top: none;
 	}
 	.bc-content-column {
-		
 		padding-left: $gutter/2;
 		padding-right: $gutter/2;
 		> h1:first-child {
 			margin-top: 0;
 		}
 		&--indented {
-			@extend .bc-content-column;
 			@media screen and (min-width: $desktop) {
-				width: (8/$gridColsCount*100%);
+				flex-basis: 80%;
+				max-width: (8/$gridColsCount*100%);
 				margin-left: (1/$gridColsCount*100%);
 			}
 			@media screen and (min-width: 1200px) {
-				width: (5/$gridColsCount*100%);
+				flex-basis: 50%;
+				max-width: (5/$gridColsCount*100%);
 				margin-left: (2.5/$gridColsCount*100%);
 			}
 			@media screen and (min-width: $laptop) {
-				width: (6/$gridColsCount*100%);
+				flex-basis: 60%;
+				max-width: (6/$gridColsCount*100%);
 				margin-left: (2/$gridColsCount*100%);
 			}
 		}
 	}
 	&.bc-cards-intro-row {
 		padding-bottom: $gutter*1.5;
+	}
+}
+.bc-content-container {
+	&:nth-child(1) {
+		.bc-content-row {
+			border-top: none;
+		}
 	}
 }
 /** Template: two-column layout **/

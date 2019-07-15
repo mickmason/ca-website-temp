@@ -1,7 +1,6 @@
 .bc-hero {
 	@extend .bc-content-row;
 	padding: 0 $gutter;
-	border-bottom: 	1px solid $shade-light;
 	height: 85.6vh;
 	position: relative;
 	overflow: hidden;
@@ -23,24 +22,7 @@
 		}
 		&-text {
 			position: relative;
-			padding: $gutter 0;
 			background-color: transparent;
-			color: $black;
-			h1 {
-				font-size: 2rem;
-				margin-top: 0;
-				margin-bottom: $gutter;
-				&:first-child {
-					margin-top: 0;	
-				}
-			}
-		}
-		@media screen and (min-width: $tablet) {
-			&-text {
-				h1 {
-					font-size: 2rem;
-				}
-			}
 		}
 	}// .bc-hero-block
 	.bc-hero-header, .bc-hero-footer {
