@@ -97,10 +97,9 @@
 }
 blockquote {
 	p:not(.blockquote-citation) {
-		font-family: Palatino, serif;
-		font-size: 1.0625rem;
+		font-family: $serifFont;
+		font-size: 1.36rem;
 		line-height: 1.5;
-		font-style: italic;	
 	}
 	margin: $gutter*1.5 0 $gutter*1.75;
 	padding-left: 	$gutter*1.5;
@@ -121,7 +120,7 @@ blockquote {
 	}
 	.bc-general-content {
 		hr {
-				width: 8rem;
+			width: 8rem;
 		}
 	}
 	blockquote {
@@ -143,5 +142,12 @@ blockquote {
 		p {
 			flex-basis: 50%;
 		}
+	}
+}
+@media screen and (min-width: $med) {
+	.bc-general-content-wrap picture {
+		max-width: 90%;
+		margin-left: 	auto;
+		margin-right: auto;
 	}
 }
