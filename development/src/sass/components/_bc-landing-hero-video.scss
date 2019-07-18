@@ -181,7 +181,6 @@
 					max-width: 	1.25rem;
 					max-height: 100%;
 				}
-				
 				@media screen and (max-width: $tablet - 1px) {
 					.bc-roll-up-link {
 						.bc-roll-up-link-default {
@@ -192,6 +191,13 @@
 							top: 0;
 						}
 					}	
+				}
+			@media screen and (min-width: $desktop) {
+					.svg-icon {
+						fill: 			$black;
+						max-width: 	1.6rem;
+						max-height: 100%;
+					}
 				}
 			}//ul 
 		@media screen and (max-width: 719px) and (orientation: landscape) {
@@ -279,7 +285,7 @@
 		}// (min-width: $desktop) and (orientation: landscape)
 		@media screen and (min-width: 850px) {
 			.bc-hero-body {
-				width: 			61.8%;
+				width: 			56%;
 				left: (38.2%/4);
 				bottom: (38.2%/6);
 			}

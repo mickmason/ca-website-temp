@@ -262,7 +262,12 @@
 		return scrollDirection;
 		
 	}//detectScrollDirection()
-	
+	function getOffset($el = document) {
+		var elRect = $el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: elRect.top + scrollTop, left: elRect.left + scrollLeft };
+	}
 	//Inner navigation show/hide
 	function bcInnerNav(navContainer) {
 		/* 
@@ -757,7 +762,18 @@
 		});
 		
 	}//end if .ca-projects-grid
-	
+	window.onload =  (e) => {
+		if (location.hash !== '') {
+			console.log(location.hash);
+			console.log(document.querySelector(location.hash).scrollTop);
+			
+			requestAnimationFrame(() => {
+				lerpScroll(window, window.pageYOffset, getOffset(document.querySelector(location.hash)).top);
+				
+			});
+			console.log('window Y offset: '+window.pageYOffset);
+		}
+	};
 })();
 
 

@@ -197,6 +197,10 @@
 		}
 	}// .bc-hero--slider
 	&--text-hero {
+		&.bc-hero--in-page {
+			padding-top: 		6rem;
+			padding-bottom: 6rem;
+		}
 		@extend .bc-hero;
 		.bc-hero-block {
 			flex-basis: 			87.5%;
@@ -279,7 +283,7 @@
 				margin-top: $gutter/16;
 				max-height: 1.6rem;
 				max-width: 	1.6rem;	
-				top: 11%;
+				top: 10%;
 				transform: translate(0, -50%);
 			}
 		}
@@ -288,9 +292,20 @@
 			flex-basis: 10%;
 			.svg-icon {
 				&.scroll-down-arrow {
+					top: 14%;
 					max-height: 1.8rem;
 					max-width: 	1.8rem;	
-					top: 12%;
+				}
+			}
+		}
+		@media screen and (min-width: $desktop) {
+			height: 		calc(8.4vh - #{$gutter}/4);
+			flex-basis: 10%;
+			.svg-icon {
+				&.scroll-down-arrow {
+					top: 8%;
+					max-height: 1.8rem;
+					max-width: 	1.8rem;	
 				}
 			}
 		}
