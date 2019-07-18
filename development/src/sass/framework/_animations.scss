@@ -9,16 +9,14 @@
 	} 
 }
 @keyframes caratbounce {
-	0% {
-		transform: translateY(80%); 
-	}
-	50% {
-		transform: translateY(100%); 
-	}
-	
-	100% {
-		transform: translateY(80%); 
-	}
+		
+		
+		50% {
+			transform: translateY(-35%);  
+		}
+		100% {
+			transform: translateY(-50%); 
+		}
 }
 @keyframes fade-out {
 	from {
@@ -28,3 +26,13 @@
 		opacity: 0;
 	}
 }
+/*0% {
+		transform: translateY(80%); 
+	}
+	50% {
+		transform: translateY(100%); 
+	}
+	
+	100% {
+		transform: translateY(80%); 
+}*/
