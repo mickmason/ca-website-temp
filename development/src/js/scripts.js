@@ -689,7 +689,7 @@
 		bcInnerNav(document.querySelector('.bc-inner-nav')); 
 	}*/
 	const projectsFilter = 'all-projects';
-	//writeProjects(null, projects);
+	writeProjects(null, projects);
 	//the Projects grid
 	function filterCAProjects(fltr) {
 		/* https://new.cooneyarchitects.com/new-site/projects/projects.html*/
@@ -764,9 +764,6 @@
 	}//end if .ca-projects-grid
 	window.onload =  (e) => {
 		if (location.hash !== '') {
-			console.log(location.hash);
-			console.log(document.querySelector(location.hash).scrollTop);
-			
 			requestAnimationFrame(() => {
 				lerpScroll(window, window.pageYOffset, getOffset(document.querySelector(location.hash)).top);
 				
