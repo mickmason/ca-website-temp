@@ -133,6 +133,12 @@ a {
 .ca-arrow-link {
 	font-weight: bold;
 	@include makeFlexbox($direction: row, $justify: flex-start, $align: center);
+	a {
+		text-decoration: none;
+		&:hover, &:active, &:focus {
+			text-decoration: underline;
+		}
+	}
 	.svg-icon {
 		max-width: 	1.5rem;
 		max-height: 1.5rem;
@@ -279,9 +285,7 @@ a {
 	padding-top: 0;
 }
 .bc-breadcrumbs-links {
-	height: calc(6.4vh - $gutter/2);
-	padding-top: 		$gutter/1.5;
-	padding-bottom: $gutter/4;
+	height: calc(6.4vh - #{$gutter}/2);
 	&.active {
 		height: auto;
 	}
@@ -292,7 +296,6 @@ a {
 			}
 			font-weight: normal;
 			width: 100%;
-			
 		}
 	}
 }
@@ -465,16 +468,19 @@ main {
 		flex-basis: 25%;
 		max-width: 	25%;
 	}
+	
 	@media screen and (min-width: $med) {	
+		flex-basis: 20%;
+		max-width: 	20%;
 		.bc-card-content {
 			.bc-card-title {
-				font-size: 1.25rem;
+				font-size: 1.0rem;
 			}
 			.bc-card-subtitle {
-				font-size: 1.0rem; 
+				font-size: 0.8rem; 
 			}
 			.bc-card-link {
-				font-size: 1.125rem;
+				font-size: 0.8rem;
 			}
 			&-heading {
 				&-text {
@@ -764,7 +770,7 @@ main {
 		}
 	}
 	.bc-general-content-wrap {
-		h1, h2, h3, h4, h5, ul, p, blockquote, hr, .person-qualifications {
+		h1, h2, h3, h4, h5, ul, p, blockquote, hr, .person-qualifications, .ca-arrow-link {
 			max-width: 600px;
 			margin-left: 	auto;
 			margin-right: auto;
@@ -1088,8 +1094,29 @@ main {
 	@media screen and (min-width: $desktop) {
 		height: #{(120px/16px)}rem;
 	}
+} 
+/* Sits at the bottom of top level elements, contains an .is-page-scroll-link */
+.page-scroller {
+	flex: 1 1 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__link {
+		flex: 1 1 100%;
+		align-self: stretch;
+		@include makeFlexbox(row, center, center, $inline: true);
+		&:hover, &:active, &:focus, &.is-active {
+			.svg-icon {
+				animation: caratbounce 2s ease-out;
+			}
+		}
+		.svg-icon {
+			max-width: 2rem;	
+			max-height: 2rem;	
+		}
+	}
+	
+	
 }
-
-
 
 

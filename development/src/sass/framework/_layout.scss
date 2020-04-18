@@ -9,7 +9,6 @@
 
 .bc-content-row {
 	@include makeRow($paddingTop: $gutter*3, $paddingBottom: $gutter*3);
-	border-top: 	1px solid $shade-light;
 	&:nth-child(1n+2) {
 		padding-top: 0;
 		border-top: none;

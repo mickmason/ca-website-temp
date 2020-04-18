@@ -1,10 +1,27 @@
 @@include('structure/level-1/header--l1.html', {"client": "Cooney Architects", "title": "Architectural work", "color-scheme": "brand-yellow-scheme"})
 		<div class="bc-content-container">
 			<nav class="bc-breadcrumbs">
-				<ul class="bc-breadcrumbs-links">  
+				<ul class="bc-inner-nav bc-breadcrumbs-links">  
 					<li>
 						<a class="bc-breadcrumbs-link" href="../projects/projects.html">Projects</a>
+						<a class="bc-inner-nav-label" href="javascript:void(0)">
+							<span class="">Filter projects:</span>
+						</a> 
+						<a class="bc-inner-nav-icon" href="javascript:void(0)">
+							<svg class="svg-icon svg-funnel-icon"> 
+								<use xlink:href="/assets/media/svg/bc-icons.svg#funnel"></use>
+							</svg>	
+							<svg class="svg-icon svg-close-icon">
+								<use xlink:href="/assets/media/svg/bc-icons.svg#close-x"></use>
+							</svg>	
+						</a>		
+						<ul class="bc-inner-nav-dropdown ca-project-filters"> 
+							<li class="bc-inner-nav-active"><a data-filter="all-projects" class="ca-project-filter active" href="javascript:void(0)">All projects</a></li>
+							<li><a class="ca-project-filter" data-filter="project-category" href="javascript:void(0)">Category</a></li>
+							<li><a class="ca-project-filter" data-filter="project-date" href="javascript:void(0)">Date</a></li>
+						</ul>
 					</li>
+					
 				</ul><!-- // .bc-breadcrumbs-links -->
 			</nav><!-- // .bc-breadcrumbs -->
 		</div> 
@@ -35,16 +52,16 @@
 					</article><!-- // Meath project -->
 					<article class="bc-card--slide-up bc-fade-in-up">
 						<figure class="bc-card-img is-square">
-							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
+							<img src="../assets/media/imgs/projects/ashbourne-GAA-13-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
 						</figure>
 						<figure class="bc-card-img--focus-image is-square">
-							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
+							<img src="../assets/media/imgs/projects/ashbourne-GAA-13-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
 						</figure>
 						<div class="bc-card-content">
-							<a href="javascript:void(0)">
+							<a href="ashbourne-gaa.html">
 								<div class="bc-card-info">
-									<h2 class="bc-card-title">Mc Namara House</h2>
-									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
+									<h2 class="bc-card-title">Donaghmore Ashbourne GAA Club</h2>
+									<p class="bc-card-subtitle">Killegland, Ashbourne, Co. Meath</p>	
 								</div>
 								<div class="bc-card-link">
 									<span class="bc-card-link-text">View project	</span>
@@ -54,12 +71,76 @@
 								</div>
 							</a>
 						</div> 
-					</article><!-- // McNamara project -->
+					</article><!-- // Donaghmore Ashbourne GAA Club -->
 					<article class="bc-card--slide-up bc-fade-in-up">
 						<figure class="bc-card-img is-square">
-							<img src="../assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg" alt="Meath GAA Centre of Excellence" />	
+							<img src="../assets/media/imgs/projects/i-lofar-project-2-square.jpg" alt="Irish-European I-LOFAR Birr Telescope Education Centre" />	
 						</figure>
 						<figure class="bc-card-img--focus-image is-square">
+							<img src="../assets/media/imgs/projects/i-lofar-project-2-square.jpg" alt="Irish-European I-LOFAR Birr Telescope Education Centre" />	
+						</figure>
+						<div class="bc-card-content">
+							<a href="i-lofar-project.html">
+								<div class="bc-card-info">
+									<h2 class="bc-card-title">Irish-European I-LOFAR Birr Telescope Education Centre</h2>
+									<p class="bc-card-subtitle">Birr, Co. Offaly</p>	
+								</div>
+								<div class="bc-card-link">
+									<span class="bc-card-link-text">View project	</span>
+									<svg class="svg-icon">
+										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+									</svg>	
+								</div>
+							</a>
+						</div>
+					</article><!-- // I-LOFAR project -->
+					<article class="bc-card--slide-up bc-fade-in-up">
+						<figure class="bc-card-img is-square">
+							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
+						</figure>
+						<figure class="bc-card-img--focus-image is-square">
+							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
+						</figure>
+						<div class="bc-card-content">
+							<a href="macnamara-project.html">
+								<div class="bc-card-info">
+									<h2 class="bc-card-title">Mc Namara House</h2>
+									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
+								</div>
+								<div class="bc-card-link">
+									<span class="bc-card-link-text">View project	</span>
+									<svg class="svg-icon">
+										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+									</svg>	
+								</div>
+							</a>
+						</div>
+					</article><!-- // McNamara House project -->
+					<article class="bc-card--slide-up bc-fade-in-up">
+						<figure class="bc-card-img is-square">
+							<img src="../assets/media/imgs/projects/leitrim-enterprise-3-square.jpg" alt="Leitrim Innovation and Growth Centre" />	
+						</figure>
+						<figure class="bc-card-img--focus-image is-square">
+							<img src="../assets/media/imgs/projects/leitrim-enterprise-3-square.jpg" alt="Leitrim Innovation and Growth Centre" />	
+						</figure>
+						<div class="bc-card-content">
+							<a href="leitrim-center-project.html">
+								<div class="bc-card-info">
+									<h2 class="bc-card-title">Leitrim Innovation Growth Centre</h2>
+									<p class="bc-card-subtitle">Co. Leitrim, Ireland</p>
+								</div>
+								<div class="bc-card-link">
+									<span class="bc-card-link-text">View project</span>
+									<svg class="svg-icon">
+										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+									</svg>	
+								</div>
+							</a>
+						</div>
+					</article><!-- // Leitrim Innovation Growth Centre -->
+					
+					<article class="bc-card--slide-up bc-fade-in-up">
+						<figure class="bc-card-img is-square">
 							<img src="../assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg" alt="Meath GAA Centre of Excellence" />	
 						</figure>
 						<div class="bc-card-content">
@@ -77,69 +158,7 @@
 							</a>
 						</div>
 					</article><!-- // Meath project -->
-					<article class="bc-card--slide-up bc-fade-in-up">
-						<figure class="bc-card-img is-square">
-							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
-						</figure>
-						<figure class="bc-card-img--focus-image is-square">
-							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
-						</figure>
-						<div class="bc-card-content">
-							<a href="javascript:void(0)">
-								<div class="bc-card-info">
-									<h2 class="bc-card-title">Mc Namara House</h2>
-									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project	</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
-							</a>
-						</div>
-					</article><!-- // McNamara project -->
-					<article class="bc-card--slide-up bc-fade-in-up">
-						<figure class="bc-card-img is-square">
-							<img src="../assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg" alt="Meath GAA Centre of Excellence" />	
-						</figure>
-						<div class="bc-card-content">
-							<a href="javascript:void(0)">
-								<div class="bc-card-info">
-									<h2 class="bc-card-title">Meath GAA Centre of Excellence</h2>
-									<p class="bc-card-subtitle">Co. Meath, Ireland</p>
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
-							</a>
-						</div>
-					</article><!-- // Meath project -->
-					<article class="bc-card--slide-up bc-fade-in-up">
-						<figure class="bc-card-img is-square">
-							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
-						</figure>
-						<figure class="bc-card-img--focus-image is-square">
-							<img src="../assets/media/imgs/mcnamara-house-1-square.jpg" alt="McNamara House, Ballivor, Co. Meath" />	
-						</figure>
-						<div class="bc-card-content">
-							<a href="javascript:void(0)">
-								<div class="bc-card-info">
-									<h2 class="bc-card-title">Mc Namara House</h2>
-									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project	</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
-							</a>
-						</div>
-					</article><!-- // McNamara project -->
+					
 					<article class="bc-card--slide-up bc-fade-in-up">
 						<figure class="bc-card-img is-square">
 							<img src="../assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg" alt="Meath GAA Centre of Excellence" />	

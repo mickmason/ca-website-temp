@@ -1,11 +1,10 @@
 img {
 	max-width: 100%;
 }
-.bc-hero-bg {
-	overflow: hidden;
-	background-size: cover;
-	background-position: center center;
+.has-feature-bg-image {
 	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 .bc-video-embed:not(.bc-video-embed--video) {
 	@include videoEmbed($videoAR); 	

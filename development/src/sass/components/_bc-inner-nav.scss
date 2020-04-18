@@ -9,11 +9,9 @@
 	}
 	li {
 		@include makeFlexbox($align: stretch, $wrap: wrap);
-		color: $grey-light;
 		> a {
 			display: inline-flex;
 			align-items: center;
-			color: $grey;
 			&.is-label {
 				font-weight: normal;
 			}

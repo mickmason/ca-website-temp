@@ -44,9 +44,6 @@
 				border-top: 4px solid rgba($brand-yellow, 0.8);
 			}
 		}
-		.bc-card-content, .bc-card-img, .bc-card-img--focus-image, .bc-card-img-overlay {
-			transition: top $menuSlideTransition*1.61 $easing;	
-		}
 		.bc-card-content {
 			border-top: 4px solid rgba($brand-yellow, 1);
 		}
@@ -80,10 +77,8 @@
 		}
 		a {
 			color: $black;
-			transition: background-color $menuSlideTransition $easing ;
 			&:hover, &:active, &:focus {
-				color: $brand-yellow;
-				background-color: $black;
+				background-color: $brand-yellow;
 			}
 		}
 	}
@@ -230,7 +225,6 @@
 	.bc-general-content {
 		a {
 			color: $black;
-			transition: background-color $menuSlideTransition $easing ;
 			&:hover, &:active, &:focus {
 				color: $white;
 				background-color: $brand-red;
@@ -262,9 +256,12 @@
 	}	
 	.ca-arrow-link {
 		.svg-icon {
-			fill: $black;
+			fill: $brand-red;
 		}
+		
 		a {
+			color: $brand-red; 
+			font-weight: 500;
 			&:hover, &:active, &:focus {
 				color: $brand-red;
 				background-color: transparent;
@@ -371,7 +368,7 @@
 		}
 		a {
 			color: $black;
-			transition: background-color $menuSlideTransition $easing ;
+			
 			&:hover, &:active, &:focus {
 				color: $white;
 				background-color: $brand-blue;

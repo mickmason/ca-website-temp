@@ -7,6 +7,13 @@
 		position: relative;
 		.bc-hero-block {
 			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+		.bc-hero__feature-link {
+			position: relative;
+			width: 100%;
+			height: 100%;
 		}
 		.bc-hero-image { 
 			flex: 1 1 100%;
@@ -55,12 +62,47 @@
 			position: 		absolute;
 			max-width: 		92%;
 			left: 		 		4%;
-			bottom: 	 		2%;
+			bottom: 	 		4%;
 			z-index: 			10;
 			margin-left: 	auto;
 			margin-right: auto;
 			background-color: transparent;
 			@include makeFlexbox($direction: column, $justify: flex-start);
+		}
+		.bc-landing-hero__news {
+			width: (100% - 14%);
+			align-self: flex-end;
+			margin: 0; 
+			padding: $gutter $vertical-unit;
+			color: $white;
+			background-image: linear-gradient(180deg, rgba($black, 0.0) 10%, 70%, rgba($black, 0.9)); 
+			//background-color: rgba($black, 0.42);
+			
+			.is-label {
+				color: $white;
+				text-transform: uppercase;
+			}
+			p {
+				font-size: 1.25rem;
+				//font-weight: 200;
+				margin: 0;
+				@include makeFlexbox($align: stretch, $inline: true);
+			}
+			a {
+				text-decoration: none;
+				&:active, &:hover, &:focus {
+					text-decoration: underline;
+				}
+			}
+			.svg-icon {
+				fill: $white;
+				max-height: 1.5rem;
+				max-width: 2rem;
+			}
+			
+			@media screen and (min-width: $tablet) {
+				width: (100% - 9%);
+			}
 		}
 		.bc-landing-hero-text {
 			flex: 1 1 100%;
@@ -77,17 +119,17 @@
 				max-height: 2rem;
 				margin-left: auto;
 				margin-right: auto;
-				margin-top: -3px;
+				
 			}
 			.bc-landing-hero-quote-mark {
-				flex: 1 1 12%;
+				flex: 1 1 14%;
 			}
 			h1 {
 				width: 86%;
 				flex: 1 1 auto;
 				margin-top: 0;
 				font-family: $serifFont;
-				font-size: 1.525rem;
+				font-size: 1.72rem;
 			}
 			
 		}// .bc-landing-hero-text

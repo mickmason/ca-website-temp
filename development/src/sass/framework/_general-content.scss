@@ -73,6 +73,9 @@
 			margin-top: 0;
 		}
 	}
+	a {
+		transition: background-color $menuSlideTransition $easing ;
+	}
 	hr {
 		margin-top: 		$gutter*1.5;
 		margin-bottom: 	$gutter*1.75;
@@ -101,6 +104,7 @@ blockquote {
 		font-size: 1.36rem;
 		line-height: 1.5;
 	}
+	
 	margin: $gutter*1.5 0 $gutter*1.75;
 	padding-left: 	$gutter*1.5;
 	padding-right: 	$gutter/2;
@@ -111,6 +115,9 @@ blockquote {
 		position: absolute;
 		top: 	$gutter/4.5;
 		left: 0.5rem;
+	}
+	.blockquote-citation {
+		font-style: italic;
 	}
 }
 @media screen and (min-width: $tablet) {

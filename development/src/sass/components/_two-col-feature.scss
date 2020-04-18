@@ -35,6 +35,9 @@
 	.content-intro {
 		line-height: 1.58;
 	}
+	.ca-arrow-link {
+		font-size: 1.125rem;
+	}
 	@media screen and (min-width: $tablet) {
 		flex-direction: row;
 		&.two-col-feature--left {

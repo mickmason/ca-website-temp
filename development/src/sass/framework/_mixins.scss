@@ -22,7 +22,7 @@
 @mixin makeLabel($uppercase: false, $color: $shade-dark) {
 	font-size: 0.8rem;
   color: $color;
-  font-weight: 300;
+  font-weight: 200;
 	@if ($uppercase ) {
 		text-transform: uppercase;	
 	}

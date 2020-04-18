@@ -9,11 +9,14 @@
 	} 
 }
 @keyframes caratbounce {
-		50% {
-			transform: translateY(-35%);  
+		25% {
+			transform: translateY(12%);  
 		}
-		100% {
-			transform: translateY(-50%); 
+		50% {
+			transform: translateY(-10%);  
+		}
+		75% {
+			transform: translateY(0%); 
 		}
 }
 @keyframes fade-out {

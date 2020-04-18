@@ -44,7 +44,7 @@
 			throw new Error(`Element selector must be a String value or a Document Node object`);
 		}
 	}
-	/* 
+	/* 	
 		Tests will a string selector will return a DOM Node, retunrs an array of Nodes if it can
 		Throws an Error otherwise
 		*/
@@ -214,13 +214,17 @@
 		
 		console.log(`Lerp ${i}`); 
 		console.log(`---------`); 
-		
+		const scrollOptions = {};
 		if (Math.round(target) > Math.round(pos)) {
 			console.log(`${pos} ${target}`);
 			console.log(`${(pos - target)}`);
-			pos += (target - pos) * 0.15; 
+			pos += (target - pos) * 0.1; 
 			console.log(`${pos} ${target}`);
-			
+			scrollOpts = {
+				top: pos,
+				left: 0,
+				behavior: 'auto'
+			};
 			$el.scroll(0, pos);
 			console.log(`${$el.scrollY}`);
 			i++;
@@ -232,7 +236,7 @@
 			console.log(`${(pos - target)}`);
 			pos -= (pos - target) * 0.15; 
 			console.log(`${pos} ${target}`);
-			const scrollOpts = {
+			scrollOpts = {
 				top: pos,
 				left: 0,
 				behavior: 'auto'
@@ -375,28 +379,29 @@
 		const elem = document.querySelector('.bc-hero--slider-slides');
 		const flkty = new Flickity( elem, {
 			pageDots: false,
-			prevNextButtons: false
+			prevNextButtons: false,
+			cellSelector: '.bc-hero--slider-slide'
 		});
 		const slidesLength = flkty.slides.length;
-		const slidesCounter = document.querySelector('.bc-hero--slider-controls .bc-hero--slider-controls__counter .bc-hero--slider-counter-count');
-		slidesCounter.innerHTML = slidesLength;
+		const slidesCount = document.querySelector('.bc-hero--slider .bc-hero--slider__counter .bc-hero--slider__counter__count');
+		slidesCount.innerHTML = slidesLength;
 		let currentSlide = 1;
-		const slidesCurrentIdx = document.querySelector('.bc-hero--slider-controls .bc-hero--slider-controls__counter .bc-hero--slider-counter-current');
+		const slidesCurrentIdx = document.querySelector('.bc-hero--slider .bc-hero--slider__counter .bc-hero--slider__counter__current');
 		slidesCurrentIdx.innerHTML = currentSlide;
-		const sliderNext = document.querySelector('.bc-hero--slider-controls__next');
-		const sliderPrev = document.querySelector('.bc-hero--slider-controls__prev');
+		const sliderNext = document.querySelector('.bc-hero--slider__control--next');
+		const sliderPrev = document.querySelector('.bc-hero--slider__control--prev');
 		sliderPrev.classList.add('bc-hero--slider-controls--disabled'); 
 		flkty.on('change', (idx) => {
 			slidesCurrentIdx.innerHTML = idx + 1; 
 			
 			if (idx === 0) {
-				sliderPrev.classList.toggle('bc-hero--slider-controls--disabled');
+				sliderPrev.classList.toggle('bc-hero--slider__control--disabled');
 			} else if (idx === slidesLength - 1) {
-				sliderNext.classList.toggle('bc-hero--slider-controls--disabled');
-			} else if(sliderPrev.classList.contains('bc-hero--slider-controls--disabled')) {
-				sliderPrev.classList.toggle('bc-hero--slider-controls--disabled');
-			} else if(sliderNext.classList.contains('bc-hero--slider-controls--disabled')) {
-				sliderNext.classList.toggle('bc-hero--slider-controls--disabled');
+				sliderNext.classList.toggle('bc-hero--slider__control--disabled');
+			} else if(sliderPrev.classList.contains('bc-hero--slider__control--disabled')) {
+				sliderPrev.classList.toggle('bc-hero--slider__control--disabled');
+			} else if(sliderNext.classList.contains('bc-hero--slider__control--disabled')) {
+				sliderNext.classList.toggle('bc-hero--slider__control--disabled');
 			}
 		});
 		sliderNext.addEventListener('click', (e) => {
@@ -450,25 +455,35 @@
 	/**
 		Scroll to top 
 		*/
-	if ($topLink) {
+	/*if ($topLink) {
 		$topLink.addEventListener('click', (evt) => {
-			console.log('click top '+window.scrollY);
-			i = 0;
 			requestAnimationFrame(() => {
 				lerpScroll(window, window.scrollY, 0);
 			});
 		});	
-	}
+	}*/
 	/** 
 		More link in heros 
 		*/
-	const $heroFooterScrollLink = document.querySelector('.bc-hero-footer-scroll-link');
-	const $contentStart = document.querySelector('#content-start');
-	if ($heroFooterScrollLink && $contentStart) {
-		$heroFooterScrollLink.addEventListener('click', (evt) => {
-				lerpScroll(window, window.scrollY, $contentStart.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
-		});	
+	function pageScrollCallback(event) {
+		console.log(event);
+		event.preventDefault();
+		const target = document.querySelector(event.currentTarget.getAttribute('href'));
+		console.log(target);
+		if (target) {
+			lerpScroll(window, window.scrollY, target.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);	
+		}
+		
 	}
+	if (document.querySelectorAll('.is-page-scroll')) {
+		$scrollers = Array.apply(null, document.querySelectorAll('.is-page-scroll')); 
+		
+		for (let $scroller of $scrollers) {
+			$scroller.addEventListener('click', pageScrollCallback);	
+		}
+			
+	}
+	
 	/** 
 		Hero body links 
 		*/
@@ -494,7 +509,7 @@
 		CA Projects: Load projects
 		Project filters
 		*/
-	function writeCAProjects(projects, projectsFilter) {
+	function writeCAProjects(projects, projectsFilter) { 
 		/* Make a single card */
 		function _makeCard(project) {
 			//The card
@@ -689,7 +704,7 @@
 		bcInnerNav(document.querySelector('.bc-inner-nav')); 
 	}*/
 	const projectsFilter = 'all-projects';
-	writeProjects(null, projects);
+	//writeProjects(null, projects);
 	//the Projects grid
 	function filterCAProjects(fltr) {
 		/* https://new.cooneyarchitects.com/new-site/projects/projects.html*/
@@ -762,7 +777,8 @@
 		});
 		
 	}//end if .ca-projects-grid
-	window.onload =  (e) => {
+	/*window.onload =  (e) => {
+		console.log(location.hash);
 		if (location.hash !== '') {
 			requestAnimationFrame(() => {
 				lerpScroll(window, window.pageYOffset, getOffset(document.querySelector(location.hash)).top);
@@ -770,7 +786,12 @@
 			});
 			console.log('window Y offset: '+window.pageYOffset);
 		}
-	};
+	};*/
+	if (document.querySelector('.is-inner-page')) {
+		const $backLink = document.querySelector('.page-bottom-links-back-link');
+		console.log(document.referrer);
+		$backLink.setAttribute('href', document.referrer);
+	}
 })();
 
 

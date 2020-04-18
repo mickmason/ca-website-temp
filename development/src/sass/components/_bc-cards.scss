@@ -51,7 +51,7 @@
 	&-content {
 		background-color: rgba($black, 0.72);
 		> a {
-			@include makeFlexbox($direction: column, $justify: space-between);
+			@include makeFlexbox($direction: column, $justify: center);
 			height: 100%;
 			padding: $gutter/1.5 $gutter/1.5;
 		}
@@ -73,8 +73,9 @@
 		min-width: 100%;
 	}
 	&-title { 
+		font-size: 1.625rem;
+		font-weight: 400;
 		margin-top: 0; 
-		margin-bottom: $gutter/4;
 		text-decoration: none;
 	}
 	&-subtitle {
@@ -84,7 +85,9 @@
 	}
 	
 	&-link {
+		
 		@include makeFlexbox($direction: row, $align: center);
+		display: none;
 		padding: $gutter/4 0 ;
 		font-size: 		1.25rem;
 		font-weight: 	300;
@@ -164,9 +167,7 @@
 			}
 			
 		}
-		.bc-card-title {
-			font-size: 1.625rem;
-		}
+		
 		.bc-card-content-heading {
 			margin-bottom: 0;
 		}
