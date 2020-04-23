@@ -805,26 +805,13 @@ main {
 			max-width: 	60%;
 		}
 	}
-	@media screen and (min-width: $laptop) {
+	
+	@media screen and (min-width: 1089px) {
 		align-items: stretch;
 		max-width: 90%;
 		margin-left: 	auto;
 		margin-right: auto;
-		.content-separator-wrap {
-			flex-basis: 10%;
-			max-width: 	10%;
-			//display: flex; 
-			justify-content: center;
-			@include makeCols(0.5);
-			position: relative;
-		}
-		.content-separator {
-			position: 	absolute;
-			top: 				0;
-			height: 		120%;
-			width: 			0px;
-			flex-grow:	0;
-		}
+		
 	}
 	
 }// .two-col-feature 
@@ -1107,7 +1094,7 @@ main {
 		@include makeFlexbox(row, center, center, $inline: true);
 		&:hover, &:active, &:focus, &.is-active {
 			.svg-icon {
-				animation: caratbounce 2s ease-out;
+				animation: caratbounce 2s ease-out infinte;
 			}
 		}
 		.svg-icon {
