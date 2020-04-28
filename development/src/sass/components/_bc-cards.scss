@@ -289,6 +289,8 @@
 	&.bc-cards-row {
 		flex-direction: row;
 		flex-wrap: wrap;
+		padding-top: $vertical-unit; 
+		
 	}
 	&.bc-cards-row--full-bleed {
 		padding-left: 	0;

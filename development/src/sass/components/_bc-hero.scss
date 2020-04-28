@@ -1,10 +1,8 @@
 .bc-hero {
-
 	padding: 0 $gutter;
-	height: 85.6vh;
+	height: calc(86.6vh - (#{$gutter}/2));
 	position: relative;
 	overflow: hidden;
-	
 	&-block {
 		@include makeCols($cols: $gridColsCount, $full-bleed: true);		
 		flex-basis: 87.5%;
@@ -66,7 +64,7 @@
 		@extend .bc-hero;
 		&:focus {
 			outline: none;
-		}
+		} 
 		height: auto;
 		padding-top: 		0;
 		padding-bottom: 0;

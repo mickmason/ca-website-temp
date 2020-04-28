@@ -73,30 +73,27 @@
 			width: (100% - 14%);
 			align-self: flex-end;
 			margin: 0; 
-			padding: $gutter $vertical-unit;
-			color: $white;
-			background-image: linear-gradient(180deg, rgba($black, 0.0) 10%, 70%, rgba($black, 0.9)); 
-			//background-color: rgba($black, 0.42);
-			
+			padding: $vertical-unit/2 $gutter;
+			background-color: $brand-yellow;
 			.is-label {
-				color: $white;
+				color: $black;
 				text-transform: uppercase;
 			}
 			p {
-				font-size: 1.25rem;
-				//font-weight: 200;
+				font-size: 1.125rem;
 				margin: 0;
-				@include makeFlexbox($align: stretch, $inline: true);
+				
 			}
 			a {
+				@include makeFlexbox($align: center, $inline: true);
 				text-decoration: none;
 				&:active, &:hover, &:focus {
 					text-decoration: underline;
 				}
 			}
 			.svg-icon {
-				fill: $white;
-				max-height: 1.5rem;
+				margin-left: $gutter/4;
+				max-height: 1.25rem;
 				max-width: 2rem;
 			}
 			

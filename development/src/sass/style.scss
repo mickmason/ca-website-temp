@@ -285,7 +285,7 @@ a {
 	padding-top: 0;
 }
 .bc-breadcrumbs-links {
-	height: calc(6.4vh - #{$gutter}/2);
+	height: calc(6.4vh); 
 	&.active {
 		height: auto;
 	}
@@ -720,6 +720,9 @@ main {
 
 @import 'components/two-col-feature'; 
 @import 'components/bc-landing-hero-video';  
+
+
+
 /** Two-col feature - has an image and a text block **/
 .two-col-feature {
 	align-items: flex-start;

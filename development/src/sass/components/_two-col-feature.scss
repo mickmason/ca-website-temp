@@ -1,7 +1,7 @@
 /** Two-col feature - has an image and a text block **/
 .two-col-feature {
 	@include makeRow($align: center);
-	padding: $gutter $gutter/2 $gutter*2 $gutter/2 ;
+	padding: 0 $gutter/2 $gutter*2 $gutter/2 ;
 	position: relative;
 	overflow: hidden;
 	.short-col, .long-col {
