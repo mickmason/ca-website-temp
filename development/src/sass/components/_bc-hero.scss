@@ -8,6 +8,7 @@
 		flex-basis: 87.5%;
 		@include makeFlexbox($direction: column, $align: stretch);
 		width: 100%;
+		overflow: hidden;
 		&.has-feature-bg-image {
 			.bc-hero-footer, .bc-hero-body, .bc-hero-header {
 				background-color: rgba($black, 0.4);

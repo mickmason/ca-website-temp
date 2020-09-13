@@ -39,6 +39,7 @@
 			height: 10%;
 			align-items: stretch;
 			transition: background-color $buttonTransition $easing;
+			z-index: 20;
 			&.menu-active {
 				background-color: $white;
 				.bc-header-logo {
@@ -245,9 +246,6 @@
 			}
 		}
 		@media screen and (min-width: 720px) {
-			.bc-hero-header {
-				z-index: 10;
-			}
 			.bc-hero-image {
 				flex-basis: 100%;
 				z-index: 1;
@@ -472,5 +470,89 @@
 				}
 			}
 		}// &--video
+		&--carousel {
+			.bc-hero__carousel {
+				height: 100%;
+				width: 100%;
+				display: flex; 
+				.flickity-viewport {
+					width: 100%;
+				}
+			}
+			.bc-hero__carousel__slide {
+				display: block;
+				min-width: 100%;
+				min-height: 100%;
+				position: relative;
+				margin-right: $gutter/2;
+					&__img {
+						position: absolute;
+						object-position: center;
+						display: block;
+						object-fit: cover;
+						width: 100%;
+					}
+			}
+			//Controls and caption for the carousel
+			.bc-hero__carousel__info {
+				display: flex;
+				width: 100%;
+				margin-bottom: 4%;
+			}
+			.bc-hero__carousel__info__text, .bc-hero__carousel__controls {
+				padding: 1rem;
+			}
+			.bc-hero__carousel__info__text {
+				flex: 1 1 80% ;
+				display: flex;
+				flex-direction: column;
+				
+				background-color: $brand-yellow;
+				.is-label {
+					margin-bottom: $vertical-unit/4;
+				}	
+				.bc-hero__carousel__title {
+					font-weight: 500;
+					font-size: 1.25rem;
+					margin-top: 0;
+				}
+			}
+			.bc-hero__carousel__controls {
+				flex: 1 1 20%;
+				display: flex;
+				align-items: flex-end;
+				flex-wrap: wrap;
+				padding-left: 	$gutter/4;
+				padding-right:  $gutter/4;
+				&__play {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+					padding: $gutter/2 $gutter/4;
+					.is-label {
+						color: $shade-01;	
+					}
+					.play {
+						display: none;
+					}
+				}
+				&__next, &__prev {
+					flex: 0 1 50%;
+					max-width: 50%;
+					padding: $gutter/4 ;
+				}
+				&__next > .svg-icon, &__prev > .svg-icon {
+					max-width:  1.714rem;
+					max-height: 1.714rem;
+					fill: $shade-01;
+				}
+			}
+			@media screen and (min-width: $desktop) {
+				.bc-hero__carousel__info {
+					margin-bottom: 2%;
+				}
+			}
+		}// &--carousel
 	}// &.bc-landing-hero
 }// .bc-hero

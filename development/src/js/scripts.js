@@ -406,10 +406,21 @@
 		});
 		sliderNext.addEventListener('click', (e) => {
 			flkty.next();
-			
 		});
 		sliderPrev.addEventListener('click', (e) => {
 			flkty.previous();
+		});
+	}
+	if (document.querySelector('.bc-hero--landing-hero--carousel')) {
+		const elem = document.querySelector('.bc-hero--landing-hero--carousel .bc-hero__carousel');
+		const flkty = new Flickity( elem, {
+			pageDots: false,
+			prevNextButtons: false,
+			cellSelector: '.bc-hero__carousel__slide',
+			imagesLoaded: true,
+			autoPlay: false,
+			fade: true,
+			setGallerySize: false
 		});
 	}
 	/** 
