@@ -107,7 +107,7 @@
 			@include makeFlexbox($direction: row, $justify: flex-start, $align: stretch);
 			padding: 		$gutter/1.5 ;
 			padding-left: 0;
-			margin-bottom: 	4%;
+			margin-bottom: 	2%;
 			background-color: $white;
 			color: $black;
 			.svg-icon {
@@ -471,6 +471,9 @@
 			}
 		}// &--video
 		&--carousel {
+			.bc-hero-body {
+				bottom: 10%;
+			}
 			.bc-hero__carousel {
 				height: 100%;
 				width: 100%;
@@ -495,19 +498,23 @@
 			}
 			//Controls and caption for the carousel
 			.bc-hero__carousel__info {
+				position: absolute;
 				display: flex;
+				align-items: center;
+				max-width: 92%;
 				width: 100%;
-				margin-bottom: 4%;
+				bottom: 1%;
+				left: 4%;
 			}
 			.bc-hero__carousel__info__text, .bc-hero__carousel__controls {
-				padding: 1rem;
+				padding: $gutter/2;
 			}
 			.bc-hero__carousel__info__text {
 				flex: 1 1 80% ;
 				display: flex;
 				flex-direction: column;
 				
-				background-color: $brand-yellow;
+				background-color: $shade-02;
 				.is-label {
 					margin-bottom: $vertical-unit/4;
 				}	
@@ -521,14 +528,12 @@
 				flex: 1 1 20%;
 				display: flex;
 				align-items: flex-end;
-				flex-wrap: wrap;
 				padding-left: 	$gutter/4;
 				padding-right:  $gutter/4;
 				&__play {
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					width: 100%;
 					padding: $gutter/2 $gutter/4;
 					.is-label {
 						color: $shade-01;	
@@ -542,10 +547,26 @@
 					max-width: 50%;
 					padding: $gutter/4 ;
 				}
-				&__next > .svg-icon, &__prev > .svg-icon {
+				.svg-icon {
 					max-width:  1.714rem;
 					max-height: 1.714rem;
 					fill: $shade-01;
+				}
+				.stop, .play {
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.play {
+					display: none;
+				}
+				.stop {
+					.svg-icon {
+						line {
+							
+							stroke: $shade-01;	
+						}
+					}
 				}
 			}
 			@media screen and (min-width: $desktop) {
