@@ -1,11 +1,10 @@
 (function CACustomScripts() {
 	/**
 		Polyfill for ChildNode.remove() for IE 11+
-		
 		From https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove#Polyfill
 		Who got it from https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
-		
 		**/
+	const debug = false;
 	(function (arr) {
 		arr.forEach(function (item) {
 			if (item.hasOwnProperty('remove')) { 
@@ -209,41 +208,61 @@
 		Animation functions
 		*/
 	//Liner interpolation
-	let i = 0;
-	function lerpScroll($el, pos, target) {
+	
+	if (debug) {
+		var i = 0;	
+	}
+	
+	function lerpScroll($el, pos, target, speed = 0.075) {
+		if (debug) {
+			console.log(`Lerp ${i}`); 
+			console.log(`---------`); 	
+		}
 		
-		console.log(`Lerp ${i}`); 
-		console.log(`---------`); 
 		const scrollOptions = {};
 		if (Math.round(target) > Math.round(pos)) {
-			console.log(`${pos} ${target}`);
-			console.log(`${(pos - target)}`);
-			pos += (target - pos) * 0.1; 
-			console.log(`${pos} ${target}`);
+			if (debug) {
+				console.log(`${pos} ${target}`);
+				console.log(`${(pos - target)}`);
+			}
+			pos += (target - pos) * speed; 
+			if (debug) { 
+				console.log(`${pos} ${target}`);
+			}
 			scrollOpts = {
 				top: pos,
 				left: 0,
 				behavior: 'auto'
 			};
 			$el.scroll(0, pos);
-			console.log(`${$el.scrollY}`);
-			i++;
+			if (debug) {
+				console.log(`${$el.scrollY}`);
+				i++;
+			}
+			
+			
 			requestAnimationFrame(() => {
 				lerpScroll($el, pos, target); 
 			});
 		} else if (Math.round(pos) > Math.round(target)) {
-			console.log(`${pos} ${target}`);
-			console.log(`${(pos - target)}`);
-			pos -= (pos - target) * 0.15; 
-			console.log(`${pos} ${target}`);
+			if (debug) {
+				console.log(`${pos} ${target}`);
+				console.log(`${(pos - target)}`);
+			}
+			pos -= (pos - target) * speed; 
+			if (debug) {
+				console.log(`${pos} ${target}`);	
+			}
 			scrollOpts = {
 				top: pos,
 				left: 0,
 				behavior: 'auto'
 			};
 			$el.scroll(scrollOpts);
-			console.log(`${$el.scrollY}`);
-			i++;
+			if (debug) {
+				console.log(`${$el.scrollY}`);
+			i++;	
+			}
 			requestAnimationFrame(() => {
 				lerpScroll($el, pos, target);
 			});
@@ -380,7 +399,8 @@
 		const flkty = new Flickity( elem, {
 			pageDots: false,
 			prevNextButtons: false,
-			cellSelector: '.bc-hero--slider-slide'
+			cellSelector: '.bc-hero--slider-slide',
+			imagesLoaded: true
 		});
 		const slidesLength = flkty.slides.length;
 		const slidesCount = document.querySelector('.bc-hero--slider .bc-hero--slider__counter .bc-hero--slider__counter__count');
@@ -463,59 +483,6 @@
 		}
 	});//On page scroll
 	
-	/**
-		Scroll to top 
-		*/
-	/*if ($topLink) {
-		$topLink.addEventListener('click', (evt) => {
-			requestAnimationFrame(() => {
-				lerpScroll(window, window.scrollY, 0);
-			});
-		});	
-	}*/
-	/** 
-		More link in heros 
-		*/
-	function pageScrollCallback(event) {
-		console.log(event);
-		event.preventDefault();
-		const target = document.querySelector(event.currentTarget.getAttribute('href'));
-		console.log(target);
-		if (target) {
-			lerpScroll(window, window.scrollY, target.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);	
-		}
-		
-	}
-	if (document.querySelectorAll('.is-page-scroll')) {
-		$scrollers = Array.apply(null, document.querySelectorAll('.is-page-scroll')); 
-		
-		for (let $scroller of $scrollers) {
-			$scroller.addEventListener('click', pageScrollCallback);	
-		}
-			
-	}
-	
-	/** 
-		Hero body links 
-		*/
-	const $heroBodyLinks = document.querySelectorAll('.bc-hero-body-link > a');
-	function _addLinkClick($el) {
-		$el.addEventListener('click', (evt) => {
-			evt.preventDefault();
-			evt.stopPropagation();
-			const $linkTarget = document.querySelector($el.getAttribute('href'));
-			if ($linkTarget) {
-				lerpScroll(window, window.scrollY, $linkTarget.getBoundingClientRect().top + window.pageYOffset || document.documentElement.scrollTop);
-			} else {
-				return;
-			}
-		});			
-	}
-	if ($heroBodyLinks.length > 0) {
-		for (const $link of $heroBodyLinks) {
-			_addLinkClick($link);
-		}
-	}
 	/** 
 		CA Projects: Load projects
 		Project filters
@@ -711,11 +678,9 @@
 			addClassTimed('.bc-fade-in-up', 'bc-fade-in-up--loaded', 160);	
 		}
 	});// window.onload
-	/*if (document.querySelector('.bc-inner-nav')) {
-		bcInnerNav(document.querySelector('.bc-inner-nav')); 
-	}*/
+	
 	const projectsFilter = 'all-projects';
-	//writeProjects(null, projects);
+	
 	//the Projects grid
 	function filterCAProjects(fltr) {
 		/* https://new.cooneyarchitects.com/new-site/projects/projects.html*/
@@ -788,21 +753,54 @@
 		});
 		
 	}//end if .ca-projects-grid
-	/*window.onload =  (e) => {
-		console.log(location.hash);
+	window.onload =  (e) => {
+		//Scroll to #page-section
 		if (location.hash !== '') {
 			requestAnimationFrame(() => {
 				lerpScroll(window, window.pageYOffset, getOffset(document.querySelector(location.hash)).top);
-				
 			});
 			console.log('window Y offset: '+window.pageYOffset);
 		}
-	};*/
-	if (document.querySelector('.is-inner-page')) {
-		const $backLink = document.querySelector('.page-bottom-links-back-link');
-		console.log(document.referrer);
-		$backLink.setAttribute('href', document.referrer);
-	}
+		//Back to previous page
+		if (document.querySelector('.is-inner-page')) {
+			const $backLink = document.querySelector('.page-bottom-links-back-link');
+			$backLink.setAttribute('href', document.referrer);
+		}
+		const $pageScrollers = (document.querySelectorAll('.is-page-scroll')) ? Array.from(document.querySelectorAll('.is-page-scroll')) : null ;
+		if ($pageScrollers && $pageScrollers.length > 0) {
+			$pageScrollers.forEach(($link, idx) => {
+				$link.addEventListener('click', (evt) => {
+					evt.preventDefault();
+					console.log(getOffset($link).top);
+					const $parentHero = $link.closest('.bc-content-container');
+					const $nextSection = $parentHero.nextElementSibling;
+					lerpScroll(window, window.scrollY, getOffset(document.querySelector($link.getAttribute('href'))).top, 0.025);
+				});
+			});
+		}
+		//Hero scroll link
+		const $heroScrollLink = (document.querySelectorAll('.bc-hero-footer__scroll > a')) ? Array.from(document.querySelectorAll('.bc-hero-footer__scroll')) : null ;
+		if ($heroScrollLink && $heroScrollLink.length > 0) {
+			$heroScrollLink.forEach(($link, idx) => {
+				$link.addEventListener('click', (evt) => {
+					evt.preventDefault();
+					console.log(getOffset($link).top);
+					const $parentHero = $link.closest('.bc-content-container');
+					const $nextSection = $parentHero.nextElementSibling;
+					lerpScroll(window, window.scrollY, getOffset($nextSection).top, 0.025);
+				});
+			});
+		}
+		//Back to the top of the page
+		const $topLink = (document.querySelectorAll('.page-bottom-links-top-link')) ? document.querySelector('.page-bottom-links-top-link') : null ;
+		if ($topLink) {
+			$topLink.addEventListener('click', (evt) => {
+				evt.preventDefault();
+				console.log(window.pageXOffset);
+				lerpScroll(window, window.scrollY, 0, 0.025);
+			});
+		}
+	};
 })();
 
 
