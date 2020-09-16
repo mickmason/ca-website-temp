@@ -443,6 +443,55 @@
 			setGallerySize: false
 		});
 	}
+	if (document.querySelector('.bc-hero--landing-hero--carousel.bc-design-process')) { 
+		const elem = document.querySelector('.bc-hero--landing-hero--carousel.bc-design-process .bc-hero__carousel');
+		const $designProcessFlkty = new Flickity( elem, {
+			pageDots: false,
+			prevNextButtons: false,
+			cellSelector: '.bc-hero__carousel__slide',
+			imagesLoaded: true,
+			autoPlay: false,
+			fade: true,
+			setGallerySize: false
+		});
+		
+		const $coverPlayLink = document.querySelector('.bc-hero-body-subtext > a');
+		$coverPlayLink.addEventListener('click', (evt) => { 
+			evt.preventDefault();
+			$designProcessFlkty.select(1, false, false);
+		});
+		//Controls
+		const $controlsPrev = document.querySelector('.bc-design-process .bc-hero__carousel__control--prev');
+		$controlsPrev.addEventListener('click', (evt) => {
+			evt.preventDefault();
+			if ($designProcessFlkty.selectedIndex !== 0) {
+				$designProcessFlkty.previous(false, false);	
+				if ($designProcessFlkty.selectedIndex === 0) {
+					evt.currentTarget.classList.add('is-disabled');
+				}
+			}
+		});
+		const $controlsNext = document.querySelector('.bc-design-process .bc-hero__carousel__control--next');
+		$controlsNext.addEventListener('click', (evt) => {
+			evt.preventDefault();
+			if ($designProcessFlkty.selectedIndex !== $designProcessFlkty.cells.length -1) {
+				$designProcessFlkty.next(false, false);	
+				if ($designProcessFlkty.selectedIndex === $designProcessFlkty.cells.length -1) {
+					evt.currentTarget.classList.add('is-disabled');
+				}
+			}
+		});
+		$designProcessFlkty.on('settle', (idx) => {
+			console.log('change '+idx);
+			if (idx !== 0) {
+				document.querySelectorAll('.bc-hero__carousel__control')[0].classList.remove('is-hidden');
+				document.querySelectorAll('.bc-hero__carousel__control')[1].classList.remove('is-hidden');
+			} else {
+				document.querySelectorAll('.bc-hero__carousel__control')[0].classList.add('is-hidden');
+				document.querySelectorAll('.bc-hero__carousel__control')[1].classList.add('is-hidden');
+			}
+		});
+	}
 	/** 
 		Global scroll events 
 		*/

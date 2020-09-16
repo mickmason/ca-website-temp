@@ -58,18 +58,6 @@
 				background-color: $brand-yellow;
 			}
 		}
-		&--plain-text {
-			.bc-card-content {
-				background-color: $brand-yellow;
-				color: $black;
-				.svg-icon {
-					fill: $white;
-				}
-				&:hover, &:focus, &:active {
-					background-color: darken($brand-yellow, 16%);
-				}
-			}
-		}
 	}
 	.bc-general-content {
 		.ca-button {
@@ -212,15 +200,7 @@
 				background-color: $brand-red;
 			}
 		}//&.bc-card--slide-up-overlay
-		&--plain-text {
-			.bc-card-content {
-				background-color: $brand-red;
-				color: $white;
-				&:hover, &:focus, &:active {
-					background-color: darken($brand-red, 8%); 
-				}
-			}
-		}
+		
 	}//bc-card
 	.bc-general-content {
 		a {
@@ -350,15 +330,6 @@
 		&.person-card {
 			.bc-card-content {
 				.bc-card-subtitle {	color: $brand-blue; }	
-			}
-		}
-		&--plain-text {
-			.bc-card-content {
-				background-color: $brand-blue;
-				color: $white;
-				&:hover, &:focus, &:active {
-					background-color: darken($brand-blue, 8%);
-				}	
 			}
 		}
 	}// .bc-card

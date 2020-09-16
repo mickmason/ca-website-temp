@@ -474,106 +474,216 @@
 			.bc-hero-body {
 				bottom: 10%;
 			}
-			.bc-hero__carousel {
-				height: 100%;
-				width: 100%;
-				display: flex; 
-				.flickity-viewport {
-					width: 100%;
-				}
-			}
-			.bc-hero__carousel__slide {
-				display: block;
-				min-width: 100%;
-				min-height: 100%;
-				position: relative;
-				margin-right: $gutter/2;
-					&__img {
-						position: absolute;
-						object-position: center;
-						display: block;
-						object-fit: cover;
-						width: 100%;
-					}
-			}
-			//Controls and caption for the carousel
-			.bc-hero__carousel__info {
-				position: absolute;
-				display: flex;
-				align-items: center;
-				max-width: 92%;
-				width: 100%;
-				bottom: 1%;
-				left: 4%;
-			}
-			.bc-hero__carousel__info__text, .bc-hero__carousel__controls {
-				padding: $gutter/2;
-			}
-			.bc-hero__carousel__info__text {
-				flex: 1 1 80% ;
-				display: flex;
-				flex-direction: column;
-				
-				background-color: $shade-02;
-				.is-label {
-					margin-bottom: $vertical-unit/4;
-				}	
-				.bc-hero__carousel__title {
-					font-weight: 500;
-					font-size: 1.25rem;
-					margin-top: 0;
-				}
-			}
-			.bc-hero__carousel__controls {
-				flex: 1 1 20%;
-				display: flex;
-				align-items: flex-end;
-				padding-left: 	$gutter/4;
-				padding-right:  $gutter/4;
-				&__play {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					padding: $gutter/2 $gutter/4;
-					.is-label {
-						color: $shade-01;	
-					}
-					.play {
-						display: none;
-					}
-				}
-				&__next, &__prev {
-					flex: 0 1 50%;
-					max-width: 50%;
-					padding: $gutter/4 ;
-				}
-				.svg-icon {
-					max-width:  1.714rem;
-					max-height: 1.714rem;
-					fill: $shade-01;
-				}
-				.stop, .play {
-					display: inline-flex;
-					align-items: center;
-					justify-content: center;
-				}
-				.play {
-					display: none;
-				}
-				.stop {
-					.svg-icon {
-						line {
-							
-							stroke: $shade-01;	
-						}
-					}
-				}
-			}
-			@media screen and (min-width: $desktop) {
-				.bc-hero__carousel__info {
-					margin-bottom: 2%;
-				}
-			}
 		}// &--carousel
+		&.bc-design-process {
+			height: calc(86.6vh - (1.5rem/2));
+			padding-top: 0;
+			padding-bottom: 4rem;
+			@media screen and (min-width: $desktop) {
+				padding-bottom: 0;
+				
+			}
+		}
 	}// &.bc-landing-hero
 }// .bc-hero
+
+.bc-hero__carousel {
+	height: 100%;
+	width: 100%;
+	display: flex; 
+	.flickity-viewport {
+		width: 100%;
+	}
+}
+.bc-hero__carousel__slide {
+	display: block;
+	min-width: 100%;
+	min-height: 100%;
+	position: relative;
+	margin-right: $gutter/2;
+	&__text {
+		position: absolute;
+		width: calc(100% - #{$gutter});
+		margin-left: $gutter/2;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		z-index: 20;
+		color: $white;
+		h1 {
+			margin-bottom: 0.25rem;
+		}
+		.svg-icon {
+			fill: $white;
+			max-width:  2.5rem;
+			max-height: 2.5rem;
+			margin-left: $gutter;
+		}
+		a {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+		}
+	}
+	&__img {
+		position: absolute;
+		object-position: center;
+		display: block;
+		object-fit: cover;
+		width: 100%;
+	}
+	&__overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($black, 0.4);
+		z-index: 10;
+	}
+}
+//Controls and caption for the carousel
+.bc-hero__carousel__info {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	max-width: 92%;
+	width: 100%;
+	bottom: 1%;
+	left: 4%;
+}
+.bc-hero__carousel__info__text, .bc-hero__carousel__controls {
+	padding: $gutter/2;
+}
+.bc-hero__carousel__info__text {
+	flex: 1 1 80% ;
+	display: flex;
+	flex-direction: column;
+	
+	background-color: $shade-02;
+	.is-label {
+		margin-bottom: $vertical-unit/4;
+	}	
+	.bc-hero__carousel__title {
+		font-weight: 500;
+		font-size: 1.25rem;
+		margin-top: 0;
+	}
+}
+.bc-hero__carousel__controls {
+	flex: 1 1 20%;
+	display: flex;
+	align-items: flex-end;
+	padding-left: 	$gutter/4;
+	padding-right:  $gutter/4;
+	&__play {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: $gutter/2 $gutter/4;
+		.is-label {
+			color: $shade-01;	
+		}
+		.play {
+			display: none;
+		}
+	}
+	&__next, &__prev {
+		flex: 0 1 50%;
+		max-width: 50%;
+		padding: $gutter/4 ;
+	}
+	.svg-icon {
+		max-width:  1.714rem;
+		max-height: 1.714rem;
+		fill: $shade-01;
+	}
+	.stop, .play {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.play {
+		display: none;
+	}
+	.stop {
+		.svg-icon {
+			line {
+				stroke: $shade-01;	
+			}
+		}
+	}
+}
+.bc-design-process {
+	.bc-hero__carousel__slide:not(.cover-slide) {
+		img {
+			object-fit: contain;
+		}
+	}
+	.bc-hero-block {
+		overflow: visible;
+	}
+	.bc-hero__carousel__control {
+		position: absolute;
+		bottom: calc(-4rem + 0.25rem);
+		z-index: 30;
+		@include makeFlexbox(column, center, center);
+		padding: $vertical-unit/2;
+		background-color: $offwhite;
+		transition: background-color $quicktrans $easing, opacity $quicktrans $easing;
+		&--prev {
+			left: auto;
+			right: calc(50% + #{$gutter}/2); 
+		}
+		&--next {
+			left: calc(50% + #{$gutter}/2);
+			right: auto;
+		}
+		&:not(.is-disabled) {
+			&:hover, &:active, &:focus {
+				background-color: $shade-superlight;
+				outline: 1px dotted $shade-light;
+			}	
+		}
+		&:hover {
+			cursor: pointer;
+		}
+		&.is-disabled {
+			opacity: 0.48;
+		}
+		.svg-icon {
+			max-width: 	1.618rem;
+			max-height: 1.618rem;
+		}
+		&.is-hidden {
+			opacity: 0;
+		} 
+		@media screen and (min-width: 600px) {
+			.svg-icon {
+				max-width: 	3rem;
+				max-height: 3rem;
+			}
+			
+			top: 50%;
+			bottom: auto;
+			transform: translateY(-50%);
+			&--next {
+				left: auto;
+				right: 0;
+			}
+			&--prev {
+				left: 0;
+				right: auto;
+			}
+		}
+	}
+}
+@media screen and (min-width: $desktop) {
+	.bc-hero__carousel__info {
+		margin-bottom: 2%;
+	}
+	.bc-hero__carousel__slide {
+		&__text {
+			width: calc(100% - 10%);
+			margin-left: 10%;
+		}
+	}
+}

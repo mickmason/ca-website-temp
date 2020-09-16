@@ -25,20 +25,14 @@
 			margin-top: 0;
 		}
 		&--indented {
-			@media screen and (min-width: $desktop) {
-				flex-basis: 80%;
-				max-width: (8/$gridColsCount*100%);
-				margin-left: (1/$gridColsCount*100%);
-			}
-			@media screen and (min-width: 1200px) {
-			/*	flex-basis: 50%;
-				max-width: (5/$gridColsCount*100%);
-				margin-left: (2.5/$gridColsCount*100%);*/
+			
+			@media screen and (min-width: 1240px) {
+				flex-basis: 60%;
+				max-width: 60%;
+				margin-left: (2/$gridColsCount*100%);
 			}
 			@media screen and (min-width: $laptop) {
-				flex-basis: 60%;
-				max-width: (6/$gridColsCount*100%);
-				margin-left: (2/$gridColsCount*100%);
+				
 			}
 		}
 	}

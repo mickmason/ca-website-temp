@@ -27,7 +27,7 @@ html {
 }
 @media screen and (min-width: $xx-large) {
   html {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 body {
@@ -191,6 +191,9 @@ a {
 			height: 1.125rem;
 		}
 	}
+}
+.bc-feature-leader__content {
+	max-width: #{(740/14)}rem;
 }
 @import 'framework/grid'		;
 @import 'framework/layout'	; 
@@ -419,7 +422,7 @@ main {
 		&--plain-text {
 			.bc-card-content {
 				.bc-card-title {
-					font-size: 1.75rem;
+					font-size: 1.125rem;
 				}
 			}
 		}
@@ -456,13 +459,6 @@ main {
 				font-size: 0.95rem;
 			}
 		}	
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.75rem;
-				}
-			}
-		}
 	}
 	@media screen and (min-width: $desktop) {
 		flex-basis: 25%;
@@ -493,13 +489,6 @@ main {
 			}
 		}
 		
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.75rem;
-				}
-			}
-		}
 		&.ca-values-card {
 			.bc-card-content {
 				&-heading {
@@ -512,7 +501,13 @@ main {
 				font-size: 1.125rem;
 			}
 		}//&.ca-values-card
-		
+		&--plain-text {
+			.bc-card-content {
+				.bc-card-title {
+					font-size: 1.125rem;
+				}
+			}
+		}
 	}
 	@media screen and (min-width: $laptop) {
 		flex-basis: 20%;
@@ -549,7 +544,7 @@ main {
 		&--plain-text {
 			.bc-card-content {
 				.bc-card-title {
-					font-size: 1.75rem;
+					font-size: 1.125rem;
 				}
 			}
 		}
@@ -593,7 +588,7 @@ main {
 		&--plain-text {
 			.bc-card-content {
 				.bc-card-title {
-					font-size: 1.75rem;
+					font-size: 1.125rem;
 				}
 			}
 		}
@@ -630,11 +625,7 @@ main {
 		&--plain-text {
 			.bc-card-content {
 				.bc-card-title {
-					font-size: 1.5rem;
-				}
-				.svg-icon {
-					max-width: 2.75rem;
-					max-height: 2.75rem;
+					font-size: 1.125rem;
 				}
 			}
 		}

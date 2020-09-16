@@ -23,6 +23,10 @@
 	flex-basis: 100% ;
 	max-width: 100% ;
 	color: $white;
+	& &-title {
+		margin-bottom: 0.25rem;
+	}
+
 	.svg-icon {
 		fill: 				$white;
 	}
@@ -182,6 +186,7 @@
 			.bc-card-content {
 				.bc-card-title {
 					font-size: 1rem;
+					
 				}
 			}
 		}
@@ -189,50 +194,36 @@
 	
 	/* We are real card */
 	&--plain-text {
-		.bc-card-content {
-			height: 100%;
-			background-color: $shade-light; 
-			transition: background-color $menuSlideTransition $easing;
-			> a {
-				justify-content: center;
-				align-items: center;
-				padding: 0; 
-			}
-			.bc-card-title {
-				text-align: center;
-				font-size: 2rem;
-				font-weight: 300;
-				font-style: italic;
-			}
-			.svg-icon {
-				max-width: 	3rem;
-				max-height: 3rem;
-				fill: $white;
-			}
-			
-		}
+		@extend .bc-card;
 		
-		&.is-square {
-			.bc-card-content {
-				@include isSquare;
-				> a {
-					position: absolute;
-					top: 0;
-					left: 0;
-					bottom: 0;
-					right: 0;
-				}
+		.bc-card-title {
+			font-size: 1.125rem;
+			font-weight: 500;
+			margin-bottom: 0.25rem;
+		}
+		p {
+			font-weight: 300;
+			margin-top: 0;
+		}
+		.bc-card-content {
+			justify-content: center;
+			padding: 0; 	
+			background-color: transparent;
+			color: $black;
+		}
+		.svg-icon {
+			fill: $black;
+		}
+		.ca-arrow-link {
+			font-weight: 400;
+		}
+		@media screen and (min-width: 1240px) {
+			.bc-card-title {
+				font-size: 1.25rem;	
 			}
 		}
-		&:hover, &:focus, &:active {
-			.bc-card-content {
-				background-color: $shade-mid;
-				.bc-card-content {
-					.bc-card-title {
-						text-decoration: underline;
-					}
-				}	
-			}
+		@media screen and (min-width: 500px) {
+			margin-bottom: 3rem;
 		}
 	}// .bc-card--plain-text
 	&.ca-values-card {
