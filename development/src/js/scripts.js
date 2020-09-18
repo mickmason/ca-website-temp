@@ -4,7 +4,7 @@
 		From https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove#Polyfill
 		Who got it from https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
 		**/
-	const debug = false;
+	const debug = true;
 	(function (arr) {
 		arr.forEach(function (item) {
 			if (item.hasOwnProperty('remove')) { 
@@ -216,9 +216,8 @@
 	function lerpScroll($el, pos, target, speed = 0.075) {
 		if (debug) {
 			console.log(`Lerp ${i}`); 
-			console.log(`---------`); 	
+			console.log(`---------`);
 		}
-		
 		const scrollOptions = {};
 		if (Math.round(target) > Math.round(pos)) {
 			if (debug) {
@@ -239,8 +238,6 @@
 				console.log(`${$el.scrollY}`);
 				i++;
 			}
-			
-			
 			requestAnimationFrame(() => {
 				lerpScroll($el, pos, target); 
 			});
@@ -269,7 +266,74 @@
 		} else {
 			return;
 		} 
+	}//Lerp scroll
+	let isLerpHeightTicking = false;
+	function adjustHeight($el, target, speed = 0.075, cb = null) {
+		if (isLerpHeightTicking === true) {
+			return;
+		}
+		lerpHeight($el, target, speed) ;	
+		function lerpHeight($el, target, speed = 0.075) {
+			isLerpHeightTicking = true;
+			if (debug) {
+				console.log(`$el height: ${$el.style.height}`); 
+			}
+			let h = ($el.style.height !== '' && $el.style.height !== undefined ) ? parseFloat($el.style.height) : $el.clientHeight;
+			if (debug) {
+				if (i > 500) {
+					return;
+				}
+				console.log(`Lerp ${i}`); 
+				console.log(`---------`);
+				console.log(`Height: ${h} Target: ${target}`);
+				console.log(`Difference: ${(h - target)}`);
+			}
+			if (Math.round(target) > Math.round(h)) {
+				if (debug) {
+					console.log(`Target > Height`);
+					console.log(`Raw height to add: ${(target - h) * speed}`); 
+				}
+				h += (target - h) * speed; 
+				if (debug) { 
+					console.log(`New height: ${h} Target: ${target}`);
+				}
+				$el.style.height = h + 'px';
+				if (debug) {
+					console.log(`Element style.height: ${$el.style.height}`);
+					i++;
+				}
+				requestAnimationFrame(() => {
+					lerpHeight($el, target, speed); 
+				});
+			} else if (Math.round(h) > Math.round(target)) {
+				if (debug) {
+					console.log(`Height > Target`);
+					console.log(`Raw height to subtract: ${(h - target) * speed}`); 
+				}
+				h -= (h - target) * speed; 
+				if (debug) {
+					console.log(`New height: ${h} Target: ${target}`);	
+				}
+				$el.style.height = h + 'px';
+				if (debug) {
+					console.log(`${$el.style.height}`);
+				i++;	
+				}
+				requestAnimationFrame(() => {
+					lerpHeight($el, target, speed);
+				});
+			} else {
+				isLerpHeightTicking = false;
+				return;
+			} 
+		}//Lerp scroll
+		if (typeof cb === 'function') {
+			cb();	
+		}
+		
+		return;
 	}
+	
 	/* Window scrolling */
 	let lastScrollY 		= window.scrollY;
 	let thisScrollY 		= 0;
@@ -433,12 +497,12 @@
 	}
 	if (document.querySelector('.bc-hero--landing-hero--carousel')) {
 		const elem = document.querySelector('.bc-hero--landing-hero--carousel .bc-hero__carousel');
-		const flkty = new Flickity( elem, {
+		const $landingHeroFlkty = new Flickity( elem, {
 			pageDots: false,
 			prevNextButtons: false,
 			cellSelector: '.bc-hero__carousel__slide',
 			imagesLoaded: true,
-			autoPlay: false,
+			autoPlay: true,
 			fade: true,
 			setGallerySize: false
 		});
@@ -454,7 +518,6 @@
 			fade: true,
 			setGallerySize: false
 		});
-		
 		const $coverPlayLink = document.querySelector('.bc-hero-body-subtext > a');
 		$coverPlayLink.addEventListener('click', (evt) => { 
 			evt.preventDefault();
@@ -735,15 +798,15 @@
 		/* https://new.cooneyarchitects.com/new-site/projects/projects.html*/
 		/* http://localhost:9001/data/projects.json */
 		return new Promise((resolve, reject) => {
-			getJSON('https://new.cooneyarchitects.com/new-site/data/projects.json', {cache: 'no-cache'}).then((data) => {
+			getJSON('http://localhost:9001/data/projects.json', {cache: 'no-cache'}).then((data) => {
 				return data.json();
 			}).then((projects) => {
 				if (true) {
 					//No cookie set
-					writeCAProjects(projects, fltr); 
+					//writeCAProjects(projects, fltr); 
 				} else {
-					const projectFilter = 'project-category';	 //get cookie value
-					writeCAProjects(projects, fltr);
+					//const projectFilter = 'project-category';	 //get cookie value
+					//writeCAProjects(projects, fltr);
 				}
 				resolve(true);
 			}).catch((err) => {
@@ -752,38 +815,52 @@
 		});
 	}
 	function _getProjectFilter(evt) { 
-		return evt.target.getAttribute('data-filter');
+		return evt.currentTarget.getAttribute('data-filter');
 	} 
 	
-	if (_getDOMNode('.ca-projects-grid') && _getDOMNode('.ca-project-filters')) {
+	if ((_getDOMNode('.ca-projects-grid') || _getDOMNode('.bc-cards-row')) && _getDOMNode('.ca-project-filters') ) {
+		/* Set up project filters */
+		const $projectFilters = _getDOMNode('.ca-project-filters');
+		const $projectFiltersList = _getDOMNode('.ca-project-filters__list');
+		const $breadcrumbs = _getDOMNode('.bc-breadcrumbs');
+		const $breadcrumbsContainer = $breadcrumbs.closest('.bc-breadcrumbs-container');
+		const breadcrumbsContainerHeight = $breadcrumbs.clientHeight;
+		const breadcrumbsHeight = $breadcrumbs.clientHeight;
+		const projectFiltersHeight = $projectFilters.scrollHeight;
+		
+		if (debug) {
+			console.log('start projects filter init');
+		}
 		if (document.documentElement.clientWidth < 768) {
-			
-			const filtersToggler = document.querySelector('.bc-inner-nav-icon');
-			filtersToggler.addEventListener('click', (event) => {
-				console.log(`small screen`);
-				const thisDropdown = filtersToggler.nextElementSibling;
-				const thisDropdownScrollHeight = thisDropdown.scrollHeight;
-				if (hasClass(filtersToggler, 'active')) {
-					requestAnimationFrame(() => {
-						requestAnimationFrame(() => {
-							thisDropdown.removeAttribute('style');	
-							removeClass(thisDropdown, 'active');
-							removeClass(filtersToggler, 'active');
-							removeClass(filtersToggler.closest('.bc-breadcrumbs-links'), 'active');
+			if (debug) {
+				console.log('Window < 768px');
+			}
+			const filtersTogglers = Array.from(document.querySelectorAll('.ca-project-filters__label, .ca-project-filters__show-hide'));
+			filtersTogglers.forEach((filtersToggler, idx) => {
+				filtersToggler.addEventListener('click', (event) => {
+					if (debug) {
+						console.log(`click filtersToggler`);	
+					}
+					if (hasClass(filtersToggler, 'is-active')) {
+						adjustHeight($projectFilters, 0, 0.2, () => {
+							requestAnimationFrame(() => {
+								addClass($projectFiltersList, 'is-invisible');
+								removeClass(filtersToggler, 'is-active');
+							});	
 						});
-					});	
-				} else {
-					requestAnimationFrame(() => {
-						requestAnimationFrame(() => {
-							thisDropdown.style.height = thisDropdownScrollHeight + 'px';	
-							addClass(thisDropdown, 'active');
-							addClass(filtersToggler, 'active');
-							addClass(filtersToggler.closest('.bc-breadcrumbs-links'), 'active');
+						
+					} else {
+						adjustHeight($projectFilters, projectFiltersHeight + 15, 0.2, () => {
+							requestAnimationFrame(() => {
+								removeClass($projectFiltersList, 'is-invisible');
+								addClass(filtersToggler, 'is-active');
+							});	
 						});
-					});
-				}
+						
+					}
+				});
 			});
-		} 
+		} //end if window is small
 		filterCAProjects('all-projects'); 
 		const projectFilters = _getAllDOMNodes('.ca-project-filter');
 		

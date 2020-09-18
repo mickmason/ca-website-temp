@@ -1,29 +1,38 @@
 @@include('structure/level-1/header--l1.html', {"client": "Cooney Architects", "title": "Architectural work", "color-scheme": "brand-yellow-scheme"})
-		<div class="bc-content-container">
-			<nav class="bc-breadcrumbs">
+		<div class="bc-content-container bc-breadcrumbs-container">
+			<nav class="bc-breadcrumbs has-project-filter">
 				<ul class="bc-inner-nav bc-breadcrumbs-links">  
 					<li>
 						<a class="bc-breadcrumbs-link" href="../projects/projects.html">Projects</a>
-						<a class="bc-inner-nav-label" href="javascript:void(0)">
-							<span class="">Filter projects:</span>
-						</a> 
-						<a class="bc-inner-nav-icon" href="javascript:void(0)">
-							<svg class="svg-icon svg-funnel-icon"> 
-								<use xlink:href="/assets/media/svg/bc-icons.svg#funnel"></use>
-							</svg>	
-							<svg class="svg-icon svg-close-icon">
-								<use xlink:href="/assets/media/svg/bc-icons.svg#close-x"></use>
-							</svg>	
-						</a>		
-						<ul class="bc-inner-nav-dropdown ca-project-filters"> 
-							<li class="bc-inner-nav-active"><a data-filter="all-projects" class="ca-project-filter active" href="javascript:void(0)">All projects</a></li>
-							<li><a class="ca-project-filter" data-filter="project-category" href="javascript:void(0)">Category</a></li>
-							<li><a class="ca-project-filter" data-filter="project-date" href="javascript:void(0)">Date</a></li>
-						</ul>
 					</li>
-					
 				</ul><!-- // .bc-breadcrumbs-links -->
+				<div class="ca-project-filters-toggle">
+					<a class="ca-project-filters__label" href="javascript:void(0)">
+						<span class="">Filter projects:</span>
+					</a> 
+					<a class="ca-project-filters__show-hide" href="javascript:void(0)">
+						<svg class="svg-icon svg-funnel-icon"> 
+							<use xlink:href="/assets/media/svg/bc-icons.svg#funnel"></use>
+						</svg>	
+						<svg class="svg-icon svg-close-icon">
+							<use xlink:href="/assets/media/svg/bc-icons.svg#close-x"></use>
+						</svg>	
+					</a>	
+				</div>
 			</nav><!-- // .bc-breadcrumbs -->
+			<div class="ca-project-filters">
+				<ul class="ca-project-filters__list is-invisible"> 
+						<li class="bc-inner-nav-active">
+							<a data-filter="all-projects" class="ca-project-filter active" href="javascript:void(0)">All projects</a>
+						</li>
+						<li>
+							<a class="ca-project-filter" data-filter="project-category" href="javascript:void(0)">Category</a>
+						</li>
+						<li>
+							<a class="ca-project-filter" data-filter="project-date" href="javascript:void(0)">Date</a>
+						</li>
+					</ul>	
+			</div>
 		</div> 
 		<main>
 			<div class="bc-content-container"> 
