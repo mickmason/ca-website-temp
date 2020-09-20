@@ -73,3 +73,6 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+@mixin linearGradient($deg: 0deg, $stops...) {
+	background-image: linear-gradient($deg, $stops);
+}

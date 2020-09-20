@@ -502,7 +502,7 @@
 			prevNextButtons: false,
 			cellSelector: '.bc-hero__carousel__slide',
 			imagesLoaded: true,
-			autoPlay: true,
+			autoPlay: false,
 			fade: true,
 			setGallerySize: false
 		});

@@ -87,12 +87,17 @@
 				
 			}
 		}
-		
+		.bc-gradient-overlay {
+			z-index: 4;
+		}
 		@media screen and (min-width: $tablet) {
 			flex-basis: 10%;
 		}
 		
 	}// .bc-hero-footer
+	.bc-gradient-overlay {
+		z-index: 4;
+	}
 	&--in-page {
 		height: auto;
 		padding-top: 		$gutter*3;

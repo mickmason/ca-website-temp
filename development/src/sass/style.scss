@@ -195,6 +195,12 @@ a {
 .bc-feature-leader__content {
 	max-width: #{(740/14)}rem;
 }
+.bc-gradient-overlay {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	@include linearGradient(to bottom, rgba(32,32,32,0) 40%, rgba(32,32,32,1) 100%);
+}
 @import 'framework/grid'		;
 @import 'framework/layout'	; 
 @import 'framework/animations'; 
@@ -802,7 +808,11 @@ main {
 
 @import 'components/two-col-feature'; 
 @import 'components/bc-landing-hero-video';  
-
+.bc-hero--landing-hero {
+	.bc-gradient-overlay {
+		@include linearGradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.48) 80%);
+	}
+}
 
 
 /** Two-col feature - has an image and a text block **/
