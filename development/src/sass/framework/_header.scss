@@ -1,5 +1,11 @@
 header {
   box-shadow: 0 6px 10px -8px rgba(0, 0, 0, 0.4); 
+	.bc-content-container:first-of-type {
+		.bc-content-row {
+			padding-top: 0;
+			padding-bottom: 0;
+		}	
+	}
 	.bc-content-row {
 		flex-direction: row;
 		justify-content: space-between;
@@ -37,7 +43,7 @@ header {
 		@include makeFlexbox(row, center, center);
 	}
 	.svg-icon {
-		fill: $black;
+		fill: $text;
 		max-width: 	1.5rem;
 		max-height: 1.5rem;
 	}
@@ -95,6 +101,14 @@ header {
 			font-weight: 400; 
 		}
 	}
+	
+}
+@media screen and (max-width: 920px) and (orientation: landscape) {
+	.bc-header-logo {
+		> h1 {
+			font-size: 0.8rem;
+		}	
+	}
 }
 .bc-header-menu {
 	&__links {
@@ -112,6 +126,7 @@ header {
 		}
 	}
 }
+
 .bc-header-menu, .bc-hero-header {
 	.bc-header-menu__links {
 		flex: 1 1 40%;
@@ -128,6 +143,7 @@ header {
 			flex: 1 1 100%;
 			padding-top: 38%;
 			font-size: 0.92rem;
+			font-weight: 400;
 			.bc-roll-up-link {
 				&-default, &-active { 
 					transition-duration: 220ms;
@@ -137,8 +153,23 @@ header {
 		}
 		$opac: 0.72;
 		.bc-roll-up-link {
-			.bc-color-square {
-				
+			position: relative;
+			overflow: hidden;
+
+			&-default, &-active { 
+				text-align: center;
+				position: absolute;
+				@include makeFlexbox(row, center, center);
+				width: 100%;
+			}
+			&-default {
+				top: 0;
+			}
+			&-active {
+				top: 100%;
+			}	
+			&-default, &-active {
+				transition: top $buttonTransition $easing ;
 			}
 			.svg-icon {
 				fill: $black;
@@ -146,32 +177,21 @@ header {
 				max-width: 	1.4rem;
 				max-height: 1.5rem;
 			}
-			&.projects-link {
-				.bc-roll-up-link-active {
-					/*background-color: rgba($black, $opac);
-					color: $brand-yellow;
-					.svg-icon {
-						fill: $brand-yellow;
-					}*/
+			&:hover, &:active, &:focus {
+				.bc-roll-up-link-default {
+					top: -100%;
 				}
+				.bc-roll-up-link-active {
+					top: 0
+				}	
 			}
-			&.practice-link {
-				.bc-roll-up-link-active {
-					/*background-color: rgba($brand-blue, $opac);
-					color: $white;
-					.svg-icon {
-						fill: $white;
-					}*/
-				}
-			}
-			&.people-link {
-				.bc-roll-up-link-active {
-					/*background-color: rgba($brand-red, $opac); 
-					color: $white;
-					.svg-icon {
-						fill: $white;
-					}*/
-				}
+		}
+		
+	}
+	@media screen and (max-width: 920px) and (orientation: landscape) {
+		.bc-header-menu__link {
+			a {
+				font-size: 0.68rem;
 			}
 		}
 	}
@@ -222,10 +242,33 @@ header {
 	}
 }
 .bc-hero-header {
+	.bc-header-logo {
+		a {
+			color: $white;
+			transition: color 240ms ease-out;
+			@include linkHover {
+				color: $shade-01;
+				text-decoration: none;
+				
+			} 
+		}
+	}
 	.bc-header-menu__links {
 		.bc-header-menu__link {
 			a {
 				padding-top: 0;
+				color: $white; 
+				text-decoration: none;
+				transition: color 240ms ease-out;
+				@include linkHover {
+					color: $shade-01;
+					text-decoration: underline;
+				}
+			}
+		}
+		.bc-roll-up-link {
+			.svg-icon {
+				fill: $shade-01;
 			}
 		}
 	}
@@ -254,7 +297,8 @@ header {
 		display: 			inherit;
 		margin: 			0;
 		width: 				100%;
-		
+		padding-top: $gutter;
+		padding-bottom: $gutter;
 		border-bottom: 1px solid $shade-lightest;
 		li {
 			list-style: 		none;

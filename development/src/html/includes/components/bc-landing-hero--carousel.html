@@ -31,11 +31,52 @@
 								</svg>	
 							</a>
 							<ul class="bc-header-menu__links"> 
-								<li class="bc-header-menu__link"><a href="landing.html">Home</a></li>
-								<li class="bc-header-menu__link"><a href="projects/projects.html">Projects</a></li>
-								<li class="bc-header-menu__link"><a href="practice/practice.html">Practice</a></li>
-								<li class="bc-header-menu__link"><a href="people/people.html">People</a></li>
-							</ul>
+								<li class="bc-header-menu__link">
+									<a class="bc-roll-up-link" href="../landing.html">
+										<span class="bc-roll-up-link-default ">Home</span>
+										<span class="bc-roll-up-link-active ">
+											Home
+											<svg class="svg-icon scroll-down-arrow">
+												<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+											</svg>	
+										</span>
+									</a>
+								</li>
+								<li class="bc-header-menu__link">
+									<a class="projects-link bc-roll-up-link" href="../projects/projects.html">
+										<span class="bc-roll-up-link-default ">Projects</span>
+										<span class="bc-roll-up-link-active ">
+											<!--<span class="bc-color-square"></span>-->
+											Projects
+											<svg class="svg-icon scroll-down-arrow">
+												<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+											</svg>	
+										</span>
+									</a>
+								</li>
+								<li class="bc-header-menu__link">
+									<a class="practice-link bc-roll-up-link" href="../practice/practice.html">
+										<span class="bc-roll-up-link-default ">Practice</span>
+											<span class="bc-roll-up-link-active ">
+												Practice
+												<svg class="svg-icon scroll-down-arrow">
+													<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+												</svg>	
+											</span>
+										</a>
+								</li>
+								<li class="bc-header-menu__link">
+									<a class="bc-roll-up-link people-link" href="../people/people.html">
+											<span class="bc-roll-up-link-default ">People</span>
+											<span class="bc-roll-up-link-active ">
+												People
+												<svg class="svg-icon scroll-down-arrow">
+													<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+												</svg>	
+											</span>
+									</a>
+								</li>
+							</ul><!-- // .bc-header-menu__links -->
 						</div><!-- // .bc-hero-header -->
 						<div class="bc-header-menu--mobile">
 							<h3 class="bc-header-menu__heading">Site index</h3>
@@ -67,67 +108,90 @@
 									<h1>What if every single act of intervention, design and construction makes society a better place?</h1>
 							</div><!-- // .bc-landing-hero-text -->
 							<ul class="bc-landing-hero-links">
-									<li class="hero-projects-link">
-										<a class="bc-roll-up-link" href="projects/projects.html">
-											Projects	
-											<svg class="svg-icon">
-												<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
-											</svg>
-										</a>										
-									</li>
-									<li class="hero-practice-link">
-										<a class="bc-roll-up-link" href="practice/practice.html">
-											Practice
-											<svg class="svg-icon">
-												<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
-											</svg>
-										</a>
-									</li>
-									<li class="hero-people-link">
-										<a class="bc-roll-up-link" href="people/people.html">
-											People
-											<svg class="svg-icon">
-												<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
-											</svg>
-										</a>
-									</li>
-								</ul>
-								<div class="bc-hero__carousel__info">
-							<div class="bc-hero__carousel__info__text">
-								<h2 class="bc-hero__carousel__title">
-									<a href="/projects/meath-project.html">
-										<span class="bc-hero__carousel__title__text">Tallaght Stadium, North Stand</span>
+								<li class="hero-projects-link">
+									<a class="bc-roll-up-link" href="projects/projects.html">
+										Projects	
+										<svg class="svg-icon">
+											<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
+										</svg>
+									</a>										
+								</li>
+								<li class="hero-practice-link">
+									<a class="bc-roll-up-link" href="practice/practice.html">
+										Practice
 										<svg class="svg-icon">
 											<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
 										</svg>
 									</a>
-								</h2>	
-							</div>
-							<div class="bc-hero__carousel__controls">
-								<a class="bc-hero__carousel__control bc-hero__carousel__controls__prev">
-									<svg class="svg-icon">
-										<use xlink:href="assets/media/svg/bc-icons.svg#carat--left"></use>
-									</svg>	
-								</a>
-								<a class="bc-hero__carousel__control bc-hero__carousel__controls__play">
-									<span class="is-label play">
+								</li>
+								<li class="hero-people-link">
+									<a class="bc-roll-up-link" href="people/people.html">
+										People
 										<svg class="svg-icon">
-											<use xlink:href="assets/media/svg/bc-icons.svg#play--simple"></use>
-										</svg>	
-									</span>
-									<span class="is-label stop">
-										<svg class="svg-icon">
-											<use xlink:href="assets/media/svg/bc-icons.svg#pause"></use>
+											<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
 										</svg>
-									</span>
-								</a>
-								<a class="bc-hero__carousel__control bc-hero__carousel__controls__next">
-									<svg class="svg-icon">
-										<use xlink:href="assets/media/svg/bc-icons.svg#carat"></use>
-									</svg>	
-								</a>
-							</div>
-						</div><!-- // .bc-hero__carousel__info -->
+									</a>
+								</li>
+							</ul><!-- // .bc-landing-hero-links -->
+							<div class="bc-hero__carousel__info">
+								<div class="bc-hero__carousel__info__text">
+									<div class="bc-hero__carousel__titles__track">
+										<h2 class="bc-hero__carousel__title ">
+											<a href="/projects/meath-project.html">
+												<span class="bc-hero__carousel__title__text">Meath GAA Centre of Excellence</span>
+												<svg class="svg-icon">
+													<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
+												</svg>
+											</a>
+										</h2>	
+										<h2 class="bc-hero__carousel__title">
+											<a href="/projects/meath-project.html">
+												<span class="bc-hero__carousel__title__text">I-LOFAR Birr Telescope Centre</span>
+												<svg class="svg-icon">
+													<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
+												</svg>
+											</a>
+										</h2>	
+										<h2 class="bc-hero__carousel__title">
+											<a href="/projects/meath-project.html">
+												<span class="bc-hero__carousel__title__text">Tallaght Stadium, North Stand</span>
+												<svg class="svg-icon">
+													<use xlink:href="assets/media/svg/bc-icons.svg#arrow"></use>
+												</svg>
+											</a>
+										</h2>	
+									</div><!-- // .bc-hero__carousel__titles__track -->
+								</div><!-- // .bc-hero__carousel__info__text -->
+								<div class="bc-hero__carousel__controls">
+									<a href="javascript:void()" title="Previous" class="bc-hero__carousel__control bc-hero__carousel__controls__prev">
+										<svg class="svg-icon">
+											<use xlink:href="assets/media/svg/bc-icons.svg#carat--left"></use>
+										</svg>	
+									</a>
+									<a href="javascript:void()"  title="Play/pause/replay"  class="bc-hero__carousel__control bc-hero__carousel__controls__play">
+										<span class="is-label play">
+											<svg class="svg-icon">
+												<use xlink:href="assets/media/svg/bc-icons.svg#play--simple"></use>
+											</svg>	
+										</span>
+										<span class="is-label replay">
+											<svg class="svg-icon">
+												<use xlink:href="assets/media/svg/bc-icons.svg#repeat"></use>
+											</svg>	
+										</span>
+										<span class="is-label stop">
+											<svg class="svg-icon">
+												<use xlink:href="assets/media/svg/bc-icons.svg#pause"></use>
+											</svg>
+										</span>
+									</a>
+									<a href="javascript:void()" title="Previous" class="bc-hero__carousel__control bc-hero__carousel__controls__next">
+										<svg class="svg-icon">
+											<use xlink:href="assets/media/svg/bc-icons.svg#carat"></use>
+										</svg>	
+									</a>
+								</div><!-- // .bc-hero__carousel__controls -->
+							</div><!-- // .bc-hero__carousel__info -->
 						</div><!-- // .bc-hero-body -->
 						
 					</article><!-- // .bc-hero-block -->

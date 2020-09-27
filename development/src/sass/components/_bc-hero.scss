@@ -2,7 +2,7 @@
 	padding: 0 $gutter;
 	height: calc(86.6vh - (#{$gutter}/2));
 	position: relative;
-	overflow: hidden;
+	//overflow: hidden;
 	&-block {
 		@include makeCols($cols: $gridColsCount, $full-bleed: true);		
 		flex-basis: 87.5%;
@@ -112,52 +112,57 @@
 		&:focus {
 			outline: none;
 		} 
-		padding-top: 		0;
+		padding-top: 		$vertical-unit;
 		padding-bottom: 0;
 		& &__wrap {
 			position: relative;
-			flex: 1 1 calc(90% - #{$vertical-unit});  
-			max-height: calc(90% - #{$vertical-unit});
+			flex: 1 1 calc(90%);  
+			max-height: calc(90%);
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 		}
 		& &-slides {
-			flex: 0 1 60%;
-			margin-bottom: $vertical-unit/2;
+			flex: 1 1 90%;
 		}
 		& &-slide {
 			width: 100%;
-			min-height: 100%;
+			height: 100%;
 			@include makeFlexbox(column, center, center);
 			//margin-left: 	$gutter/2;
 			margin-right: $gutter/2;
 			img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-position: center;
 				object-fit: contain;
-				max-height: 60vh;
 			}
 		}
 		& &__controls {
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
+			padding-top: 		$vertical-unit/2;
+			padding-bottom: $vertical-unit/2;
 		}
 		& &__control {
-			flex: 0 1 10%;
+			flex: 0 1 auto;
 			@include makeFlexbox(column, center, center);
-			padding-top: $vertical-unit/2;
-			padding-bottom: $vertical-unit/2;
-			background-color: $offwhite;
+			padding: $vertical-unit/2;
+			background-color: transparent;
+			border-radius: 50%;
 			transition: background-color $quicktrans $easing;
 			&:not(.bc-slider-controls--disabled) {
 				&:hover, &:active, &:focus {
-					background-color: $shade-superlight;
-					outline: 1px dotted $shade-light;
+					background-color: $shade-02;
+					//outline: 1px dotted $shade-light;
 				}	
 			}
 			&:hover {
 				cursor: pointer;
 			}
-			&--disabled {
+			&.is-disabled {
 				opacity: 0.48;
 			}
 			.svg-icon {
@@ -171,13 +176,13 @@
 			font-weight: 200;
 			
 		}
-		& .bc-hero-footer {		
+		.bc-feature-footer {		
 			position: absolute;
 			left: 0;
 			right: 0;
 			bottom: 0;
 			width: 100%;
-			margin-top: $vertical-unit;
+			margin-bottom: 0;
 		}
 		@media screen and (min-width: $desktop) {
 			& &--slides {
@@ -267,7 +272,12 @@
 	&--video-embed {
 		
 	}
-	
+	@media screen and (min-width: $tablet) and (orientation: portrait) {
+		height: calc(46.6vh - (#{$gutter}/2));
+		.bc-feature-footer {
+			display: none;
+		}
+	}
 	@media screen and (min-width: $tablet) {
 		&.bc-content-row {
 			flex-direction: column;

@@ -6,6 +6,7 @@ $gutter: 				1.5rem;
 $gridColsCount: 10;
 $vertical-unit: 1.5rem;
 
+$line-height: $gutter-unit;
 
 // Color swatches */
 $brand-blue: 		#00f;
@@ -29,6 +30,10 @@ $shade-02: #ededed;
 $shade-03: #dcdcdc; 
 $shade-04: #cbcbcb; 
 $shade-05: #bababa; 
+$shade-06: #ababab; 
+$shade-07: #9a9a9a; 
+$shade-08: #898989; 
+$shade-09: #787878; 
 
 $grey: 							lighten(rgba($black, 1), 50%); 
 $grey-light: 				lighten(rgba($black, 1), 80%); 

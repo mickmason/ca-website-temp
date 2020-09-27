@@ -23,11 +23,9 @@
 			z-index: 0;
 			img {
 				position: absolute;
-				top: 	50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
 				height: 100%;
 				width: 100%;
+				object-position: center;
 				object-fit: cover;
 			}
 		}
@@ -63,16 +61,16 @@
 			position: 		absolute;
 			max-width: 		calc(100% - #{$gutter}/2);
 			left: 		 		$gutter/2;
-			bottom: 	 		8%;
+			bottom: 	 		12%;
 			z-index: 			10;
 			background-color: transparent;
 			@include makeFlexbox($direction: column, $justify: flex-start);
 		}
 		.bc-landing-hero-text {
 			@include makeFlexbox($direction: row, $justify: flex-start, $align: stretch);
-			margin-bottom: 2%;
+			margin-bottom: 4%;
 			padding-top: 		$gutter/1.5 ;
-			padding-right: 	$gutter/2;
+			padding-right: 	$gutter;
 			padding-bottom: $gutter/1.5 ;
 			color: $white;
 			.svg-icon {
@@ -91,7 +89,7 @@
 			h1 {
 				margin-top: 0;
 				font-family: $serifFont;
-				font-size: 1.68rem;
+				font-size: 1.72rem;
 				font-weight: 300;
 				line-height: 1.35;
 			}
@@ -101,12 +99,12 @@
 			@include makeFlexbox($direction: row, $justify: flex-start, $align: stretch); 
 			width: calc(100% - 2.75rem);
 			margin-top: 		0;
-			margin-bottom: 	0;
+			margin-bottom: 	4%;
 			margin-left: 2.75rem; 
 			padding-left: 0rem; 
-			padding-right: 	$gutter/2;
-			border-top: 		1px solid $white;
-			border-bottom:  1px solid $white;
+			padding-right: 	$gutter;
+			border-top: 		1px solid rgba($white, 0.64);
+			border-bottom:  1px solid rgba($white, 0.64);
 			li {
 				position: relative;
 				margin-bottom: 0;
@@ -141,7 +139,7 @@
 			a {
 				display: flex;
 				align-items: center;
-				font-size: 1.0rem;
+				font-size: 1.125rem;
 				font-weight: 400;
 				padding-top: 		$vertical-unit/2;
 				padding-bottom: $vertical-unit/2;
@@ -176,10 +174,11 @@
 			.bc-landing-hero-text {
 				margin-bottom: 0%;
 				h1 {
-					font-size: 1.55rem;
+					font-size: 1.64rem;
 				}
 			}
 			.bc-landing-hero-links {
+				margin-bottom: 1%;
 				.svg-icon {
 					display: block;
 				}
@@ -192,6 +191,7 @@
 			}
 			
 			.bc-landing-hero-text {
+				margin-bottom: 1%;
 				h1 {
 					width: 86%;
 					flex: 1 1 auto;
@@ -200,6 +200,9 @@
 					line-height: 1.4;
 					font-size: 1.88rem;
 				}
+			}
+			.bc-landing-hero-links {
+				margin-bottom: 1%;
 			}
 		}// (min-width: $desktop) and (orientation: landscape)
 		@media screen and (min-width: $tablet) {
@@ -210,21 +213,18 @@
 				padding-right: 0;
 			}
 		}
-		@media screen and (min-width: $desktop) {
-			.bc-landing-hero-text {
-				h1 { font-size: 1.75rem;}
-			}
-			.bc-landing-hero-links { 
-				a {
-					font-size: 1.125rem;
-				}
-			}
-		}
+		
 		@media screen and (min-width: $desktop) and (orientation: landscape) {
+			.bc-landing-hero-text {
+				margin-bottom: 1%;
+				h1 { font-size: 1.72rem;}
+			}
+			.bc-landing-hero-links {
+				margin-bottom: 1%;
+			}
 			.bc-hero-body {
-				width: 			61.8%;
+				width: 			56%;
 				left: (38.2%);
-				bottom: 8%;
 				transform: translateX(-50%);
 			}
 		}
@@ -239,57 +239,12 @@
 			}
 			.bc-landing-hero-links {
 				a {
-					font-size: 1.5rem;
-				}
-				.bc-color-square {
-					&:after {
-						width: 	1.75rem;
-						height: 1.75rem;
-					}
+					font-size: 1.25rem;
 				}
 			}
 		}
-		@media screen and (min-width: $med) {
-			.bc-hero-body {
-				width: 56%;
-				bottom: 12%;
-			}
-			.bc-landing-hero-text { 
-				margin-bottom: 1%;
-				h1 { font-size: 1.8rem;}
-			}
-			
-			.bc-landing-hero-links { 
-				margin-bottom: 1%;
-			}
-		}
-		@media screen and (min-width: $x-large) {
-			.bc-hero-body {
-				width: 56%;
-				left: 33%;
-				transform: translateX(-50%);
-			}
-			
-			
-		}
-		@media screen and (min-width: $xx-large) {
-			.bc-landing-hero-text {
-				h1 {
-					font-size: 1.75rem; 
-				}
-			}
-			.bc-landing-hero-links { 
-				a {
-					font-size: 1.125rem;
-				}
-				.bc-color-square {
-					&:after {
-						width: 	1.25rem;
-						height: 1.25rem;
-					}
-				}
-			}
-		}
+		
+		
 		&--video {
 			@extend .bc-hero--landing-hero ;
 			.bc-hero-block {
@@ -334,25 +289,7 @@
 				.bc-hero-video {
 					display: inherit;
 				}
-				.bc-hero-header {
-					background-color: transparent;
-					background-image: linear-gradient(to bottom, rgba($black, 0.8), transparent);
-					color: $white;
-					height: 18%;
-					align-items: flex-start;
-					padding-top: $gutter/2;
-					.bc-header-menu--show-hide {
-						.bc-header-logo {
-							> h1 {
-								color: $white;
-							}
-						} 
-					} 
-					.bc-header-menu__links {
-						padding-top: 		$gutter/2;
-						padding-bottom: $gutter/2;
-					}
-				}
+				
 			}
 		}// &--video
 		&--carousel {
@@ -438,23 +375,33 @@
 	}
 }
 .bc-hero__carousel__info__text {
-	padding-top: 		$gutter/2;
-	padding-bottom: $gutter/2;
-}
-.bc-hero__carousel__info__text {
-	flex: 1 1 75% ;
-	max-width: 80%;
+	position: relative;
+	flex: 1 1 80% ;
 	display: flex;
 	flex-direction: column;
-	
-	.is-label {
-		margin-bottom: $vertical-unit/4;
-	}	
+	height: $vertical-unit * 2;
+	max-width: 80%;
+	padding-top: 		$gutter/2;
+	padding-bottom: $gutter/2;
+	overflow: hidden;
+	transition: opacity 320ms ease-out;
+	.bc-hero__carousel__titles__track {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		height: calc(100%);
+		width: 100%;
+		left: 0;
+		top: 0;
+		transition: left 420ms ease-out 100ms;
+	} 
 	.bc-hero__carousel__title {
-		font-weight: 300;
-		font-size: 1rem;
+		flex: 1 1 100%;
+		width: 100%;
 		margin-top: 0;
-		
+		font-size: 1rem;
+		font-weight: 300;
+		transition: opacity 420ms ease-out;
 		&__text {
 			margin-right: $gutter/2;
 		}
@@ -462,7 +409,7 @@
 	a {
 		display: flex;
 		align-items: center;
-		color: $shade-03;
+		color: $shade-01;
 		text-decoration: none;
 		transition: color 320ms ease-in-out;
 		&:hover, &:active, &:focus {
@@ -486,51 +433,81 @@
 	}
 }
 .bc-hero__carousel__controls {
-	flex: 1 1 25%;
+	flex: 1 1 20%;
 	display: flex;
 	align-items: stretch;
 	justify-content: center;
 	padding-left: 	$gutter/4;
 	padding-right:  $gutter/4;
 	&__play {
-		display: flex;
+		display: none;
+		position: relative;
 		justify-content: center;
 		align-items: center;
 		padding: $gutter/2 $gutter/4;
 		.is-label {
 			color: $shade-01;	
 		}
-		.play {
-			display: none;
-		}
 	}
-	&__next, &__prev, &__play {
-		flex: 0 1 50%;
+	&__next, &__prev {
+		flex: 1 1 50%;
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
-		max-width: (100% / 3);
 		padding-left: $gutter/4 ;
 		padding-right: $gutter/4 ;
+		transition: opacity 360ms ease-out;
+		
+		&.is-disabled {
+			opacity: 0.4
+		}
 	}
 	.svg-icon {
 		width:  1.5rem;
-		height: 1.25rem;
+		height: 1.5rem;
 		fill: $shade-01;
 	}
-	.stop, .play {
+	.stop, .play, .repeat {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		transition: opacity 360ms ease-out;
 	}
-	.play {
-		display: none;
+	.play, .replay {
+		opacity: 0;
 	}
 	.stop {
+		opacity: 1;
 		.svg-icon {
 			line {
 				stroke: $shade-01;	
 			}
+		}
+	}
+	&.is-paused, &.is-stopped {
+		.play {
+			opacity: 1;
+		}
+		.stop {
+			opacity: 0;
+		}
+		.replay {
+			opacity: 0;
+		}
+	}
+	&.is-ended {
+		.play {
+			opacity: 0;
+		}
+		.stop {
+			opacity: 0;
+		}
+		.replay {
+			opacity: 1;
 		}
 	}
 }

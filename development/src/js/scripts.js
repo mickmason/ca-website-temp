@@ -104,6 +104,11 @@
 		*/
 	function addClass(el, classList) {
 		let $el = null;
+		if (debug) {
+			console.log(`BC addClass`);
+			console.log(`-----------`);
+			console.log(`el classList start: ${el.classList}`);
+		}
 		if (arguments.length < 2) {
 			throw new Error(`BC function addClass: Requiers a String or DOM Node element then a list of class names`);
 		}
@@ -112,22 +117,48 @@
 		} else {
 			throw new Error('addClass selector must be a DOM node');
 		}
+		if (debug) {
+			console.log(`el DOM node: ${$el} retrieved ${$el.classList}`);
+		}
 		function _addClass(cls) {
 			if (document.querySelector('html').contains($el)) {
+				if (debug) {
+					console.log(`_addClass() inner function`);
+					console.log(`Is a DOM node`);
+				}
 				if (!ticking) {
+					if (debug) {
+						console.log(`ticking is ${ticking}`);
+					}
 					requestAnimationFrame(() => {
 						$el.classList.add(cls);
-
+						if (debug) {
+							console.log(`requestAnimationFrame`);
+							console.log(`Class added:`);
+							console.log(`${$el.classList}`);
+						}
 					});
 					ticking = true;	
+					
 				}
-				ticking = false;	
+				ticking = false;
+				
 			} else {
 				$el.classList.add(cls);
 			}
+			if (debug) {
+				console.log(`_addClass() inner function`);
+				console.log(`${$el.classList}`);
+			}
 		}
 		for (let arg = 1; arg < arguments.length; arg++) {
+			if (debug) {
+				console.log(`For arguments.length ${arg}`);
+			}
 			_addClass(arguments[arg]);
+		}
+		if (debug) {
+			console.log(`-----------`);
 		}
 	}//addClass()
 	/** 
@@ -474,18 +505,18 @@
 		slidesCurrentIdx.innerHTML = currentSlide;
 		const sliderNext = document.querySelector('.bc-hero--slider__control--next');
 		const sliderPrev = document.querySelector('.bc-hero--slider__control--prev');
-		sliderPrev.classList.add('bc-hero--slider-controls--disabled'); 
+		sliderPrev.classList.add('is-disabled'); 
 		flkty.on('change', (idx) => {
 			slidesCurrentIdx.innerHTML = idx + 1; 
 			
 			if (idx === 0) {
-				sliderPrev.classList.toggle('bc-hero--slider__control--disabled');
+				sliderPrev.classList.toggle('is-disabled');
 			} else if (idx === slidesLength - 1) {
-				sliderNext.classList.toggle('bc-hero--slider__control--disabled');
-			} else if(sliderPrev.classList.contains('bc-hero--slider__control--disabled')) {
-				sliderPrev.classList.toggle('bc-hero--slider__control--disabled');
-			} else if(sliderNext.classList.contains('bc-hero--slider__control--disabled')) {
-				sliderNext.classList.toggle('bc-hero--slider__control--disabled');
+				sliderNext.classList.toggle('is-disabled');
+			} else if(sliderPrev.classList.contains('is-disabled')) {
+				sliderPrev.classList.toggle('is-disabled');
+			} else if(sliderNext.classList.contains('is-disabled')) {
+				sliderNext.classList.toggle('is-disabled');
 			}
 		});
 		sliderNext.addEventListener('click', (e) => {
@@ -495,16 +526,115 @@
 			flkty.previous();
 		});
 	}
+	
+	/* Landing hero carousel */
 	if (document.querySelector('.bc-hero--landing-hero--carousel')) {
-		const elem = document.querySelector('.bc-hero--landing-hero--carousel .bc-hero__carousel');
-		const $landingHeroFlkty = new Flickity( elem, {
+		const $landingHero = document.querySelector('.bc-hero--landing-hero--carousel');
+		const $landingHeroCarousel = document.querySelector('.bc-hero--landing-hero--carousel .bc-hero__carousel');
+		const $landingHeroControls = document.querySelector('.bc-hero__carousel__controls');
+		const $landingHeroControls_next = $landingHeroControls.querySelector('.bc-hero__carousel__controls__next');
+		const $landingHeroControls_prev = $landingHeroControls.querySelector('.bc-hero__carousel__controls__prev');
+		
+		const $landingHeroTitlesTrack = $landingHero.querySelector('.bc-hero__carousel__titles__track');
+		const $landingHeroTitles = $landingHero.querySelectorAll('.bc-hero__carousel__title');
+		const infoTextScrollWidth = $landingHero.querySelector('.bc-hero__carousel__info__text').scrollWidth;
+		let carouselState = 'stopped';
+		let landingHeroLength = 0;
+		//States 
+		
+		const $landingHeroFlkty = new Flickity( $landingHeroCarousel, {
 			pageDots: false,
 			prevNextButtons: false,
 			cellSelector: '.bc-hero__carousel__slide',
 			imagesLoaded: true,
-			autoPlay: false,
+			autoPlay: true,
+			wrapAround: false, 
 			fade: true,
-			setGallerySize: false
+			setGallerySize: false,
+			on: {
+				ready: () => {
+					$landingHeroControls.classList.add('is-playing');
+					carouselState = 'playing';
+					$landingHeroControls_prev.classList.add('.is-disabled');
+					if (debug) {
+						console.log(`Hero flkty playing ${$landingHeroControls.classList}`);
+					} 
+					$landingHeroTitlesTrack.style.width = infoTextScrollWidth * $landingHeroTitles.length + 'px';
+					$landingHeroTitlesTrack.classList.remove('is-hidden');
+					if (debug) {
+						console.log(carouselState);
+					}
+				}
+			}
+		});
+		landingHeroLength = $landingHeroFlkty.cells.length;
+		if (debug) {
+			console.log(`Hero flkty length ${landingHeroLength}`);
+		} 
+		
+		$landingHeroControls_next.addEventListener('click', (evt) => {
+			evt.preventDefault();
+			$thisNext = evt.currentTarget;
+			if ($thisNext.classList.contains('is-disabled') === false) {
+				$landingHeroFlkty.next();
+				if (carouselState === 'playing') {
+					$landingHeroFlkty.pausePlayer();
+					$landingHeroControls.classList.remove('is-playing');
+					$landingHeroControls.classList.add('is-paused');
+					carouselState = 'paused';	
+				}
+			}
+		});
+		$landingHeroControls_prev.addEventListener('click', (evt) => {
+			evt.preventDefault();
+			userClick = true;
+			$thisPrev = evt.currentTarget;
+			if ($thisPrev.classList.contains('is-disabled') === false) {
+				$landingHeroFlkty.previous();
+				if (carouselState === 'playing') {
+					$landingHeroFlkty.pausePlayer();
+					$landingHeroControls.classList.remove('is-playing');
+					$landingHeroControls.classList.add('is-paused');
+					carouselState = 'paused';	
+				}
+			}
+		});
+		let lastIdx = 0;
+		$landingHeroFlkty.on('change', (idx) => {
+			if (debug) {
+				console.log(`Change idx: ${idx}`);
+			}
+			//Disable next.
+			if (idx === landingHeroLength - 1) {
+				$landingHeroControls_next.classList.add('is-disabled');
+				$landingHeroControls_prev.classList.remove('is-disabled');
+				if (carouselState === 'playing') {
+					$landingHeroFlkty.pausePlayer();
+					$landingHeroControls.classList.remove('is-playing');
+					$landingHeroControls.classList.add('is-paused');
+					carouselState = 'paused';	
+				}
+			} else if (idx === 0) {
+				$landingHeroControls_prev.classList.add('is-disabled');
+				$landingHeroControls_next.classList.remove('is-disabled');
+				if (carouselState === 'playing') {
+					$landingHeroFlkty.pausePlayer();
+					$landingHeroControls.classList.remove('is-playing');
+					$landingHeroControls.classList.add('is-paused');
+					carouselState = 'paused';	
+				}
+			} else {
+				$landingHeroControls_prev.classList.remove('is-disabled');
+				$landingHeroControls_next.classList.remove('is-disabled');
+			}
+			if (debug) {
+				console.log(carouselState);
+			}
+			requestAnimationFrame(() => {
+				$landingHeroTitlesTrack.style.left = -infoTextScrollWidth * idx + 'px';
+				return; 
+			});
+			//Disable prev.
 		});
 	}
 	if (document.querySelector('.bc-hero--landing-hero--carousel.bc-design-process')) { 
@@ -518,6 +648,7 @@
 			fade: true,
 			setGallerySize: false
 		});
+		
 		const $coverPlayLink = document.querySelector('.bc-hero-body-subtext > a');
 		$coverPlayLink.addEventListener('click', (evt) => { 
 			evt.preventDefault();
@@ -905,10 +1036,17 @@
 			});
 		}
 		//Hero scroll link
-		const $heroScrollLink = (document.querySelectorAll('.bc-hero-footer__scroll > a')) ? Array.from(document.querySelectorAll('.bc-hero-footer__scroll')) : null ;
-		if ($heroScrollLink && $heroScrollLink.length > 0) {
-			$heroScrollLink.forEach(($link, idx) => {
+		
+		const $heroScrollLinks = (document.querySelectorAll('.bc-hero-footer__scroll > a, .bc-feature-footer__scroll > a')) ? Array.from(document.querySelectorAll('.bc-hero-footer__scroll, .bc-feature-footer__scroll > a')) : null ;
+		if (debug){
+			console.log(`${$heroScrollLinks.length} scroll links found`);
+		}
+		if ($heroScrollLinks && $heroScrollLinks.length > 0) {
+			$heroScrollLinks.forEach(($link, idx) => {
 				$link.addEventListener('click', (evt) => {
+					if (debug){
+						console.log(`$heroScrollLink click`);
+					}
 					evt.preventDefault();
 					console.log(getOffset($link).top);
 					const $parentHero = $link.closest('.bc-content-container');

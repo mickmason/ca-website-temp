@@ -76,3 +76,9 @@
 @mixin linearGradient($deg: 0deg, $stops...) {
 	background-image: linear-gradient($deg, $stops);
 }
+@mixin linkHover() {
+	&:active, &:hover, &:focus {
+		text-decoration: underline;
+		@content; 
+	}
+}

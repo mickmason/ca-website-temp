@@ -21,11 +21,7 @@
 			&:first-child {
 				padding-left: 0;
 			}
-			&:last-child:not(:nth-child(1)) { 
-				text-transform: none; 
-			}
 		}
-		.bc-breadcrumbs-link { text-decoration: underline;}
 		.svg-icon {	
 			max-height: 0.72rem;
 			max-width: 	0.72rem;

@@ -1,7 +1,13 @@
 /** Two-col feature - has an image and a text block **/
+.person-profile {
+	&.bc-content-row {
+		padding-bottom: 0;
+	}
+}
 .two-col-feature {
 	@include makeRow($align: center);
-	padding: 0 $gutter/2 $gutter*2 $gutter/2 ;
+	padding-left: $gutter/2; 
+	padding-right: $gutter/2 ;
 	position: relative;
 	overflow: hidden;
 	.short-col, .long-col {
@@ -10,13 +16,9 @@
 	}
 	figure {
 		position: relative;
-		padding-top: 125%;
-		overflow: hidden;
-		img {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+		.two-col-feature__image-wrap {
+			width: 100%;
+			overflow: hidden;
 		}
 	}
 	figcaption {
@@ -56,6 +58,13 @@
 			flex-basis: $gr-large;
 			max-width: 	$gr-large;
 			padding: $gutter * 2 $gutter * 4;
+		}
+	}
+	@media screen and (min-width: 890px){
+		figure {
+			.two-col-feature__image-wrap {
+				max-height: calc(100vh - 18.5vh);
+			}
 		}
 	}
 }// .two-col-feature 

@@ -43,6 +43,9 @@ h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
 h4 { font-size: 1.125rem }
 h5 { font-size: 1rem; }
+p, li, blockquote {
+	font-weight: 300;
+}
 p {
 	margin-top: $gutter;
 	margin-bottom: $gutter/8;
@@ -60,6 +63,8 @@ strong {
 }
 a {
   color: inherit;
+	text-decoration: none;
+	@include linkHover;
 }
 .svg-icon {
 	fill: $black;
@@ -102,33 +107,8 @@ a {
 		}
 	}
 }
-.bc-roll-up-link {
-	position: relative;
-	overflow: hidden;
-	
-	&-default, &-active { 
-		text-align: center;
-		position: absolute;
-		@include makeFlexbox(row, center, center);
-		width: 100%;
-	}
-	&-default {
-		top: 0;
-	}
-	&-active {
-		top: 100%;
-	}	
-	&-default, &-active {
-		transition: top $buttonTransition $easing ;
-	}
-	&:hover, &:active, &:focus {
-		.bc-roll-up-link-default {
-			top: -100%;
-		}
-		.bc-roll-up-link-active {
-			top: 0
-		}	
-	}
+.is-hidden {
+	opacity: 0 !important;
 }
 .ca-arrow-link {
 	font-weight: bold;
@@ -200,6 +180,30 @@ a {
 	height: 100%;
 	width: 100%;
 	@include linearGradient(to bottom, rgba(32,32,32,0) 40%, rgba(32,32,32,1) 100%);
+}
+/* Colour utils - for use on containers */
+.is-brand-yellow {
+	background-color: $brand-yellow;
+	h1, h2, h3, h4, h5, p, li, a, blockquote {
+		color: $text;
+	}
+}
+.is-brand-blue, .is-brand-red, .is-black {
+	h1, h2, h3, h4, h5, p, li, a, blockquote {
+		color: $white;
+	}
+	.svg-icon {
+		fill: $white;
+	}
+}
+.is-brand-blue {
+	background-color: $brand-blue;
+}
+.is-brand-red {
+	background-color: $brand-red;
+}
+.is-black {
+	background-color: $black;
 }
 @import 'framework/grid'		;
 @import 'framework/layout'	; 
@@ -294,7 +298,13 @@ a {
 	padding-top: 0;
 }
 .bc-breadcrumbs-links {
-	height: calc(6.4vh); 
+	height: calc(8vh); 
+	li:last-child {
+		font-weight: 500; 
+	}
+	li:first-child {
+		font-weight: 300; 
+	}
 	&.active {
 		height: auto;
 	}
@@ -353,25 +363,7 @@ a {
 		height: 5vh;
 	}
 }
-/* Projects page */
-main {
-	position: relative;
-	.ca-projects {
-		&-filter-title {
-			font-weight: 200;
-			padding-left: $gutter/2;
-			padding-right: $gutter/2;
-			margin-top: $gutter/2;
-			margin-bottom: $gutter;
-			width: 100%;
-			flex: 1 1 100%;
-			@media screen and (min-width: $desktop) {
-				/*width:  (6/$gridColsCount)*100%;	
-				margin-left: (2/$gridColsCount)*100%;*/
-			}
-		}	
-	}
-}
+
 *.is-invisible {
 	display: none;
 }
@@ -390,6 +382,25 @@ main {
 		overflow: hidden;
 		opacity: 1;
 		transition: max-height 320ms ease-out;
+	}
+}
+/* Projects page */
+main {
+	position: relative;
+	.ca-projects {
+		&-filter-title {
+			font-weight: 200;
+			padding-left: $gutter/2;
+			padding-right: $gutter/2;
+			margin-top: $gutter/2;
+			margin-bottom: $gutter;
+			width: 100%;
+			flex: 1 1 100%;
+			@media screen and (min-width: $desktop) {
+				/*width:  (6/$gridColsCount)*100%;	
+				margin-left: (2/$gridColsCount)*100%;*/
+			}
+		}	
 	}
 }
 .ca-project-filters {
@@ -474,88 +485,32 @@ main {
 	}
 }
 
-
 .ca-projects {
 	@media screen and (min-width:  500px) {
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
 }
-
 .bc-card {
 	@media screen and (min-width: 500px) {
 		flex-basis: 50%; 
 		max-width: 	50%;
-		.bc-card-content {
-			.bc-card-title {
-				font-size: 1.20rem;
-			}
-			.bc-card-subtitle {
-				font-size: 1rem;
-			}
-			.bc-card-link {
-				font-size: 1.125rem;
-			}
-			&-heading {
-				&-text {
-					font-size: 1.20rem;	
-				}
-				.svg-icon {
-					max-height:  2rem;
-					max-width:   2rem;
-				}
-			}
+		.bc-card-title {
+			font-size: 1.125rem;
 		}
-		&--slide-up-overlay {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.225rem;
-						margin-left: $gutter/2;
-					}
-				}
-			}
+		.bc-card-subtitle {
+			font-size: 1rem;
 		}
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.125rem;
-				}
-			}
-		}
-		&.ca-values-card {
-			.bc-card-content {
-				.svg-icon {
-					max-width: 	2.5rem;
-					max-height: 2.5rem;
-				}
-				&-heading {
-					&-text {
-						font-size: 1.5rem;
-					}
-				}
-			}
-			.ca-values-card__value { 
-				font-size: 1.125rem;
-			}
-		}//&.ca-values-card
 	}// @ max-width 500px
 	@media screen and (min-width: 600px) {
 		flex-basis: 33.333%;
 		max-width: 	33.333%;
-	}
-	@media screen and (min-width: $tablet) {
-		.bc-card-content {
-			.bc-card-title {
-				font-size: 1.125rem;
-			}
-			.bc-card-subtitle {
-				font-size: 0.9rem;
-			}
-			.bc-card-link {
-				font-size: 0.95rem;
-			}
-		}	
+		.bc-card-title {
+			font-size: 1.0rem;
+		}
+		.bc-card-subtitle {
+			font-size: 0.8rem;
+		}
 	}
 	@media screen and (min-width: $desktop) {
 		flex-basis: 25%;
@@ -565,233 +520,10 @@ main {
 	@media screen and (min-width: $med) {	
 		flex-basis: 20%;
 		max-width: 	20%;
-		.bc-card-content {
-			.bc-card-title {
-				font-size: 1.0rem;
-			}
-			.bc-card-subtitle {
-				font-size: 0.8rem; 
-			}
-			.bc-card-link {
-				font-size: 0.8rem;
-			}
-			&-heading {
-				&-text {
-					font-size: 1.375rem;	
-				}
-				.svg-icon {
-					max-height:  2.125rem;
-					max-width:   2.125rem;
-				}
-			}
-		}
-		
-		&.ca-values-card {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.5rem;
-					}
-				}
-			}
-			.ca-values-card__value { 
-				font-size: 1.125rem;
-			}
-		}//&.ca-values-card
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.125rem;
-				}
-			}
-		}
-	}
-	@media screen and (min-width: $laptop) {
-		flex-basis: 20%;
-		max-width: 	20%;
-		.bc-card-content {
-			.bc-card-title {
-				font-size: 1.125rem;
-			}
-			.bc-card-subtitle, .bc-card-link {
-				font-size: 0.9rem;
-			}
-			.bc-card-link {
-				font-size: 1rem;
-			}
-			&-heading {
-				&-text {
-					font-size: 1.20rem;	
-				}
-				.svg-icon {
-					max-height:  2rem;
-					max-width:   2rem;
-				}
-			}
-		}
-		&--slide-up-overlay {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.25rem;
-					}
-				}
-			}
-		}
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.125rem;
-				}
-			}
-		}
-		&.ca-values-card {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.25rem;
-					}
-				}
-			}
-			.ca-values-card__value { 
-				font-size: 1rem;
-			}
-			.ca-values-card__person {
-				font-size: 0.9rem;
-			}
-		}//&.ca-values-card
-	}
-	@media screen and (min-width: $x-large) {
-		.bc-card-content {
-			.bc-card-title {
-				font-size: 1.375rem;
-			}
-			.bc-card-subtitle, .bc-card-link {
-				font-size: 1rem;
-			}
-			bc-card-link {
-				font-size: 1.125rem;
-			}
-		}
-		&--slide-up-overlay {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.375rem;
-					}
-				}
-			}
-		}
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.125rem;
-				}
-			}
-		}
-		&.ca-values-card {
-			.bc-card-content {
-				&-heading {
-					&-text {
-						font-size: 1.5rem;
-					}
-				}
-			}
-			.ca-values-card__value { 
-				font-size: 1.125rem;
-			}
-		}//&.ca-values-card
-	}
-	@media screen and (min-width: $xx-large) {
-		&:not(.bc-card--plain-text) {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.125rem;
-				}
-				.bc-card-subtitle, .bc-card-link {
-					font-size: 0.9rem;
-				}
-				&-heading {
-					&-text {
-						font-size: 1.125rem;	
-					}
-				}
-			}
-			
-		}
-		&--plain-text {
-			.bc-card-content {
-				.bc-card-title {
-					font-size: 1.125rem;
-				}
-			}
-		}
-		&.ca-values-card {
-			.bc-card-content {
-				&-heading {
-					margin-bottom: 0.75rem;
-					&-text {
-						font-size: 1.25rem;
-					}
-				}
-				.svg-icon {
-					width: 2.25rem;
-					height: 2.25rem;
-				}
-			}
-			.ca-values-card__value { 
-				font-size: 1rem;
-				margin-bottom: 0.75rem;
-			}
-			.ca-values-card__person {
-				font-size: 0.9rem;
-			}
-		}//&.ca-values-card
 	}
 }//.bc-card
 
-.ca-profiles {
-	.bc-card {
-		order: 1;
-		&--plain-text {
-			order: 2;
-		}
-	}
-	@media screen and (min-width: 600px) {
-		.bc-card {
-			order: 3;
-			&:nth-child(-n+1) {
-				order: 1;
-			}
-			&--plain-text {
-				order: 2;
-			}
-		}
-	}
-	@media screen and (min-width: $tablet) {
-		.bc-card {
-			&:nth-child(-n+2) {
-				order: 1;
-			}
-		}
-	}
-	
-	@media screen and (min-width: $desktop) {
-		.bc-card {
-			&:nth-child(-n+3) {
-				order: 1;
-			}
-		}
-	}
-	@media screen and (min-width: $laptop) {
-		.bc-card {
-			&:nth-child(-n+4) {
-				order: 1;
-			}
-		}
-		
-	}
-}
+
 /* Full profile pages */
 .ca-profile-projects {
 	padding-top: 0;
@@ -805,16 +537,114 @@ main {
 		}
 	}
 }
-
 @import 'components/two-col-feature'; 
 @import 'components/bc-landing-hero-video';  
 .bc-hero--landing-hero {
 	.bc-gradient-overlay {
-		@include linearGradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.48) 80%);
+		@include linearGradient(to bottom, rgba(0, 0, 0, 0.06) 10%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.48) 80%);
 	}
 }
-
-
+/** Feature component footer **/
+.bc-feature-footer { 
+	@include makeFlexbox(row, flex-end, stretch, wrap);
+	flex: 1 1 10%;
+	height: 3rem;
+	padding-top: 		$vertical-unit/2;
+	padding-bottom: $vertical-unit;
+	&__scroll {
+		@include makeFlexbox(row, flex-end, center);
+		width: calc(100% - 10%);
+		
+		margin-right: 10%;
+		&__link {
+			padding-top: 		$vertical-unit;
+			padding-bottom: $vertical-unit;
+		}
+		> a {
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.68rem;
+			font-weight: 500;
+			text-decoration: none;
+			text-transform: uppercase;
+			color: $shade-09;
+			&:after {
+				content: " ";
+				position: absolute;
+				right: calc(#{$gutter} + #{$gutter}/4);
+				top: 0;
+				width: 1px;
+				height: 3.125rem;
+				background-color: $shade-09;
+			}
+			@include linkHover {
+				color: $black;
+				.svg-icon {
+					fill: $black;
+				}
+			}
+		}
+		> a, .svg-icon {
+			transition: color 520ms ease-out
+		}
+	}
+	.svg-icon {
+		position: relative;
+		fill: 			$shade-09; 
+		max-width: 	1.125rem;
+		max-height: 1.125rem; 
+		margin-left: $gutter;
+		transform: rotate(180deg);
+	}
+	
+	@media screen and (min-width: $tablet) {
+		flex-basis: 10%;
+	}
+}// .bc-feature-footer
+.is-brand-blue, .is-brand-red, .is-black {
+	.bc-feature-footer {
+		&__scroll {
+			> a {
+				color: $shade-04;
+				@include linkHover {
+					color: $white;
+					.svg-icon {
+						fill: $white;
+					}	
+				}
+				&:after {
+					background-color: $shade-04;
+				}
+			}
+		}
+		.svg-icon {
+			fill: $shade-04;
+		}
+	}
+}
+.is-brand-yellow {
+	.bc-feature-footer {
+		&__scroll {
+			> a {
+				color: $text;
+				&:after {
+					background-color: $text;
+				}
+				@include linkHover {
+					color: $black;
+					.svg-icon {
+						fill: $black;
+					}	
+				}
+			}
+		}
+		.svg-icon {
+			fill: $text;
+		}
+	}
+}
 /** Two-col feature - has an image and a text block **/
 .two-col-feature {
 	align-items: flex-start;
@@ -823,13 +653,8 @@ main {
 		padding: 0 $gutter/2;
 	}
 	figure {
-		position: static;
+		
 		padding-top: 0;
-		img { 
-			position: static;
-			transform: none;
-			width: 100%; 
-		}
 		max-width: 28rem;
 	}
 	figcaption {
@@ -929,8 +754,18 @@ main {
 	}
 }
 
-/* Full project content */
+/* Individual Projects */
+.bc-general-content {
+	&.is-project-description {	
+		padding-top: 3rem;
+	}
+	.is-project-title {
+		font-size: 2.125rem;
+		margin-bottom: 3rem;
+	}
+}
 .project-intro {
+	font-size: 1.125rem;
 	font-weight: 500;
 	line-height: 1.6;
 }
@@ -1199,8 +1034,33 @@ main {
 			max-width: 2rem;	
 			max-height: 2rem;	
 		}
+	}	
+}//page scroller
+//CA membership logos
+.ca-memberships-logos {
+	& &__wrap {
+		display: flex;
 	}
-	
+	& &__logo {
+		flex: 1 1 auto;
+		display: block;
+		padding-left:  $gutter/2;
+		padding-right: $gutter/2;
+		margin-bottom: $vertical-unit;
+		min-width: 0;
+	}
+	@media screen and (min-width: 550px) {
+		& &__logo {
+			flex: 1 1 33.333%;
+			max-width: 33.333%;
+		}
+	}
+	@media screen and (min-width: $tablet) {
+		& &__logo {
+			flex: 1 1 33.333%;
+			max-width: 33.333%;
+		}
+	}
 	
 }
 
