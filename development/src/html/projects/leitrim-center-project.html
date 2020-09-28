@@ -17,7 +17,7 @@
 	<main id="content-top">
 		<div class="bc-content-container">
 			<section class="bc-hero--slider"> 
-				<div class="bc-hero-slider__wrap">
+				<div class="bc-hero--slider__wrap">
 					<div class="bc-hero--slider-slides">
 						<picture class="bc-hero--slider-slide">
 							<img src="../assets/media/imgs/projects/leitrim-enterprise-1.jpg" alt="Leitrim Innovation and Growth Center, wide view">
@@ -35,10 +35,10 @@
 							<img src="../assets/media/imgs/projects/leitrim-enterprise-5.jpg" alt="Leitrim Innovation interior detail">
 						</picture>
 					</div><!-- // .bc-hero--slider-slides -->
-					<div class="bc-hero-footer">
+					<div class="bc-hero--slider__controls">
 						<a class="bc-hero--slider__control bc-hero--slider__control--prev">
 							<svg class="svg-icon">
-								<use xlink:href="../assets/media/svg/bc-icons.svg#arrow--left"></use>
+								<use xlink:href="../assets/media/svg/bc-icons.svg#carat--left"></use>
 							</svg>	
 						</a>
 						<div class="bc-hero--slider__counter">
@@ -47,21 +47,22 @@
 						</div>
 						<a class="bc-hero--slider__control bc-hero--slider__control--next">
 							<svg class="svg-icon">
-								<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
+								<use xlink:href="../assets/media/svg/bc-icons.svg#carat"></use>
 							</svg>	
 						</a>
-					</div><!-- // bc-hero-footer -->
+					</div><!-- // .bc-hero--slider__controls -->
+					
 				</div><!-- // .bc-hero-slider__wrap -->
-				<div class="bc-feature-footer">
-					<div class="bc-feature-footer__scroll">
-						<a href="javascript:void(0)" class="is-label">
-							About the project
-							<svg class="svg-icon">
-								<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
-							</svg>
-						</a>
-					</div>
-				</div><!-- // bc-feature-footer -->
+				<div class="bc-hero-footer">
+						<div class="bc-hero-footer__scroll">
+							<a href="javascript:void(0)" class="is-label">
+								About the project
+								<svg class="svg-icon">
+									<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
+								</svg>
+							</a>
+						</div>
+					</div><!-- // bc-hero-footer -->
 			</section><!-- // .bc-hero -->
 		</div>
 		<div class="bc-content-container" id="content-start">
@@ -90,4 +91,4 @@
 		</div>
 	</main>
 	@@include('components/level-1/page-bottom-links.html', {"link-target": "projects.html", "link-text": "Back all Projects"})
-	@@include('structure/level-1/footer--l1.html')
+	@@include('structure/level-1/footer--l1.html') 
