@@ -962,7 +962,7 @@
 		if (debug) {
 			console.log('start projects filter init');
 		}
-		if (document.documentElement.clientWidth < 768) {
+	
 			if (debug) {
 				console.log('Window < 768px');
 			}
@@ -981,7 +981,7 @@
 						});
 						
 					} else {
-						adjustHeight($projectFilters, projectFiltersHeight + 15, 0.2, () => {
+						adjustHeight($projectFilters, projectFiltersHeight, 0.2, () => {
 							requestAnimationFrame(() => {
 								removeClass($projectFiltersList, 'is-invisible');
 								addClass(filtersToggler, 'is-active');
@@ -991,7 +991,7 @@
 					}
 				});
 			});
-		} //end if window is small
+	
 		filterCAProjects('all-projects'); 
 		const projectFilters = _getAllDOMNodes('.ca-project-filter');
 		

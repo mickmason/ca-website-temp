@@ -38,6 +38,9 @@
 			align-items: stretch;
 			transition: background-color $buttonTransition $easing;
 			z-index: 20;
+			.svg-icon {
+				fill: $white;
+			}
 			&.menu-active {
 				background-color: $white;
 				.bc-header-logo {
@@ -49,7 +52,7 @@
 					}
 				}
 				.svg-icon {
-					fill: $black;
+					fill: $text;
 					max-width: 	1.5rem;
 					max-height: 1.5rem;
 				}
