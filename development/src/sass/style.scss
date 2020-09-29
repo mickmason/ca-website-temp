@@ -1029,6 +1029,7 @@ main {
 .ca-memberships-logos {
 	& &__wrap {
 		display: flex;
+		flex-wrap: wrap;
 	}
 	& &__logo {
 		flex: 1 1 auto;
