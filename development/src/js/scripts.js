@@ -83,8 +83,11 @@
 		} else {
 			throw new Error('addClassTimed selector must return a DOM node');
 		}
-		
+		if (debug) {
+			console.log(` addClasslistTimed $els.length is ${$els.length} `);
+		}
 		function _addClass() {
+			
 			setTimeout(() => {
 				if (count < $els.length) {
 					$els[count].classList.add(className); 
@@ -917,7 +920,14 @@
 		*/
 	window.addEventListener('load', (evt) => {
 		/* fade-in-up, up elements, mostly used on cards */
+		if (debug) {
+			console.log(`Window Onload - do cards fade in`);
+		}
 		if (document.querySelector('.bc-fade-in-up') !== null) {
+			if (debug) {
+				console.log(document.querySelector('.bc-fade-in-up').length);
+				console.log(document.querySelector('.bc-fade-in-up').classList);
+			}
 			addClassTimed('.bc-fade-in-up', 'bc-fade-in-up--loaded', 160);	
 		}
 	});// window.onload
@@ -962,7 +972,7 @@
 		if (debug) {
 			console.log('start projects filter init');
 		}
-		if (document.documentElement.clientWidth < 768) {
+	
 			if (debug) {
 				console.log('Window < 768px');
 			}
@@ -981,7 +991,7 @@
 						});
 						
 					} else {
-						adjustHeight($projectFilters, projectFiltersHeight + 15, 0.2, () => {
+						adjustHeight($projectFilters, projectFiltersHeight, 0.2, () => {
 							requestAnimationFrame(() => {
 								removeClass($projectFiltersList, 'is-invisible');
 								addClass(filtersToggler, 'is-active');
@@ -991,7 +1001,7 @@
 					}
 				});
 			});
-		} //end if window is small
+	
 		filterCAProjects('all-projects'); 
 		const projectFilters = _getAllDOMNodes('.ca-project-filter');
 		

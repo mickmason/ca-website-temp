@@ -4,6 +4,7 @@ table, .bc-table {
 	vertical-align: top;
 	th, td {
 		padding: $gutter/8;
+		vertical-align: top;
 	}
 	th { font-weight: bold; }
 	td {
