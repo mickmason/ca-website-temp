@@ -2,8 +2,8 @@ header {
   box-shadow: 0 6px 10px -8px rgba(0, 0, 0, 0.4); 
 	.bc-content-container:first-of-type {
 		.bc-content-row {
-			padding-top: 0;
-			padding-bottom: 0;
+			padding-top: 		0.25rem;
+			padding-bottom: 0.25rem;
 		}	
 	}
 	.bc-content-row {
@@ -12,29 +12,36 @@ header {
 		align-items: center;
 		padding-top: 		0;
 		padding-bottom: 0;
-		height: 8vh;
+		//height: 8vh;
 	}
 	@media screen and (min-width: $tablet) and (orientation: portrait) {
 		.bc-content-row {
 			height: 5vh;
 		}
 	}
+	@media screen and (min-width: $tablet) {
+		.bc-content-container:first-of-type {
+			.bc-content-row {
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
 	@media screen and (min-width: 1024px) {
     flex-direction: row;
 	}
 }
-
+.bc-header-menu {
+	flex: 1 1 40%;
+	justify-content: flex-end;
+	max-height: 100%;
+}
 .bc-header-menu--show-hide {
 	padding-top: 		0;
 	padding-bottom: 0;
-	.bc-header-logo, .bc-header-menu__toggle {
+	.bc-header-menu__toggle {
 		padding-top: 		$gutter/2; 
 		padding-bottom: $gutter/2;  
-	}
-	.bc-header-logo {
-		h1 {
-			font-size: 1.125rem;
-		}
 	}
 	.bc-header-menu__toggle {
 		flex: 0 1 auto;
@@ -62,12 +69,12 @@ header {
 			max-width: 	1.5rem;
 			max-height: 1.5rem;
 		}
-		border-bottom: 1px solid $shade-lightest;
+		
 	}
 	&.menu-active + .bc-header-menu--mobile {
-		top: calc(8vh + 5px);
 		z-index: 100;
 		visibility: visible;
+		left: 0;
 		opacity: 1;
 	}
 	
@@ -92,7 +99,7 @@ header {
 	padding-right: 	$gutter/2;
 	> h1 {
 		font-family: 'Helvetica Neue', sans-serif;
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		margin: 0;
 		a {
 			text-decoration: none;
@@ -141,7 +148,7 @@ header {
 		a {
 			@include makeFlexbox(column, center, center, $inline: true);
 			flex: 1 1 100%;
-			padding-top: 38%;
+			padding-top: calc(38% + 0.5rem);
 			font-size: 0.92rem;
 			font-weight: 400;
 			.bc-roll-up-link {
@@ -155,7 +162,7 @@ header {
 		.bc-roll-up-link {
 			position: relative;
 			overflow: hidden;
-
+			
 			&-default, &-active { 
 				text-align: center;
 				position: absolute;
@@ -178,12 +185,12 @@ header {
 				max-height: 1.5rem;
 			}
 			&:hover, &:active, &:focus {
+				.bc-roll-up-link-active {
+					top: 0;
+				}
 				.bc-roll-up-link-default {
 					top: -100%;
 				}
-				.bc-roll-up-link-active {
-					top: 0
-				}	
 			}
 		}
 		
@@ -197,9 +204,10 @@ header {
 	}
 	@media screen and (min-width: $tablet) {
 		.bc-header-menu__links {
-			display: inherit;
+			display: flex;
 			max-height: 	100%;
 		}
+		
 	}
 	@media screen and (min-width: 1200px) {
 		.bc-header-menu__link {
@@ -240,6 +248,57 @@ header {
 			}
 		}
 	}
+}// .bc-header-menu
+.bc-header-menu {
+	.bc-roll-up-link {
+		&-active {
+			&:after {
+				content: " ";
+				position: absolute;
+				bottom: 0;
+				width: 	#{(2/14)}rem;
+				height: 0.125rem;
+				background-color: $black;
+				transition: width $buttonTransition $easing;
+			}
+			
+		}	
+		&:hover, &:active, &:focus {
+			.bc-roll-up-link-active {
+				&:after {
+					width: 100%;
+				}
+			}	
+		}
+		&.is-home-link {
+			.bc-roll-up-link-active {
+				&:after {
+					background-color: $black;
+				}		
+			}
+		}
+		&.is-projects-link {
+			.bc-roll-up-link-active {
+				&:after {
+					background-color: $brand-yellow;
+				}		
+			}
+		}
+		&.is-practice-link {
+			.bc-roll-up-link-active {
+				&:after {
+					background-color: $brand-blue;
+				}	
+			}
+		}
+		&.is-people-link {
+			.bc-roll-up-link-active {
+				&:after {
+					background-color: $brand-red;
+				}	
+			}
+		}	
+	}
 }
 .bc-hero-header {
 	.bc-header-logo {
@@ -276,17 +335,18 @@ header {
 .bc-header-menu--mobile {
 	position: absolute;
 	justify-content: flex-start;
-	top: 		8%;
+	top: calc(3rem + #{(12/14)}rem);
 	width: 	100%;
-	height: (100%-8%);
-	
+	height: calc(100vh - (3rem + #{(12/14)}rem));
+	left: 100%;
 	background-color: $white;
 	z-index: -10;	
 	visibility: hidden;
 	opacity: 0;
 	//$buttonTransition
-	transition: opacity $buttonTransition $easing, top $buttonTransition ease-in-out;
+	transition: opacity 420ms $easing 200ms, left 360ms ease-in-out;
 	.bc-header-menu__heading {
+		font-size: 1.5rem;
 		font-weight: 300;
 		margin-left: $gutter/2;
 	}
@@ -297,16 +357,17 @@ header {
 		display: 			inherit;
 		margin: 			0;
 		width: 				100%;
-		padding-top: $gutter;
-		padding-bottom: $gutter;
+		padding-top: 1.0rem;
+		padding-bottom: 2.0rem;
 		border-bottom: 1px solid $shade-lightest;
 		li {
 			list-style: 		none;
 			margin-bottom: 	0;
 			a {
 				display: block;
-				padding-top: 		$gutter/4;
-				padding-bottom: $gutter/4;
+				padding-top: 		$gutter/2;
+				padding-bottom: $gutter/2;
+				font-size: 1.25rem;
 			}
 		}
 	}
@@ -319,13 +380,7 @@ header {
 		}
 	}
 }
-.bc-header-menu {
-	flex: 1 1 40%;
-	padding-left: 1rem;
-	padding-right: 1rem;	
-	justify-content: flex-end;
-	max-height: 100%;
-}
+
 
 @media screen and (min-width: $med) {
 	.bc-header-menu {

@@ -531,7 +531,7 @@
 	}
 	
 	/* Landing hero carousel */
-	if (document.querySelector('.bc-hero--landing-hero--carousel')) {
+	if (document.querySelector('.bc-hero--landing-hero--carousel:not(.bc-design-process)')) {
 		const $landingHero = document.querySelector('.bc-hero--landing-hero--carousel');
 		const $landingHeroCarousel = document.querySelector('.bc-hero--landing-hero--carousel .bc-hero__carousel');
 		const $landingHeroControls = document.querySelector('.bc-hero__carousel__controls');
