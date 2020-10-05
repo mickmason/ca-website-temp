@@ -173,6 +173,7 @@
 		& &__counter {
 			flex: 1 1 50%;
 			@include makeFlexbox(row, center, center);
+			font-size: 0.8rem;
 			font-weight: 200;
 			
 		}
