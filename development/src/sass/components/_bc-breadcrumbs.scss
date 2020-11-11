@@ -16,8 +16,9 @@
 			list-style: none;
 			padding-left: 	$gutter/4;
 			padding-right: 	$gutter/4;
-			@include makeLabel(true);
+			text-transform: uppercase;
 			font-size: 0.68rem;
+			color: rgba(16, 16, 16, 0.72);
 			&:first-child {
 				padding-left: 0;
 			}

@@ -50,6 +50,9 @@
 		.bc-content-row {
 			border-top: none;
 		}
+		.bc-general-content-row {
+			padding-top: $vertical-unit * 3;
+		}
 	}
 }
 /** Template: two-column layout **/

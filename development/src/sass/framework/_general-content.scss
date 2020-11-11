@@ -101,7 +101,7 @@
 blockquote {
 	p:not(.blockquote-citation) {
 		font-family: $serifFont;
-		font-size: 1.2rem;
+		font-size: 1.12rem;
 		line-height: 1.5;
 	}
 	
@@ -115,9 +115,6 @@ blockquote {
 		position: absolute;
 		top: 	$gutter/4.5;
 		left: 0.125rem;
-	}
-	.blockquote-citation {
-		font-style: italic;
 	}
 }
 @media screen and (min-width: $tablet) {

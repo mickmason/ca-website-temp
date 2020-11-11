@@ -4,7 +4,7 @@
 		From https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove#Polyfill
 		Who got it from https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
 		**/
-	const debug = true;
+	const debug = false;
 	(function (arr) {
 		arr.forEach(function (item) {
 			if (item.hasOwnProperty('remove')) { 
@@ -541,7 +541,6 @@
 		const $landingHeroTitlesTrack = $landingHero.querySelector('.bc-hero__carousel__titles__track');
 		const $landingHeroTitles = $landingHero.querySelectorAll('.bc-hero__carousel__title');
 		const infoTextScrollWidth = $landingHero.querySelector('.bc-hero__carousel__info__text').scrollWidth;
-		let carouselState = 'stopped';
 		let landingHeroLength = 0;
 		//States 
 		
@@ -574,32 +573,20 @@
 		if (debug) {
 			console.log(`Hero flkty length ${landingHeroLength}`);
 		} 
-		
 		$landingHeroControls_next.addEventListener('click', (evt) => {
 			evt.preventDefault();
 			$thisNext = evt.currentTarget;
 			if ($thisNext.classList.contains('is-disabled') === false) {
 				$landingHeroFlkty.next();
-				if (carouselState === 'playing') {
-					$landingHeroFlkty.pausePlayer();
-					$landingHeroControls.classList.remove('is-playing');
-					$landingHeroControls.classList.add('is-paused');
-					carouselState = 'paused';	
-				}
+				$landingHeroFlkty.stopPlayer();
 			}
 		});
 		$landingHeroControls_prev.addEventListener('click', (evt) => {
 			evt.preventDefault();
-			userClick = true;
 			$thisPrev = evt.currentTarget;
 			if ($thisPrev.classList.contains('is-disabled') === false) {
 				$landingHeroFlkty.previous();
-				if (carouselState === 'playing') {
-					$landingHeroFlkty.pausePlayer();
-					$landingHeroControls.classList.remove('is-playing');
-					$landingHeroControls.classList.add('is-paused');
-					carouselState = 'paused';	
-				}
+				$landingHeroFlkty.stopPlayer();
 			}
 		});
 		let lastIdx = 0;
@@ -611,21 +598,11 @@
 			if (idx === landingHeroLength - 1) {
 				$landingHeroControls_next.classList.add('is-disabled');
 				$landingHeroControls_prev.classList.remove('is-disabled');
-				if (carouselState === 'playing') {
-					$landingHeroFlkty.pausePlayer();
-					$landingHeroControls.classList.remove('is-playing');
-					$landingHeroControls.classList.add('is-paused');
-					carouselState = 'paused';	
-				}
+				$landingHeroFlkty.stopPlayer();
 			} else if (idx === 0) {
 				$landingHeroControls_prev.classList.add('is-disabled');
 				$landingHeroControls_next.classList.remove('is-disabled');
-				if (carouselState === 'playing') {
-					$landingHeroFlkty.pausePlayer();
-					$landingHeroControls.classList.remove('is-playing');
-					$landingHeroControls.classList.add('is-paused');
-					carouselState = 'paused';	
-				}
+				$landingHeroFlkty.stopPlayer();
 			} else {
 				$landingHeroControls_prev.classList.remove('is-disabled');
 				$landingHeroControls_next.classList.remove('is-disabled');
@@ -679,7 +656,9 @@
 			}
 		});
 		$designProcessFlkty.on('settle', (idx) => {
-			console.log('change '+idx);
+			if (debug) {
+				console.log('change '+idx);	
+			}
 			if (idx !== 0) {
 				document.querySelectorAll('.bc-hero__carousel__control')[0].classList.remove('is-hidden');
 				document.querySelectorAll('.bc-hero__carousel__control')[1].classList.remove('is-hidden');
@@ -1028,11 +1007,6 @@
 			});
 			console.log('window Y offset: '+window.pageYOffset);
 		}
-		//Back to previous page
-		if (document.querySelector('.is-inner-page')) {
-			const $backLink = document.querySelector('.page-bottom-links-back-link');
-			$backLink.setAttribute('href', document.referrer);
-		}
 		const $pageScrollers = (document.querySelectorAll('.is-page-scroll')) ? Array.from(document.querySelectorAll('.is-page-scroll')) : null ;
 		if ($pageScrollers && $pageScrollers.length > 0) {
 			$pageScrollers.forEach(($link, idx) => {
@@ -1046,7 +1020,6 @@
 			});
 		}
 		//Hero scroll link
-		
 		const $heroScrollLinks = (document.querySelectorAll('.bc-hero-footer__scroll > a, .bc-feature-footer__scroll > a')) ? Array.from(document.querySelectorAll('.bc-hero-footer__scroll, .bc-feature-footer__scroll > a')) : null ;
 		if (debug){
 			console.log(`${$heroScrollLinks.length} scroll links found`);
