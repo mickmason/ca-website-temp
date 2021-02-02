@@ -220,18 +220,17 @@
 		} else {
 			return fetch(url);
 		}
-		
 	}
 	function getJSON(url, opts) {
-		this.options = {
+		let options = {
 			headers: {
 				"Content-Type": "application/json"
 			}
 		};
 		if (opts) {
-			this.options = Object.assign(this.options, opts);
+			options = Object.assign(options, opts);
 		}
-		return bcAJAX(url, this.options).then((data) => {
+		return bcAJAX(url, options).then((data) => {
 			return Promise.resolve(data);
 		}).catch((err) => {
 			return Promise.reject(err);
@@ -489,6 +488,7 @@
 	const headerMenuToggle = document.querySelectorAll('.bc-header-menu__toggle')[0]; 
 	headerMenuToggle.addEventListener('click', (e) => {
 		classToggle(document.querySelectorAll('.bc-header-menu--show-hide')[0], 'menu-active');
+		classToggle(document.querySelector('.bc-hero-header, .bc-header .bc-content-container:first-of-type'), 'menu-active'); 
 	});
 
 	//Flickity.js
@@ -531,17 +531,27 @@
 	}
 	
 	/* Landing hero carousel */
+	function toggleCarouselState($ctrls) {
+			if ($ctrls.classList.contains('is-playing')) {
+				$ctrls.classList.remove('is-playing');
+				$ctrls.classList.add('is-stopped');
+			} else if ($ctrls.classList.contains('is-stopped')) {
+				$ctrls.classList.remove('is-stopped');
+				$ctrls.classList.add('is-playing');
+			}
+		}
 	if (document.querySelector('.bc-hero--landing-hero--carousel:not(.bc-design-process)')) {
 		const $landingHero = document.querySelector('.bc-hero--landing-hero--carousel');
 		const $landingHeroCarousel = document.querySelector('.bc-hero--landing-hero--carousel .bc-hero__carousel');
 		const $landingHeroControls = document.querySelector('.bc-hero__carousel__controls');
 		const $landingHeroControls_next = $landingHeroControls.querySelector('.bc-hero__carousel__controls__next');
 		const $landingHeroControls_prev = $landingHeroControls.querySelector('.bc-hero__carousel__controls__prev');
-		
 		const $landingHeroTitlesTrack = $landingHero.querySelector('.bc-hero__carousel__titles__track');
 		const $landingHeroTitles = $landingHero.querySelectorAll('.bc-hero__carousel__title');
 		const infoTextScrollWidth = $landingHero.querySelector('.bc-hero__carousel__info__text').scrollWidth;
 		let landingHeroLength = 0;
+		let carouselState = 'playing';
+		let carouselDelay = 3000;
 		//States 
 		
 		const $landingHeroFlkty = new Flickity( $landingHeroCarousel, {
@@ -549,15 +559,15 @@
 			prevNextButtons: false,
 			cellSelector: '.bc-hero__carousel__slide',
 			imagesLoaded: true,
-			autoPlay: true,
-			wrapAround: false, 
+			autoPlay: carouselDelay,
+			wrapAround: true, 
 			fade: true,
 			setGallerySize: false,
 			on: {
 				ready: () => {
 					$landingHeroControls.classList.add('is-playing');
 					carouselState = 'playing';
-					$landingHeroControls_prev.classList.add('.is-disabled');
+					$landingHeroControls_prev.classList.add('is-disabled');
 					if (debug) {
 						console.log(`Hero flkty playing ${$landingHeroControls.classList}`);
 					} 
@@ -575,10 +585,14 @@
 		} 
 		$landingHeroControls_next.addEventListener('click', (evt) => {
 			evt.preventDefault();
-			$thisNext = evt.currentTarget;
+			let $thisNext = evt.currentTarget;
 			if ($thisNext.classList.contains('is-disabled') === false) {
 				$landingHeroFlkty.next();
-				$landingHeroFlkty.stopPlayer();
+				if (carouselState === 'playing') {
+					$landingHeroFlkty.stopPlayer();
+					carouselState = 'stopped';
+					toggleCarouselState($landingHeroControls);
+				}
 			}
 		});
 		$landingHeroControls_prev.addEventListener('click', (evt) => {
@@ -586,7 +600,11 @@
 			$thisPrev = evt.currentTarget;
 			if ($thisPrev.classList.contains('is-disabled') === false) {
 				$landingHeroFlkty.previous();
-				$landingHeroFlkty.stopPlayer();
+				if (carouselState === 'playing') {
+					$landingHeroFlkty.stopPlayer();
+					carouselState = 'stopped';
+					toggleCarouselState($landingHeroControls);
+				}
 			}
 		});
 		let lastIdx = 0;
@@ -598,11 +616,9 @@
 			if (idx === landingHeroLength - 1) {
 				$landingHeroControls_next.classList.add('is-disabled');
 				$landingHeroControls_prev.classList.remove('is-disabled');
-				$landingHeroFlkty.stopPlayer();
 			} else if (idx === 0) {
 				$landingHeroControls_prev.classList.add('is-disabled');
 				$landingHeroControls_next.classList.remove('is-disabled');
-				$landingHeroFlkty.stopPlayer();
 			} else {
 				$landingHeroControls_prev.classList.remove('is-disabled');
 				$landingHeroControls_next.classList.remove('is-disabled');
@@ -708,192 +724,7 @@
 		}
 	});//On page scroll
 	
-	/** 
-		CA Projects: Load projects
-		Project filters
-		*/
-	function writeCAProjects(projects, projectsFilter) { 
-		/* Make a single card */
-		function _makeCard(project) {
-			//The card
-			const projectCard = document.createElement('article');
-			addClass(projectCard, 'bc-card--slide-up', 'bc-fade-in-up'); 
-			for (let category of project.categories.split(', '))	 {
-				projectCard.setAttribute('data-project-categories', category); 
-			}
-			//The image main image
-			const cardImg = document.createElement('img');
-			cardImg.setAttribute('src', project.image);
-			cardImg.setAttribute('alt', project.title);
-			
-			const cardFigure = document.createElement('figure');
-			addClass(cardFigure, 'bc-card-img', 'is-square');
-			cardFigure.append(cardImg); 
-			
-			//The foucs image image
-			const focusImg = document.createElement('img');
-			focusImg.setAttribute('src', project.image);
-			focusImg.setAttribute('alt', 'View ' + project.title);
-			
-			const focusFigure = document.createElement('figure');
-			addClass(focusFigure, 'bc-card-img--focus-image', 'is-square');
-			focusFigure.append(focusImg); 
-			
-			//Card content
-			const cardContent = document.createElement('div');
-			addClass(cardContent, 'bc-card-content');
-			
-			const cardLinkWrap = document.createElement('a');
-			cardLinkWrap.setAttribute('href', project.projlink);
-			
-			//Card info
-			const cardInfo = document.createElement('div');
-			addClass(cardInfo, 'bc-card-info');
-			const title = document.createElement('h2');
-			title.append(project.title);
-			addClass(title, 'bc-card-title');
-			const subTitle = document.createElement('p');
-			subTitle.append(project.location);
-			addClass(subTitle, 'bc-card-subtitle');
-			cardInfo.append(title);
-			cardInfo.append(subTitle);
-			
-			//Content separator
-			/*const contentSeparator = document.createElement('div');
-			addClass(contentSeparator, 'content-separator');*/
-			
-			//Card link
-			const cardLink = document.createElement('div');
-			addClass(cardLink, 'bc-card-link');
-			const cardLinkText = document.createElement('span');
-			addClass(cardLinkText, 'bc-card-link-text');
-			cardLinkText.append(project.linktext);
-			
-			//SVG Icon
-			const svgIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-			svgIcon.setAttribute('viewBox', '0 0 100 100');
-			svgIcon.setAttribute('width', '100%');
-			svgIcon.setAttribute('height', '100%');
-			svgIcon.setAttribute('version', '1.1');
-			svgIcon.setAttribute('style', 'enable-background:new 0 0 100 100;');
-			svgIcon.setAttribute('xml:space', 'preserve');
-			/*
-				style="enable-background:new 0 0 100 100;" xml:space="preserve"
-			*/
-			addClass(svgIcon, 'svg-icon');
-			const symbol = document.createElement('symbol');
-			symbol.setAttribute('viewBox', '0 0 100 100');
-			symbol.setAttribute('id', 'arrow');
-			
-			const titleEl = document.createElement('title');
-			const titleText = document.createTextNode('Arrow icon');
-			titleEl.append(titleText);
-			const polygon = document.createElement('polygon');
-			polygon.setAttribute('points', '89,47.4 67.2,25.7 71,22 99,50 71,78 67.2,74.3 89,52.6 1,52.6 1,47.4 ');
-			svgIcon.append(titleEl, polygon);
-			//svgIcon.append(symbol);
-			cardLink.append(cardLinkText, svgIcon);
-			
-			//Append
-			//cardLinkWrap.append(cardInfo, contentSeparator, cardLink);
-			cardLinkWrap.append(cardInfo, cardLink);
-			cardContent.append(cardLinkWrap);
-			projectCard.append(cardFigure, focusFigure, cardContent);
-			return projectCard;
-			
-		}//_makeCard()
-		
-		const $projectsGrid = document.querySelector('.ca-projects-grid');
-		
-		//Clear all cards in the page
-		emptyElement($projectsGrid);
-		$projectsGrid.style.minHeight = '100vh';
-		if (projectsFilter === 'all-projects') {
-			let newCards = [];
-			let newCard = null;
-			for (const project of projects) {
-				newCard = _makeCard(project);
-				$projectsGrid.append(newCard);
-				newCards.push(newCard);
-			}
-			addClassTimed(newCards, 'bc-fade-in-up--loaded', 180);
-		} else if (projectsFilter === 'project-category') {
-			let categorizedProjects = [];
-			for (const project of projects) {
-				const thisProjectCategories = project.categoriestext.split(', ');
-				for (const category in thisProjectCategories) {
-					const thisCategory = categorizedProjects.find((elm) => {
-						return elm.category === thisProjectCategories[category];
-					});
-					if (thisCategory !== undefined) {
-						thisCategory.projects.push(project);
-					} else {
-						const newCat = {};
-						newCat.category = thisProjectCategories[category];
-						newCat.projects = [project];
-						categorizedProjects.push(newCat);
-					}
-				}
-			}
-			/* 
-				Write the projects by category
-				*/
-			for (const cat in categorizedProjects) {
-				//<h1 class="ca-projects-filter-title">All projects</h1>
-				const $catHeading = document.createElement('h1'); 
-				$catHeading.append(categorizedProjects[cat].category);
-				addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
-				$projectsGrid.append($catHeading);
-				addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
-				let newCards = [];
-				for (const proj of categorizedProjects[cat].projects) {
-					const newCard = _makeCard(proj);
-					$projectsGrid.append(newCard);	
-					newCards.push(newCard);
-				}
-				addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
-				
-			}
-		} else if (projectsFilter === 'project-date') {
-			console.log(`Filter by date`);
-			let categorizedProjects = [];
-			for (const project of projects) {
-				const thisProjectYear = new Date(project.date);
-				const thisCategory = categorizedProjects.find((elm) => {
-					return elm.category.getUTCFullYear() === thisProjectYear.getUTCFullYear();
-				});
-				if (thisCategory !== undefined) {
-					console.log(thisCategory);
-					thisCategory.projects.push(project);
-				} else {
-					const newCat = {};
-						console.log(thisProjectYear);
-					newCat.category = thisProjectYear;
-					newCat.projects = [project];
-					categorizedProjects.push(newCat);
-				}
-			}
-			categorizedProjects.sort((a, b) => {
-				return b.category.getUTCFullYear() - a.category.getUTCFullYear();
-			});
-			for (const cat in categorizedProjects) {
-				//<h1 class="ca-projects-filter-title">All projects</h1>
-				const $catHeading = document.createElement('h1'); 
-				$catHeading.append(categorizedProjects[cat].category.getUTCFullYear());
-				addClass($catHeading, 'ca-projects-filter-title', 'bc-fade-in-up');
-				$projectsGrid.append($catHeading);
-				addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
-				let newCards = [];
-				for (const proj of categorizedProjects[cat].projects) {
-					const newCard = _makeCard(proj);
-					$projectsGrid.append(newCard);	
-					newCards.push(newCard);
-				}
-				addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
-						
-			}
-		}//filter by date
-	}//loadCAProject()
+	
 	/** 
 		Global onload events 
 		*/
@@ -907,91 +738,218 @@
 				console.log(document.querySelector('.bc-fade-in-up').length);
 				console.log(document.querySelector('.bc-fade-in-up').classList);
 			}
-			addClassTimed('.bc-fade-in-up', 'bc-fade-in-up--loaded', 160);	
+			addClassTimed('.bc-fade-in-up', 'bc-fade-in-up--loaded', 120);	
 		}
 	});// window.onload
 	
-	const projectsFilter = 'all-projects';
-	
-	//the Projects grid
+	/** 
+		CA Projects: Load projects
+		Project filters
+		*/
+	/* Project filter functions */
+	/* Writes project cards grid contents  */
+	function writeCAProjects(projects, projectsFilter, projectsFilterLabel) { 
+		if (debug) {
+			console.log(projectsFilter);
+			console.log(projectsFilterLabel);
+		}
+		const $projectsGrid = document.querySelector('.ca-projects-grid');
+		const $catHeadingContainer = document.querySelector('.ca-projects-grid-header'); 
+		const $catHeading = document.querySelector('.ca-projects-grid-header h1'); 
+
+		/* Make a single card */
+		function _makeCard(project) {
+			//The card
+			let $card = document.createElement('article'); 
+			$card.classList.add('bc-card--slide-up', 'bc-fade-in-up');
+
+			//Card images
+			let $figure1 = document.createElement('figure');
+			$figure1.classList.add('bc-card-img', 'is-square');
+
+			let $img1 = document.createElement('img');
+
+			$img1.setAttribute('src', project['project-img']['url']);
+			$img1.setAttribute('alt', project['project-img']['alt']);
+
+			let $img2 = document.createElement('img');
+
+			$img2.setAttribute('src', project['project-img']['url']);
+			$img2.setAttribute('alt', project['project-img']['alt']);
+
+			let $figure2 = document.createElement('figure');
+			$figure2.classList.add('bc-card-img--focus-image', 'is-square');
+
+			$figure1.appendChild($img1);
+			$figure2.appendChild($img2);
+
+			$card.appendChild($figure1);
+			$card.appendChild($figure2);
+
+			//Card content
+			let $cardContent = document.createElement('div'); 
+			$cardContent.classList.add('bc-card-content');
+
+			let $cardlink =	document.createElement('a'); 
+			$cardlink.setAttribute('href', project.link);
+
+			let $cardInfo =	document.createElement('div');
+			$cardInfo.classList.add('bc-card-info');
+
+			let $cardInfoHeading = document.createElement('h2') ;
+			$cardInfoHeading.classList.add('bc-card-title');
+			$cardInfoHeading.appendChild(document.createTextNode(project.title.rendered));
+
+			let $cardInfoText = document.createElement('p') ;
+			$cardInfoText.classList.add('bc-card-subtitle');
+			$cardInfoText.appendChild(document.createTextNode(project['project-location']));
+
+			$cardInfo.appendChild($cardInfoHeading);
+			$cardInfo.appendChild($cardInfoText);
+			$cardlink.appendChild($cardInfo);
+			$cardContent.appendChild($cardlink);
+
+			//Add to card
+			$card.appendChild($cardContent);
+
+			return $card;
+		}//_makeCard()
+
+		//Clear all cards in the page
+		$catHeadingContainer.style.display = 'none';
+		$catHeading.innerHTML = '';
+		emptyElement($projectsGrid);
+
+		$projectsGrid.style.minHeight = '100vh';
+		//If the filter is all-projects
+		if (projectsFilter === 'all-projects') {
+			let newCards = [];
+			let newCard = null;
+			for (const project of projects) {
+				newCard = _makeCard(project);
+				$projectsGrid.append(newCard);
+				newCards.push(newCard); 
+			}
+			addClassTimed(newCards, 'bc-fade-in-up--loaded', 180);
+		} else {
+			//It's categorized
+			/* 
+				Write the category heading
+			*/
+			$catHeading.appendChild(document.createTextNode(projectsFilterLabel));
+			addClass($catHeading, 'bc-fade-in-up');
+			//$projectsGrid.append($catHeading);
+			$catHeadingContainer.style.display = 'flex';
+			addClassTimed($catHeading, 'bc-fade-in-up--loaded', 180);
+			let newCards = [];
+			for (const project of projects) {
+				const newCard = _makeCard(project);
+				$projectsGrid.append(newCard);	
+				newCards.push(newCard);
+				addClassTimed(newCards, 'bc-fade-in-up--loaded', 220);
+			}
+
+		}
+
+		$projectsGrid.style.minHeight = 'unset';
+	}//loadCAProject()
+
+	//Gets and filters projects JSON data using fltr
 	function filterCAProjects(fltr) {
-		/* https://new.cooneyarchitects.com/new-site/projects/projects.html*/
-		/* http://localhost:9001/data/projects.json */
 		return new Promise((resolve, reject) => {
-			getJSON('http://localhost:9001/data/projects.json', {cache: 'no-cache'}).then((data) => {
+			let jsonURL = 'https://new.cooneyarchitects.com/wp-json/wp/v2/project?per_page=100&_fields=title,project-categories,project-location,link,project-img';
+			//let jsonURL = 'http://localhost/ca-wordpress/wp-json/wp/v2/project?per_page=100&_fields=title,project-categories,project-location,link,project-img';
+			//let jsonURL = 'http://localhost:9001/data/projects.json';
+			getJSON(jsonURL, {cache: 'no-cache'}).then((data) => {
 				return data.json();
 			}).then((projects) => {
-				if (true) {
-					//No cookie set
-					//writeCAProjects(projects, fltr); 
-				} else {
-					//const projectFilter = 'project-category';	 //get cookie value
-					//writeCAProjects(projects, fltr);
+				if (debug) {
+					console.log(projects);
 				}
-				resolve(true);
+				let categorizedProjects = []; 
+				if (fltr === 'all-projects') {
+					resolve(projects);	
+				} else {
+					categorizedProjects = projects.filter((project) => {
+						for (let projCat of project['project-categories']) {
+							if (projCat.value.includes(fltr) && debug) {
+								console.log(project);
+							}
+							return projCat.value.includes(fltr);	
+						}
+					});
+					resolve(categorizedProjects);	
+				}
 			}).catch((err) => {
 				reject(err);
 			});//getJSON	
 		});
 	}
-	function _getProjectFilter(evt) { 
-		return evt.currentTarget.getAttribute('data-filter');
-	} 
-	
-	if ((_getDOMNode('.ca-projects-grid') || _getDOMNode('.bc-cards-row')) && _getDOMNode('.ca-project-filters') ) {
-		/* Set up project filters */
+	/* Project filters elements */
+	if (_getDOMNode('.ca-projects-grid') && _getDOMNode('.ca-project-filters') ) {
 		const $projectFilters = _getDOMNode('.ca-project-filters');
 		const $projectFiltersList = _getDOMNode('.ca-project-filters__list');
+
+		//breadcumbs container elements - to show hide filters on click
 		const $breadcrumbs = _getDOMNode('.bc-breadcrumbs');
 		const $breadcrumbsContainer = $breadcrumbs.closest('.bc-breadcrumbs-container');
 		const breadcrumbsContainerHeight = $breadcrumbs.clientHeight;
 		const breadcrumbsHeight = $breadcrumbs.clientHeight;
-		const projectFiltersHeight = $projectFilters.scrollHeight;
+		const projectFiltersHeight = $projectFilters.scrollHeight; 
+		console.log(projectFiltersHeight) ;
+
 		
+		//Default filter is all projects
+		const projectsFilter = 'all-projects';
+
+		/* Show/hide up project filters */
 		if (debug) {
 			console.log('start projects filter init');
+			console.log(window.outerWidth);
 		}
-	
-			if (debug) {
-				console.log('Window < 768px');
-			}
-			const filtersTogglers = Array.from(document.querySelectorAll('.ca-project-filters__label, .ca-project-filters__show-hide'));
-			filtersTogglers.forEach((filtersToggler, idx) => {
-				filtersToggler.addEventListener('click', (event) => {
-					if (debug) {
-						console.log(`click filtersToggler`);	
-					}
-					if (hasClass(filtersToggler, 'is-active')) {
-						adjustHeight($projectFilters, 0, 0.2, () => {
-							requestAnimationFrame(() => {
-								addClass($projectFiltersList, 'is-invisible');
-								removeClass(filtersToggler, 'is-active');
-							});	
-						});
-						
-					} else {
-						adjustHeight($projectFilters, projectFiltersHeight, 0.2, () => {
-							requestAnimationFrame(() => {
-								removeClass($projectFiltersList, 'is-invisible');
-								addClass(filtersToggler, 'is-active');
-							});	
-						});
-						
-					}
-				});
+		const filtersTogglers = Array.from(document.querySelectorAll('.ca-project-filters__label, .ca-project-filters__show-hide'));
+		filtersTogglers.forEach((filtersToggler, idx) => {
+			filtersToggler.addEventListener('click', (event) => {
+				if (debug) {
+					console.log(`click filtersToggler`);	
+				}
+				if (hasClass(filtersToggler, 'is-active')) {
+					adjustHeight($projectFilters, 0, 0.2, () => {
+						requestAnimationFrame(() => {
+							addClass($projectFiltersList, 'is-invisible');
+							removeClass(filtersToggler, 'is-active');
+							removeClass($projectFilters, 'is-visible');
+						});	
+					});
+					
+				} else {
+					adjustHeight($projectFilters, projectFiltersHeight, 0.2, () => {
+						requestAnimationFrame(() => {
+							removeClass($projectFiltersList, 'is-invisible');
+							addClass(filtersToggler, 'is-active');
+							addClass($projectFilters, 'is-visible');
+						});	
+					});
+				}
 			});
-	
-		filterCAProjects('all-projects'); 
-		const projectFilters = _getAllDOMNodes('.ca-project-filter');
+		});
 		
+		//load all projects
+		filterCAProjects('all-projects'); 
+		
+		//Filter links click - Filter by category, write the projects, add/remove active classes
+		const projectFilters = _getAllDOMNodes('.ca-project-filter');
 		projectFilters.forEach((filter) => {
 			filter.addEventListener('click', (event) => {
-				filterCAProjects(_getProjectFilter(event)).then(() => {
-					console.log('then');
+				let fltr = event.currentTarget.getAttribute('data-filter');
+				let fltrLabel = event.currentTarget.getAttribute('data-filter-label');
+				filterCAProjects(event.currentTarget.getAttribute('data-filter')).then((projects) => {
+					writeCAProjects(projects, fltr, fltrLabel); 
+				}).then(() => {
 					projectFilters.forEach((el) => {
-						removeClass(el, 'active');
+						removeClass(el, 'is-active');
 					});
-					addClass(event.target, 'active');
+					addClass(filter, 'is-active');
 				}).catch((err) => {
 					console.log(err);
 				});

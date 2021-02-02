@@ -1,3 +1,6 @@
+/* 
+	Copyright <%= pkg.developer %> 2020
+*/
 @import 'framework/variables';
 @import 'framework/mixins';
 @import 'vendor/normalize';
@@ -6,7 +9,7 @@
 html {
   font-size: 14px;
   line-height: $gutter-unit; 
-	color: $black;
+	color: $black;	
 }
 
 /*@media screen and (min-width: 320px) {
@@ -227,9 +230,11 @@ a {
 @import 'framework/header'; 
 @import 'components/bc-inner-nav';
 @import 'components/bc-breadcrumbs';
-@import 'components/bc-hero';
 @import 'components/bc-media';
+@import 'components/bc-hero';
+@import 'components/bc-landing-hero';  
 @import 'components/bc-cards';
+@import 'components/two-col-feature'; 
 @import 'framework/tables';
 @import 'framework/general-content';
 /** -- Back links at the bottom of inner pages -- **/
@@ -408,37 +413,29 @@ main {
 			margin-bottom: $gutter;
 			width: 100%;
 			flex: 1 1 100%;
-			@media screen and (min-width: $desktop) {
-				/*width:  (6/$gridColsCount)*100%;	
-				margin-left: (2/$gridColsCount)*100%;*/
-			}
+
 		}	
 	}
 }
 .ca-project-filters {
 	position: relative;
+	display: flex;
 	top: -0.75rem;
-	right: $gutter/2;
-	display: inline-flex;
-	justify-content: flex-end;
-	align-items: center;
-	flex-wrap: wrap;
 	height: 0;
-	padding-left: $gutter/2;
-	padding-right: $gutter/2;
-	
+	padding-left: 	$gutter;
+	padding-right: 	$gutter;
 	& &__list {
 		opacity: 1;
-		display: flex;
-		justify-content: flex-end;
-		width: 100%;
+		flex: 1 0 100%;
+		display: block;
 		margin: 0;
 		padding: 0;
 		transition: opacity 320ms ease-out ;
 		> li {
+			display: flex;
 			list-style: none;
 			margin: 0;
-			padding: 0 $gutter/2;
+			padding: 0;
 		}
 		&.is-invisible {
 			opacity: 0;
@@ -459,7 +456,27 @@ main {
 		margin-right: $gutter/2;
 	}
 	.ca-project-filter {
-		padding: $gutter/2 $gutter/2;
+		position: relative;
+		flex: 1 0 100%; 
+		display: flex;
+		align-items: center;
+		padding: $gutter/2 0;
+		&__indicator {
+			max-width: 0rem;
+			max-height: 0.5rem;
+			opacity: 0;
+			transform: rotate(90deg);
+			--trans: 120ms;
+			transition: max-width var(--trans) ease-in-out;
+		}
+		&.is-active {
+			font-weight: 400;
+			.ca-project-filter__indicator {
+				opacity: 1;
+				max-width: 0.5rem;
+				margin-right: $gutter/6;
+			}
+		}
 	}	
 	&-toggle &__show-hide {
 		position: relative;
@@ -467,7 +484,6 @@ main {
 		height: 1.25rem;
 	}
 	&-toggle &__show-hide {
-		
 		transition: opacity 420ms ease-out;
 		.svg-icon {
 			position: absolute;
@@ -491,11 +507,28 @@ main {
 		}
 	}
 	@media screen and (min-width: $tablet) {
+		
+		top: auto;
+		right: auto;
+		
+		justify-content: flex-end;
+		&.is-visible {
+			margin-bottom: $vertical-unit / 2;
+		}
+		& &__list {
+			display: flex; 
+			flex-direction: row;
+			justify-content: flex-end;
+		}
 		.ca-project-filter {
-			padding: $gutter/2 $gutter/4;
-		}	
+			
+			padding-left: $gutter/2;
+			padding-right: $gutter/2;
+		}
+		
 	}
-}
+	
+}//.ca-project-filters
 
 .ca-projects {
 	@media screen and (min-width:  500px) {
@@ -542,8 +575,7 @@ main {
 	@include makeInset(); 
 }
 
-@import 'components/two-col-feature'; 
-@import 'components/bc-landing-hero-video';  
+
 .bc-hero--landing-hero {
 	.bc-gradient-overlay {
 		@include linearGradient(to bottom, rgba(0, 0, 0, 0.06) 10%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.48) 80%);

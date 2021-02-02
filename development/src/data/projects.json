@@ -1,113 +1,533 @@
 [
-	{
-		"title": "Meath GAA Centre of Excellence",
-		"location": "Co. Meath, Ireland",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "sport",
-		"categoriestext": "Sport",
-		"date": "2018",
-		"image": "/assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg"
-	},
-	{
-		"title": "McNamara House",
-		"location": "Cloncarneel, Balivor, Co. Meath",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "housing",
-		"categoriestext": "Housing",
-		"date": "2017",
-		"image": "/assets/media/imgs/mcnamara-house-1-square.jpg"
-	},
-	{
-		"title": "Meath GAA Centre of Excellence",
-		"location": "Co. Meath, Ireland",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "sport",
-		"categoriestext": "Sport",
-		"date": "2018",
-		"image": "/assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg"
-	},
-	{
-		"title": "McNamara House",
-		"location": "Cloncarneel, Balivor, Co. Meath",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "housing",
-		"categoriestext": "Housing",
-		"date": "2017",
-		"image": "/assets/media/imgs/mcnamara-house-1-square.jpg"
-	},
-	{
-		"title": "Meath GAA Centre of Excellence",
-		"location": "Co. Meath, Ireland",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "sport",
-		"categoriestext": "Sport",
-		"date": "2018",
-		"image": "/assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg"
-	},
-	{
-		"title": "McNamara House",
-		"location": "Cloncarneel, Balivor, Co. Meath",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "housing",
-		"categoriestext": "Housing",
-		"date": "2017",
-		"image": "/assets/media/imgs/mcnamara-house-1-square.jpg"
-	},
-	{
-		"title": "Meath GAA Centre of Excellence",
-		"location": "Co. Meath, Ireland",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "sport",
-		"categoriestext": "Sport",
-		"date": "2018",
-		"image": "/assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg"
-	},
-	{
-		"title": "McNamara House",
-		"location": "Cloncarneel, Balivor, Co. Meath",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "housing",
-		"categoriestext": "Housing",
-		"date": "2017",
-		"image": "/assets/media/imgs/mcnamara-house-1-square.jpg"
-	},
-	{
-		"title": "Meath GAA Centre of Excellence",
-		"location": "Co. Meath, Ireland",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "sport",
-		"categoriestext": "Sport",
-		"date": "2018",
-		"image": "/assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg"
-	},
-	{
-		"title": "McNamara House",
-		"location": "Cloncarneel, Balivor, Co. Meath",
-		"linktext": "View project",
-		"projlink": "meath-project.html",
-		"categories": "housing",
-		"categoriestext": "Housing",
-		"date": "2017",
-		"image": "/assets/media/imgs/mcnamara-house-1-square.jpg"
-	},
-	{
-		"title": "Brook House",
-		"location": "Thomastown, Co. Kilkenny",
-		"linktext": "Brook House project",
-		"projlink": "meath-project.html",
-		"categories": "housing, conservation, adaptive-reuse",
-		"categoriestext": "Housing, Adaptive Reuse, Conservation",
-		"date": "2017",
-		"image": "/assets/media/imgs/brooke-house-3--square.jpg"
-	}
-
+    {
+        "link": "http://localhost/ca-wordpress/projects/low-energy-dwelling-limerick/",
+        "title": {
+            "rendered": "Low energy dwelling, Limerick"
+        },
+        "project-categories": [
+            {
+                "value": "housing",
+                "label": "Housing"
+            }
+        ],
+        "project-location": "Patrickswell, Co. Limerick",
+        "project-img": {
+            "ID": 556,
+            "id": 556,
+            "title": "",
+            "filename": "low-energy-dwelling-limerick-1-square.jpg",
+            "filesize": 240148,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/low-energy-dwelling-limerick-1-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/low-energy-dwelling-limerick/low-energy-dwelling-limerick-1-square/",
+            "alt": "Low energy dwelling, Limerick",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "low-energy-dwelling-limerick-1-square",
+            "status": "inherit",
+            "uploaded_to": 548,
+            "date": "2020-11-10 22:04:42",
+            "modified": "2020-11-10 22:04:57",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 532,
+            "height": 532,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/low-energy-dwelling-limerick-1-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/low-energy-dwelling-limerick-1-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/low-energy-dwelling-limerick-1-square.jpg",
+                "medium_large-width": 532,
+                "medium_large-height": 532,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/low-energy-dwelling-limerick-1-square.jpg",
+                "large-width": 532,
+                "large-height": 532
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/brooke-house-low-energy-community-housing/",
+        "title": {
+            "rendered": "Brook House Low Energy Community housing"
+        },
+        "project-categories": [
+            {
+                "value": "adaptive-reuse",
+                "label": "Adaptive Reuse"
+            }
+        ],
+        "project-location": "Thomastown, Co. Kilkenny",
+        "project-img": {
+            "ID": 547,
+            "id": 547,
+            "title": "",
+            "filename": "brooke-house-3-square.jpg",
+            "filesize": 414890,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/brooke-house-3-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/brooke-house-low-energy-community-housing/brooke-house-3-square/",
+            "alt": "Brook House, Low energy Community housing, Co. Kilkenny",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "brooke-house-3-square",
+            "status": "inherit",
+            "uploaded_to": 535,
+            "date": "2020-11-10 21:49:24",
+            "modified": "2020-11-10 21:49:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 728,
+            "height": 728,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/brooke-house-3-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/brooke-house-3-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/brooke-house-3-square.jpg",
+                "medium_large-width": 728,
+                "medium_large-height": 728,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/brooke-house-3-square.jpg",
+                "large-width": 728,
+                "large-height": 728
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/kilcock-community-building/",
+        "title": {
+            "rendered": "Kilcock Community building"
+        },
+        "project-categories": [
+            {
+                "value": "sport",
+                "label": "Sport"
+            },
+            {
+                "value": "civic-and-cultural",
+                "label": "Civic and Cultural"
+            }
+        ],
+        "project-location": "Bawnogues, Kilcock, Co. Kildare",
+        "project-img": {
+            "ID": 534,
+            "id": 534,
+            "title": "",
+            "filename": "community-centre-kilcock-square.jpg",
+            "filesize": 264250,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/community-centre-kilcock-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/kilcock-community-building/community-centre-kilcock-square/",
+            "alt": "Kilcock Community Building, Bawnogues, Kilcock, Co. Kildare",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "community-centre-kilcock-square",
+            "status": "inherit",
+            "uploaded_to": 526,
+            "date": "2020-11-10 18:18:27",
+            "modified": "2020-11-10 18:18:49",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 749,
+            "height": 749,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/community-centre-kilcock-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/community-centre-kilcock-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/community-centre-kilcock-square.jpg",
+                "medium_large-width": 749,
+                "medium_large-height": 749,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/community-centre-kilcock-square.jpg",
+                "large-width": 749,
+                "large-height": 749
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/st-brigids-st-patricks-national-school/",
+        "title": {
+            "rendered": "St Brigid’s &#038; St. Patrick’s National School"
+        },
+        "project-categories": [
+            {
+                "value": "civic-and-cultural",
+                "label": "Civic and Cultural"
+            }
+        ],
+        "project-location": "Bothar Brugha, Drogheda, Co. Louth",
+        "project-img": {
+            "ID": 525,
+            "id": 525,
+            "title": "",
+            "filename": "st-patricks-national-school-2-square.jpg",
+            "filesize": 216737,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/st-patricks-national-school-2-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/st-brigids-st-patricks-national-school/st-patricks-national-school-2-square/",
+            "alt": "St Brigid’s & St. Patrick’s National School, Bothar Brugha, Drogheda, Co. Louth",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "st-patricks-national-school-2-square",
+            "status": "inherit",
+            "uploaded_to": 517,
+            "date": "2020-11-10 18:05:47",
+            "modified": "2020-11-10 18:06:07",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 967,
+            "height": 967,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/st-patricks-national-school-2-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/st-patricks-national-school-2-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/st-patricks-national-school-2-square-768x768.jpg",
+                "medium_large-width": 768,
+                "medium_large-height": 768,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/st-patricks-national-school-2-square.jpg",
+                "large-width": 967,
+                "large-height": 967
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/local-authority-lifecycle-housing/",
+        "title": {
+            "rendered": "Local Authority, Lifecycle housing"
+        },
+        "project-categories": [
+            {
+                "value": "housing",
+                "label": "Housing"
+            }
+        ],
+        "project-location": "Ratoath, Co. Meath",
+        "project-img": {
+            "ID": 511,
+            "id": 511,
+            "title": "local-authority-lifecycle-housing-meath--square",
+            "filename": "local-authority-lifecycle-housing-meath-square.jpg",
+            "filesize": 309036,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/local-authority-lifecycle-housing-meath-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/local-authority-lifecycle-housing/local-authority-lifecycle-housing-meath-square/",
+            "alt": "Local Authority, Lifecycle housing, Ratoath, Co. Meath",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "local-authority-lifecycle-housing-meath-square",
+            "status": "inherit",
+            "uploaded_to": 500,
+            "date": "2020-11-09 23:43:28",
+            "modified": "2020-11-09 23:43:44",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 1013,
+            "height": 1013,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/local-authority-lifecycle-housing-meath-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/local-authority-lifecycle-housing-meath-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/local-authority-lifecycle-housing-meath-square-768x768.jpg",
+                "medium_large-width": 768,
+                "medium_large-height": 768,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/local-authority-lifecycle-housing-meath-square.jpg",
+                "large-width": 1013,
+                "large-height": 1013
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/pairc-tailteann-stadium-masterplan-and-grandstand/",
+        "title": {
+            "rendered": "Pairc Tailteann stadium masterplan and grandstand"
+        },
+        "project-categories": [
+            {
+                "value": "sport",
+                "label": "Sport"
+            },
+            {
+                "value": "civic-and-cultural",
+                "label": "Civic and Cultural"
+            }
+        ],
+        "project-location": "Navan, Co. Meath",
+        "project-img": {
+            "ID": 499,
+            "id": 499,
+            "title": "",
+            "filename": "pairc-tailteann-stadium-square.jpg",
+            "filesize": 116241,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/pairc-tailteann-stadium-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/pairc-tailteann-stadium-masterplan-and-grandstand/pairc-tailteann-stadium-square/",
+            "alt": "Pairc Tailteann Stadium",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "pairc-tailteann-stadium-square",
+            "status": "inherit",
+            "uploaded_to": 488,
+            "date": "2020-11-09 23:19:07",
+            "modified": "2020-11-09 23:19:21",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 432,
+            "height": 432,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/pairc-tailteann-stadium-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/pairc-tailteann-stadium-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/pairc-tailteann-stadium-square.jpg",
+                "medium_large-width": 432,
+                "medium_large-height": 432,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/pairc-tailteann-stadium-square.jpg",
+                "large-width": 432,
+                "large-height": 432
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/donaghmore-ashbourne/",
+        "title": {
+            "rendered": "Donaghmore Ashbourne"
+        },
+        "project-categories": [
+            {
+                "value": "sport",
+                "label": "Sport"
+            },
+            {
+                "value": "civic-and-cultural",
+                "label": "Civic and Cultural"
+            }
+        ],
+        "project-location": "Ashbourne, Co. Meath",
+        "project-img": {
+            "ID": 487,
+            "id": 487,
+            "title": "",
+            "filename": "GAA-clubhouse-and-stand-meath-01-square.jpg",
+            "filesize": 239879,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/GAA-clubhouse-and-stand-meath-01-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/donaghmore-ashbourne/gaa-clubhouse-and-stand-meath-01-square/",
+            "alt": "Donaghmore Ashbourne GAA Club",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "gaa-clubhouse-and-stand-meath-01-square",
+            "status": "inherit",
+            "uploaded_to": 476,
+            "date": "2020-11-09 22:39:14",
+            "modified": "2020-11-09 22:39:23",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 532,
+            "height": 532,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/GAA-clubhouse-and-stand-meath-01-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/GAA-clubhouse-and-stand-meath-01-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/GAA-clubhouse-and-stand-meath-01-square.jpg",
+                "medium_large-width": 532,
+                "medium_large-height": 532,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/GAA-clubhouse-and-stand-meath-01-square.jpg",
+                "large-width": 532,
+                "large-height": 532
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/bailieborough-courthouse/",
+        "title": {
+            "rendered": "Bailieborough courthouse"
+        },
+        "project-categories": [],
+        "project-location": "Bailieborough, Co. Cavan",
+        "project-img": {
+            "ID": 475,
+            "id": 475,
+            "title": "bailieborough-courthouse--square",
+            "filename": "bailieborough-courthouse-square.jpg",
+            "filesize": 358073,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/bailieborough-courthouse-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/bailieborough-courthouse/bailieborough-courthouse-square/",
+            "alt": "Bailieborough Courthouse, Co Cavan",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "bailieborough-courthouse-square",
+            "status": "inherit",
+            "uploaded_to": 466,
+            "date": "2020-11-09 22:26:01",
+            "modified": "2020-11-09 22:26:16",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 1304,
+            "height": 1304,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/bailieborough-courthouse-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/bailieborough-courthouse-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/bailieborough-courthouse-square-768x768.jpg",
+                "medium_large-width": 768,
+                "medium_large-height": 768,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/bailieborough-courthouse-square-1024x1024.jpg",
+                "large-width": 1024,
+                "large-height": 1024
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/national-sports-campus-conference-centre/",
+        "title": {
+            "rendered": "National Sports campus, Conference centre"
+        },
+        "project-categories": [
+            {
+                "value": "civic-and-cultural",
+                "label": "Civic and Cultural"
+            },
+            {
+                "value": "adaptive-reuse",
+                "label": "Adaptive Reuse"
+            }
+        ],
+        "project-location": "",
+        "project-img": {
+            "ID": 465,
+            "id": 465,
+            "title": "",
+            "filename": "conference-centre-national-sports-campus-square.jpg",
+            "filesize": 281093,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/conference-centre-national-sports-campus-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/national-sports-campus-conference-centre/conference-centre-national-sports-campus-square/",
+            "alt": "National Sports campus, Conference Centre",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "conference-centre-national-sports-campus-square",
+            "status": "inherit",
+            "uploaded_to": 456,
+            "date": "2020-11-09 22:16:26",
+            "modified": "2020-11-09 22:16:36",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 532,
+            "height": 532,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/conference-centre-national-sports-campus-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/conference-centre-national-sports-campus-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/conference-centre-national-sports-campus-square.jpg",
+                "medium_large-width": 532,
+                "medium_large-height": 532,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/conference-centre-national-sports-campus-square.jpg",
+                "large-width": 532,
+                "large-height": 532
+            }
+        }
+    },
+    {
+        "link": "http://localhost/ca-wordpress/projects/leitrim-innovation-centre/",
+        "title": {
+            "rendered": "Leitrim Innovation Centre"
+        },
+        "project-categories": [
+            {
+                "value": "adaptive-reuse",
+                "label": "Adaptive Reuse"
+            }
+        ],
+        "project-location": "Carrick on Shannon, Co. Leitrim",
+        "project-img": {
+            "ID": 455,
+            "id": 455,
+            "title": "leitrim-enterprise-3--square",
+            "filename": "leitrim-enterprise-3-square.jpg",
+            "filesize": 873270,
+            "url": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/leitrim-enterprise-3-square.jpg",
+            "link": "http://localhost/ca-wordpress/projects/leitrim-innovation-centre/leitrim-enterprise-3-square/",
+            "alt": "Leitrim Innovation Centre",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "leitrim-enterprise-3-square",
+            "status": "inherit",
+            "uploaded_to": 449,
+            "date": "2020-11-09 22:03:27",
+            "modified": "2020-11-09 22:03:34",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "http://localhost/ca-wordpress/wp-includes/images/media/default.png",
+            "width": 1168,
+            "height": 1168,
+            "sizes": {
+                "thumbnail": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/leitrim-enterprise-3-square-150x150.jpg",
+                "thumbnail-width": 150,
+                "thumbnail-height": 150,
+                "medium": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/leitrim-enterprise-3-square-300x300.jpg",
+                "medium-width": 300,
+                "medium-height": 300,
+                "medium_large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/leitrim-enterprise-3-square-768x768.jpg",
+                "medium_large-width": 768,
+                "medium_large-height": 768,
+                "large": "http://localhost/ca-wordpress/wp-content/uploads/2020/11/leitrim-enterprise-3-square-1024x1024.jpg",
+                "large-width": 1024,
+                "large-height": 1024
+            }
+        }
+    }
 ]

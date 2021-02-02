@@ -1,6 +1,40 @@
 /** Landing page hero **/
+.bc-hero-header {
+	position: absolute;
+	top: 0.75rem;
+	width: 100%;
+	align-items: stretch;
+	transition: background-color $buttonTransition $easing;
+	z-index: 20;
+	overflow: hidden;
+	box-shadow: none;
+	.bc-content-container:first-of-type {
+		overflow: visible;
+	}
+	.svg-icon {
+		fill: $white;
+	}
+	&.menu-active {
+		background-color: $white;
+		overflow: visible;
+		.bc-header-logo {
+			h1 {
+				a {
+					color: $black;	
+				}
+			}
+		}
+		.svg-icon {
+			fill: $text;
+			max-width: 	1.5rem;
+			max-height: 1.5rem;
+		}
+		border-bottom: 1px solid $shade-lightest;
+	}
+}
 .bc-hero {
-	&--landing-hero {
+	
+	&--landing-hero { 
 		@extend .bc-hero;
 		height: 100vh; 
 		padding: $gutter/2;
@@ -29,36 +63,7 @@
 				object-fit: cover;
 			}
 		}
-		.bc-hero-header {
-			position: absolute;
-			padding-top: 		0;
-			padding-bottom: 0;
-			width: 100%;
-			height: 10%;
-			align-items: stretch;
-			transition: background-color $buttonTransition $easing;
-			z-index: 20;
-			.svg-icon {
-				fill: $white;
-			}
-			&.menu-active {
-				background-color: $white;
-				.bc-header-logo {
-					h1 {
-						font-size: 1.125rem; 
-						a {
-							color: $black;	
-						}
-					}
-				}
-				.svg-icon {
-					fill: $text;
-					max-width: 	1.5rem;
-					max-height: 1.5rem;
-				}
-				border-bottom: 1px solid $shade-lightest;
-			}
-		}
+		
 		.bc-hero-body {
 			flex-basis: 	auto;
 			position: 		absolute;
@@ -246,8 +251,6 @@
 				}
 			}
 		}
-		
-		
 		&--video {
 			@extend .bc-hero--landing-hero ;
 			.bc-hero-block {

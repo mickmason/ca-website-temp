@@ -1,9 +1,10 @@
-@@include('structure/level-1/header--l1.html', {"client": "Cooney Architects", "title": "Architectural work", "color-scheme": "brand-yellow-scheme"})
+@@include('structure/level-1/header--l1.html', {"client": "Cooney Architects", "title": "Architectural work", "color-scheme": "brand-yellow-scheme", "header-class": "bc-header"})
+	
 		<div class="bc-content-container bc-breadcrumbs-container">
 			<nav class="bc-breadcrumbs has-project-filter">
 				<ul class="bc-inner-nav bc-breadcrumbs-links">  
 					<li>
-						<a class="bc-breadcrumbs-link" href="../projects/projects.html">Projects</a>
+						<a class="bc-breadcrumbs-link" href="<?php echo get_permalink(70) ?>">Projects</a>
 					</li>
 				</ul><!-- // .bc-breadcrumbs-links -->
 				<div class="ca-project-filters-toggle">
@@ -18,32 +19,63 @@
 							<use xlink:href="../assets/media/svg/bc-icons.svg#close-x"></use>
 						</svg>	
 					</a>	
-				</div>
+				</div><!-- // .ca-project-filters-toggle -->
 			</nav><!-- // .bc-breadcrumbs -->
 			<div class="ca-project-filters">
 				<ul class="ca-project-filters__list is-invisible"> 
-						<li class="bc-inner-nav-active">
-							<a data-filter="all-projects" class="ca-project-filter active" href="javascript:void(0)">All projects</a>
-						</li>
-						<li>
-							<a class="ca-project-filter" data-filter="project-category" href="javascript:void(0)">Category</a>
-						</li>
-						<li>
-							<a class="ca-project-filter" data-filter="project-date" href="javascript:void(0)">Date</a>
-						</li>
-					</ul>	
-			</div>
-		</div> 
+					<li class="bc-inner-nav-active">
+						<a data-filter="all-projects" class="is-label ca-project-filter is-active" href="javascript:void(0)">
+							<svg class="svg-icon ca-project-filter__indicator">
+								<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
+							</svg>	
+							All projects
+						</a> 
+					</li>
+					<li>
+						<a class="ca-project-filter is-label" data-filter="sport" data-filter-label="Sport" href="javascript:void(0)">
+							<svg class="svg-icon ca-project-filter__indicator">
+								<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
+							</svg>	
+							Sport
+						</a>
+					</li>
+					<li>
+						<a class="ca-project-filter is-label" data-filter="civic-and-cultural" data-filter-label="Civic &amp; Cultural" href="javascript:void(0)">
+							<svg class="svg-icon ca-project-filter__indicator">
+								<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
+							</svg>	
+							Civic &amp; Cultural
+						</a>
+					</li>
+					<li>
+						<a class="ca-project-filter is-label" data-filter="housing" data-filter-label="Housing" href="javascript:void(0)">
+							<svg class="svg-icon ca-project-filter__indicator">
+								<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
+							</svg>	
+							Housing
+						</a>
+					</li>
+					<li>
+						<a class="ca-project-filter is-label" data-filter="adaptive-reuse" data-filter-label="Adaptive reuse" href="javascript:void(0)">
+							<svg class="svg-icon ca-project-filter__indicator">
+								<use xlink:href="../assets/media/svg/bc-icons.svg#triangle"></use>
+							</svg>	
+							Adaptive reuse
+						</a>
+					</li>
+				</ul><!-- // .ca-project-filters__list -->
+			</div><!-- // .ca-project-filters -->
+		</div><!-- // .bc-breadcrumbs-container --> 
 		<main>
 			<div class="bc-content-container"> 
-				<!--<div class="bc-content-row" >
+				<div class="bc-content-row ca-projects-grid-header" style="display: none" >
 					<div class="bc-content-column bc-feature-leader  bc-content-column--indented">
 						<div class="bc-feature-leader__content">
 							<h1>Sports</h1> 
 						</div>
 					</div>
-				</div>--><!-- // .bc-content-row -->
-				<section class="bc-content-row bc-cards-row" aria-label="Cooney Architects Projects"> 
+				</div><!-- // .bc-content-row -->
+				<section class="bc-content-row bc-cards-row ca-projects-grid " ia-label="Cooney Architects Projects"> 
 					<article class="bc-card--slide-up bc-fade-in-up"> 
 						<figure class="bc-card-img is-square">
 							<img src="../assets/media/imgs/meath-gaa-centre-of-excellence-1-square.jpg" alt="Meath GAA Centre of Excellence" />	
@@ -56,12 +88,6 @@
 								<div class="bc-card-info">
 									<h2 class="bc-card-title">Meath GAAs Centre of Excellence</h2> 
 									<p class="bc-card-subtitle">Co. Meath, Ireland</p> 
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span> 
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
 								</div>
 							</a>
 						</div>
@@ -79,12 +105,6 @@
 									<h2 class="bc-card-title">National Sports campus, Conference centre</h2>
 									<p class="bc-card-subtitle">National Sports Campus, Abbotstown, Dublin</p>	
 								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
 							</a>
 						</div> 
 					</article><!-- // Campus Conference Centre -->
@@ -100,12 +120,6 @@
 								<div class="bc-card-info">
 									<h2 class="bc-card-title">Irish-European I-LOFAR Birr Telescope Education Centre</h2>
 									<p class="bc-card-subtitle">Birr, Co. Offaly</p>	
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project	</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
 								</div>
 							</a>
 						</div>
@@ -123,12 +137,6 @@
 									<h2 class="bc-card-title">Mc Namara House</h2>
 									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
 								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project	</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
 							</a>
 						</div>
 					</article><!-- // McNamara House project -->
@@ -145,12 +153,6 @@
 									<h2 class="bc-card-title">Leitrim Innovation Growth Centre</h2>
 									<p class="bc-card-subtitle">Co. Leitrim, Ireland</p>
 								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
 							</a>
 						</div>
 					</article><!-- // Leitrim Innovation Growth Centre -->
@@ -164,12 +166,6 @@
 								<div class="bc-card-info">
 									<h2 class="bc-card-title">Meath GAA Centre of Excellence</h2>
 									<p class="bc-card-subtitle">Co. Meath, Ireland</p>
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
 								</div>
 							</a>
 						</div>
@@ -187,12 +183,6 @@
 								<div class="bc-card-info">
 									<h2 class="bc-card-title">Meath GAA Centre of Excellence</h2>
 									<p class="bc-card-subtitle">Co. Meath, Ireland</p>
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
 								</div>
 							</a>
 						</div>
@@ -209,12 +199,6 @@
 								<div class="bc-card-info">
 									<h2 class="bc-card-title">Mc Namara House</h2>
 									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project	</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
 								</div>
 							</a>
 						</div>
@@ -232,12 +216,6 @@
 									<h2 class="bc-card-title">Meath GAA Centre of Excellence</h2>
 									<p class="bc-card-subtitle">Co. Meath, Ireland</p>
 								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
-								</div>
 							</a>
 						</div>
 					</article><!-- // Meath project -->
@@ -253,12 +231,6 @@
 								<div class="bc-card-info">
 									<h2 class="bc-card-title">Mc Namara House</h2>
 									<p class="bc-card-subtitle">Cloncarneel, Ballivor, Co. Meath</p>	
-								</div>
-								<div class="bc-card-link">
-									<span class="bc-card-link-text">View project	</span>
-									<svg class="svg-icon">
-										<use xlink:href="../assets/media/svg/bc-icons.svg#arrow"></use>
-									</svg>	
 								</div>
 							</a>
 						</div>

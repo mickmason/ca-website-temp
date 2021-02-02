@@ -1,11 +1,49 @@
 header {
   box-shadow: 0 6px 10px -8px rgba(0, 0, 0, 0.4); 
 	.bc-content-container:first-of-type {
+		position: relative;
+		overflow: hidden;
 		.bc-content-row {
+
 			padding-top: 		0.25rem;
 			padding-bottom: 0.25rem;
 		}	
-	}
+		&.menu-active {
+			overflow: visible;
+			.bc-header-menu--show-hide {
+				background-color: $white;
+				.bc-header-logo {
+					h1 {
+						font-size: 1.125rem; 
+						a {
+							color: $black;	
+						}
+					}
+				}
+				.svg-icon {
+					fill: $black;
+					max-width: 	1.5rem;
+					max-height: 1.5rem;
+				}
+				.bc-header-menu__toggle {
+					&__hide {
+						display: block;
+					}
+					&__show {
+						display: none;
+					}
+				}
+			}// .bc-header-menu--show-hide
+			.bc-header-menu--mobile {
+				display: block;
+				z-index: 100;
+				visibility: visible;
+				left: 0;
+				opacity: 1;
+				transform: translateX(0) scale(1);;
+			}// .bc-header-menu--mobile
+		}// &.menu-active
+	} // .bc-content-container:first-of-type 
 	.bc-content-row {
 		flex-direction: row;
 		justify-content: space-between;
@@ -49,6 +87,11 @@ header {
 		padding-right: $gutter/2;
 		@include makeFlexbox(row, center, center);
 	}
+	.bc-header-menu__toggle {
+		&__hide {
+			display: none;
+		}
+	}
 	.svg-icon {
 		fill: $text;
 		max-width: 	1.5rem;
@@ -69,13 +112,23 @@ header {
 			max-width: 	1.5rem;
 			max-height: 1.5rem;
 		}
+		.bc-header-menu__toggle {
+			&__hide {
+				display: block;
+			}
+			&__show {
+				display: none;
+			}
+		}	
 		
 	}
 	&.menu-active + .bc-header-menu--mobile {
+		display: block;
 		z-index: 100;
 		visibility: visible;
 		left: 0;
 		opacity: 1;
+		transform: translateX(0) scale(1);
 	}
 	
 	@media screen and (min-width: $tablet) {
@@ -315,13 +368,13 @@ header {
 	.bc-header-menu__links {
 		.bc-header-menu__link {
 			a {
-				padding-top: 0;
-				color: $white; 
 				text-decoration: none;
 				transition: color 240ms ease-out;
 				@include linkHover {
 					color: $shade-01;
 					text-decoration: underline;
+		
+
 				}
 			}
 		}
@@ -329,22 +382,38 @@ header {
 			.svg-icon {
 				fill: $shade-01;
 			}
+			.bc-roll-up-link-active {
+				&:after {
+					background-color: transparent;
+				}		
+			}
+			@include linkHover {
+				text-decoration: underline;
+				.bc-roll-up-link-active {
+					&::after {
+						content: "";	
+					}
+				}
+			}
 		}
 	}
 }
 .bc-header-menu--mobile {
 	position: absolute;
 	justify-content: flex-start;
-	top: calc(3rem + #{(12/14)}rem);
+	top: 100%;
 	width: 	100%;
 	height: calc(100vh - (3rem + #{(12/14)}rem));
-	left: 100%;
+	left: auto;
+	padding-left: 	0.75rem;
+	padding-right: 	0.75rem;
 	background-color: $white;
 	z-index: -10;	
 	visibility: hidden;
 	opacity: 0;
-	//$buttonTransition
-	transition: opacity 420ms $easing 200ms, left 360ms ease-in-out;
+	transform-origin: center top ;
+	transform: translateX(100%) scale(0.96);
+	transition: opacity 360ms $easing, transform 360ms $easing;
 	.bc-header-menu__heading {
 		font-size: 1.5rem;
 		font-weight: 300;
@@ -382,10 +451,22 @@ header {
 }
 
 
+@media screen and (min-width: $tablet) { 
+	.bc-hero-header {
+		.bc-header-menu__links {
+			li {
+				a {
+					color: $white;
+				}
+			}	
+		}
+	}
+}
 @media screen and (min-width: $med) {
 	.bc-header-menu {
 		flex-basis: 28%
 	}
+	
 }
 @media screen and (min-width: $laptop) {
 	.bc-header-menu {

@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-
+	const fs = require('fs-extra');
 	const tasks = {scope: ['devDependencies', 'dependencies' ]};
   const options = {
 		pkg: grunt.file.readJSON('package.json'),
@@ -40,7 +40,11 @@ module.exports = function(grunt) {
 			},
 			css: {
 				style: 'www-root/assets/css/style.css',
-				styleMin: 'www-root/assets/css/style.min.css'
+				styleMin: 'www-root/assets/css/style.min.css',
+				tempPath: {
+					path: 'www-root/assets/css/temp/',
+					filePath: 'www-root/assets/css/temp/temp.min.css'
+				}
 			}
 		},
 		config: { 
@@ -61,6 +65,7 @@ module.exports = function(grunt) {
 		'includereplace',
 		'sass',
 		'run:postcssbuild',
+		'prepend-css',
 		'critical',
     'run:jshint',
 		'run:babel',
@@ -68,7 +73,23 @@ module.exports = function(grunt) {
 		'concat:dist',
 		'cleanup'
   ]);
+	grunt.registerTask('prepend-css', 'Add licence information to CSS', () => {
+		try {
+			if (!fs.existsSync(options.paths.css.tempPath.path)) {
+				fs.mkdirSync(options.paths.css.tempPath.path);
+			}
+			const bannerText = '\n/** \n * Big Cat Digital custom CSS \n * Client: ' + options.pkg.clientName + '\n * Project: ' + options.pkg.projectName + '\n * Version: ' + options.pkg.version + '\n * Description: ' + options.pkg.description + '\n * Licence: ' + options.pkg.developer + ', ' + options.pkg.licence + '\n * Created by: ' + options.pkg.developer + '\n **/\n\n';
+			const tempStyleMin = fs.writeFileSync(options.paths.css.tempPath.filePath, bannerText, {flag: 'w'});
+			const minData = fs.writeFileSync(options.paths.css.tempPath.filePath, fs.readFileSync(options.paths.css.styleMin, 'utf8'), {flag: 'a+'});
+			const minDataDone = fs.writeFileSync(options.paths.css.styleMin, fs.readFileSync(options.paths.css.tempPath.filePath, 'utf8'), {flag: 'w+'});
+			//options.paths.css.styleMin
+			//file written successfully
+		} catch (err) {
+			console.error(err)
+		}
+	});
 	grunt.registerTask('cleanup', 'Clean up temporary files', () => {
+		grunt.file.delete(options.paths.css.tempPath.path, { force: true});
 		grunt.file.delete(options.paths.jsFiles.tempPaths.path, { force: true});
 		grunt.file.delete(options.paths.jsFiles.dest.dist+'scripts.js', { force: true});
 	});

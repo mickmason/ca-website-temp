@@ -45,7 +45,7 @@
 		display: block;
 		text-decoration: none;
 	}
-	&-img { 
+	&-img, &-text { 
 		position: relative;
 		> img {
 			max-width: 100%;
@@ -53,12 +53,18 @@
 		&.is-square {
 			position: relative;
 			overflow: hidden;
-			> img {
+			> img, > div {
 				position: absolute;
 				top: 	0;
 				left: 0;
 				width: 100%;
 				object-fit: cover;
+			}
+			> div {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 			}
 			padding-top: 100%;
 		}
@@ -87,7 +93,7 @@
 	&-info {
 		min-width: 100%;
 	}
-	&-title { 
+	&-title, &-title--year { 
 		font-size: 1.25rem;
 		font-weight: 400;
 		margin-top: 0; 
@@ -100,7 +106,6 @@
 	}
 	
 	&-link {
-		
 		@include makeFlexbox($direction: row, $align: center);
 		display: none;
 		padding: $gutter/4 0 ;
@@ -118,9 +123,9 @@
 	&-link-text {
 		z-index: 10;
 	}
-	&--slide-up, &--slide-up-overlay {
+	&--slide-up, &--slide-up-overlay, &--slide-up-text { 
 		@extend .bc-card;
-		.bc-card-content, .bc-card-img, .bc-card-img--focus-image, .bc-card-img-overlay {
+		.bc-card-content, .bc-card-img, .bc-card-text, .bc-card-img--focus-image, .bc-card-img-overlay {
 			transition: top $menuSlideTransition*1.61 $easing;	
 		}
 		.bc-card-content {
@@ -129,10 +134,16 @@
 		.bc-card-content-heading {
 			margin-bottom: 1.25rem;
 		}
-		.bc-card-img {
+		.bc-card-img, .bc-card-text {
 			position: relative;
 			top: 0;
-			//border-bottom: 4px solid $brand-yellow; 
+		}
+		.bc-card-text {
+			color: $black;
+			text-align: center;
+			.bc-card-title--year {
+				margin-bottom: $vertical-unit;
+			}
 		}
 		.bc-card-content, .bc-card-img--focus-image { 
 			position: absolute;
@@ -147,7 +158,7 @@
 			fill: $white !important;
 		}
 		&:hover, &:focus {
-			.bc-card-img {
+			.bc-card-img, .bc-card-text {
 				top: -100%;
 			}
 			.bc-card-content, .bc-card-img--focus-image { 
@@ -163,6 +174,11 @@
 			}
 		}
 	}// .bc-card--slide-up 
+	&--slide-up-text {
+		.bc-card-content {
+			//text-align: center;
+		}
+	}
 	&--slide-up-overlay {
 		.bc-card-img-overlay {
 			font-weight: 			300;
@@ -213,6 +229,9 @@
 			font-size: 1.125rem;
 			font-weight: 500;
 			margin-bottom: 0.25rem;
+			&:hover, &:active, &:focus {
+				text-decoration: underline;
+			}
 		}
 		p {
 			font-weight: 300;
@@ -223,6 +242,10 @@
 			padding: 0; 	
 			background-color: transparent;
 			color: $black;
+			> a {
+				padding-left: 	0;
+				padding-right:  0; 
+			}
 		}
 		.svg-icon {
 			fill: $black;
@@ -243,6 +266,7 @@
 		.bc-card-content {
 			> a { 
 				justify-content: center;
+				
 			}
 			&-heading {
 				margin-bottom: 0.9rem;
