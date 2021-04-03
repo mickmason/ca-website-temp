@@ -245,7 +245,6 @@
 	if (debug) {
 		var i = 0;	
 	}
-	
 	function lerpScroll($el, pos, target, speed = 0.075) {
 		if (debug) {
 			console.log(`Lerp ${i}`); 
